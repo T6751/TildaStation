@@ -15,7 +15,7 @@
 	var/newtime = input(usr, "Please set the timer.", "Timer", timer) as num
 	newtime = clamp(newtime, 10, 9999)
 	timer = newtime
-	to_chat(user, "Timer set for [timer] seconds.")
+	to_chat(user, "<span class='notice'>Timer set for [timer] seconds.</span>")
 
 /obj/item/weapon/plastique/afterattack(atom/target, mob/user, proximity, params)
 	if (!proximity)
