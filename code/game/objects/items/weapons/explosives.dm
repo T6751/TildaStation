@@ -1,3 +1,16 @@
+/obj/item/weapon/plastique
+	name = "plastic explosives"
+	desc = "Used to put holes in specific areas without too much extra hole."
+	gender = PLURAL
+	icon = 'icons/obj/assemblies.dmi'
+	icon_state = "plastic-explosive0"
+	item_state = "plasticx"
+	flags = NOBLUDGEON
+	w_class = ITEM_SIZE_SMALL
+	origin_tech = "syndicate=2"
+	var/timer = 10
+	var/atom/target = null
+
 /obj/item/weapon/plastique/attack_self(mob/user)
 	var/newtime = input(usr, "Please set the timer.", "Timer", 10) as num
 	if(newtime < 10)
