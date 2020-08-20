@@ -12,9 +12,8 @@
 	var/atom/target = null
 
 /obj/item/weapon/plastique/attack_self(mob/user)
-	var/newtime = input(usr, "Please set the timer.", "Timer", 10) as num
-	if(newtime < 10)
-		newtime = 10
+	var/newtime = input(usr, "Please set the timer.", "Timer", timer) as num
+	newtime = clamp(newtime, 10, 9999)
 	timer = newtime
 	to_chat(user, "Timer set for [timer] seconds.")
 
