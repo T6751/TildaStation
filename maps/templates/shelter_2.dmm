@@ -19,7 +19,7 @@
 /turf/simulated/floor/pod,
 /area/custom/survivalpod)
 "e" = (
-/obj/item/device/gps/computer,
+/obj/ipon/twohanded/requireder,
 /turf/simulated/floor/pod,
 /area/custom/survivalpod)
 "f" = (
