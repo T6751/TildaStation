@@ -43,6 +43,7 @@ matrix:
         apt:
           packages:
             - libstdc++6:i386
+            - python3.5
       before_script:
         - tools/travis/template_dm_generator.py
       script:
