@@ -45,9 +45,9 @@ matrix:
             - libstdc++6:i386
             - python3.5
       before_script:
-        - tools/travis/template_dm_generator.py
+        - ./scripts/template_dm_generator.py
       script:
-        - tools/travis/dm.sh -DTRAVISBUILDING -DTRAVISTESTING -DALL_MAPS tgstation.dme
+        - ./scripts/dm.sh -DTRAVISBUILDING -DTRAVISTESTING -DALL_MAPS tgstation.dme
 
     - name: "Unit Tests - Box Station"
       env: 
