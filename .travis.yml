@@ -47,7 +47,7 @@ matrix:
       before_script:
         - ./scripts/template_dm_generator.py
       script:
-        - ./scripts/dm.sh -DTRAVISBUILDING -DTRAVISTESTING -DALL_MAPS tgstation.dme
+        - ./scripts/dm.sh -DTRAVISBUILDING -DTRAVISTESTING -DALL_MAPS taucetistation.dme
 
     - name: "Unit Tests - Box Station"
       env: 
