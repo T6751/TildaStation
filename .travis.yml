@@ -72,5 +72,7 @@ matrix:
             - libstdc++6:i386
 
     - name: "Compile TGUI"
+      env: 
+        - TEST=UNIT
       script:
         - ./bin/tgui --ci
