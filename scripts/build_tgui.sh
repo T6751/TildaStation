@@ -1,8 +1,16 @@
 #!/bin/bash
-
 set -euo pipefail
 
+## Change to project root relative to the script
+cd "$(dirname "${0}")/.."
+base_dir="$(pwd)"
+
+## Setup NVM
+if [[ -e ~/.nvm/nvm.sh ]]; then
+	source ~/.nvm/nvm.sh
+	nvm use "${NODE_VERSION}"
+fi
+
 echo "Building 'tgui'"
-cd tgui
+cd "${base_dir}/tgui"
 bin/tgui --ci
-cd ..
