@@ -74,4 +74,4 @@ matrix:
     - name: "Compile TGUI"
       env: NODE_VERSION=12
       script:
-        - test/build_tgui.sh
+        - ./test/build_tgui.sh
