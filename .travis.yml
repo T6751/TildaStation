@@ -5,7 +5,6 @@ env:
   global:
     - BYOND_MAJOR=513
     - BYOND_MINOR=1528
-    - NODE_VERSION=12
 
 cache:
   directories:
@@ -73,7 +72,7 @@ matrix:
             - libstdc++6:i386
 
     - name: "Compile TGUI"
-      env: TEST=COMPILE
+      env: NODE_VERSION=12
       install:
         - source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
       script:
