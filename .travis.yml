@@ -75,4 +75,4 @@ matrix:
       env: 
         - TEST=UNIT
       script:
-        - ./bin/tgui --ci
+        - ./tgui/bin/tgui --ci
