@@ -35,7 +35,7 @@ export const DisposalUnit = (props, context) => {
             <LabeledList.Item
               label="Pressure">
               <ProgressBar
-                ranges={{
+             ranges={{
                   bad: [-Infinity, 0],
                   average: [0, 99],
                   good: [99, Infinity],
