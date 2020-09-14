@@ -73,4 +73,4 @@ matrix:
 
     - name: "Compile TGUI"
       script:
-        - chmod +x ./tgui/bin/tgui --ci
+        - scripts/build_tgui.sh
