@@ -17,7 +17,6 @@ before_install:
 
 script:
   - test/run-test.sh
-  - test/build_tgui.sh
 
 matrix:
   include:
@@ -72,3 +71,10 @@ matrix:
         apt:
           packages:
             - libstdc++6:i386
+
+    - name: "Compile TGUI"
+      env: TEST=COMPILE
+      install:
+        - source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
+      script:
+        - test/build_tgui.sh
