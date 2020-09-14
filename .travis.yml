@@ -72,8 +72,13 @@ matrix:
             - libstdc++6:i386
 
     - name: "Compile TGUI"
-      env: NODE_VERSION=12
+      addons:
+        apt: 
+          packages:
+            - python3
+            - python3-pip
+            - python3-setuptools
       install:
-        - ./scripts/install-byond.sh
+        - tools/travis/install_build_deps.sh
       script:
-        - test/build_tgui.sh
+        - tools/travis/build_tgui.sh
