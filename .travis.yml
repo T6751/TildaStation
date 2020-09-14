@@ -73,7 +73,5 @@ matrix:
 
     - name: "Compile TGUI"
       env: NODE_VERSION=12
-      install:
-        - source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
       script:
         - test/build_tgui.sh
