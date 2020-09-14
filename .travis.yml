@@ -72,5 +72,6 @@ matrix:
             - libstdc++6:i386
 
     - name: "Compile TGUI"
+      env: NODE_VERSION=12
       script:
         - scripts/build_tgui.sh

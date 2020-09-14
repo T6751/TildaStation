@@ -2,8 +2,8 @@
 set -euo pipefail
 
 source ~/.nvm/nvm.sh
-nvm install 12
-nvm use 12
+nvm install $NODE_VERSION
+nvm use $NODE_VERSION
 npm install --global yarn
 
 cd tgui
