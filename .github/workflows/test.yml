@@ -3,10 +3,10 @@ name: Run Tests
 on:
   push:
     branches:
-      - dev
+      - master
     pull_request:
       branches:
-        - dev
+        - master
 
 env:
   BYOND_MAJOR: "512"
@@ -91,4 +91,4 @@ jobs:
         run: |
           wget https://raw.githubusercontent.com/DiscordHooks/github-actions-discord-webhook/master/send.sh
           chmod +x send.sh
-          ./send.sh failure $WEBHOOK_URL
+          ./send.sh failure $WEBHOOK_URL 
