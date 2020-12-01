@@ -28,7 +28,7 @@ jobs:
       - name: Run Dreamchecker
         run: ~/dreamchecker
       - name: Tests
-      - run: |
+        run: |
           chmod +x -R scripts/
           chmod +x test/run-test.sh
           test/run-test.sh
