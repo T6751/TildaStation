@@ -15,7 +15,7 @@ jobs:
   beforeInstall:
     runs-on: ubuntu-latest
     steps:
-      - run: 
+      - run: |
           chmod +x -R scripts/
           chmod +x test/run-test.sh
           test/run-test.sh
