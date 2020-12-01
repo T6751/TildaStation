@@ -8,21 +8,11 @@ on:
       - master
 
 env:
-  BYOND_MAJOR: 513
-  BYOND_MINOR: 1533
+  BYOND_MAJOR: "513"
+  BYOND_MINOR: "1533"
   SPACEMAN_DMM_VERSION: suite-1.5
-  NODE_VERSION: 12
 
 jobs:
-  Tests:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Tests
-        run: |
-          chmod +x -R scripts/
-          chmod +x test/run-test.sh
-          test/run-test.sh:
- 
   DreamChecker:
     runs-on: ubuntu-latest
     steps:
@@ -31,9 +21,8 @@ jobs:
         uses: actions/cache@v2
         with:
           path: $HOME/spaceman_dmm/$SPACEMAN_DMM_VERSION
-          key: ${{ runner.os }}-spacemandmm
+          key: ${{ runner.os }}-spacemandmm-${{ env.SPACEMAN_DMM_VERSION }}
       - name: Install Dreamchecker
         run:  scripts/install-spaceman-dmm.sh dreamchecker
       - name: Run Dreamchecker
         run: ~/dreamchecker
-
