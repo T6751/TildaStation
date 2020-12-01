@@ -1,5 +1,4 @@
-language: generic
-sudo: false
+name: Run tests
 
 on:
   push:
@@ -11,55 +10,51 @@ on:
 
 env:
   global:
-    - BYOND_MAJOR=513
-    - BYOND_MINOR=1533
+    BYOND_MAJOR: 513
+    BYOND_MINOR: 1533
+    NODE_VERSION: 12
 
-cache:
-  directories:
-    - $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}
+run: chmod +x -R scripts/
+run: chmod +x test/run-test.sh
 
-before_install:
-  - chmod +x -R scripts/
-  - chmod +x test/run-test.sh
+run: test/run-test.sh
 
-script:
-  - test/run-test.sh
+jobs:
+  DreamChecker:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: "DreamChecker"
+        env: SPACEMAN_DMM_VERSION=suite-1.5
+        cache:
+          directories: $HOME/spaceman_dmm/$SPACEMAN_DMM_VERSION
+        install:
+          - ./scripts/install-spaceman-dmm.sh dreamchecker
+        run: ~/dreamchecker
 
-matrix:
-  include:
-    - name: "DreamChecker"
-      env: SPACEMAN_DMM_VERSION=suite-1.5
-      cache:
-        directories: $HOME/spaceman_dmm/$SPACEMAN_DMM_VERSION
-      install:
-        - ./scripts/install-spaceman-dmm.sh dreamchecker
-      script:
-        - ~/dreamchecker
-
+  code_and_map_linting:
+    runs-on: ubuntu-latest
+    
+    steps:
     - name: "Code and Map Linting"
       env: 
-        - TEST=LINTING
-        - NODE_VERSION=12
-      addons:
-        apt:
-          packages:
-            - python3.5
-      script:
-        - scripts/build_tgui.sh
+        TEST: LINTING
+      python-version: 3.5
+      run: ./scripts/build_tgui.sh
 
+  box_station:
+    runs-on: ubuntu-latest
     - name: "Unit Tests - Box Station"
+    steps:
       env: 
-        - TEST=UNIT
-        - MAP_NAME="Box Station"
-        - MAP_META=boxstation
+        TEST: UNIT
+        MAP_NAME: "Box Station"
+        MAP_META: boxstation
       install:
         - ./scripts/install-byond.sh
         - source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
-      addons:
-        apt:
-          packages:
-            - libstdc++6:i386
 
+  gamma_station:
     - name: "Unit Tests - Gamma Station"
       env: 
         - TEST=UNIT
@@ -68,17 +63,10 @@ matrix:
       install:
         - ./scripts/install-byond.sh
         - source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
-      addons:
-        apt:
-          packages:
-            - libstdc++6:i386
 
+  compile_everything:
     - name: "Compile Everything"
       env: TEST=COMPILE
       install:
         - ./scripts/install-byond.sh
         - source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
-      addons:
-        apt:
-          packages:
-            - libstdc++6:i386
