@@ -1,7 +1,9 @@
 name: Run tests
-
 on:
   push:
+    branches:
+      - master
+  pull_request:
     branches:
       - master
 
@@ -22,7 +24,7 @@ jobs:
           path: $HOME/spaceman_dmm/$SPACEMAN_DMM_VERSION
           key: ${{ runner.os }}-spacemandmm-${{ env.SPACEMAN_DMM_VERSION }}
       - name: Install Dreamchecker
-        run:  scripts/install-spaceman-dmm.sh dreamchecker
+        run:  ./scripts/install-spaceman-dmm.sh dreamchecker
       - name: Run Dreamchecker
         run: ~/dreamchecker
 
