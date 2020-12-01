@@ -3,7 +3,7 @@ name: Run tests
 on:
   push:
     branches:
-    - master
+      - master
 
 env:
   BYOND_MAJOR: 513
@@ -13,11 +13,12 @@ env:
 
 jobs:
   beforeInstall:
-     runs-on: ubuntu-latest
-     steps:
-     - run: chmod +x -R scripts/
-            chmod +x test/run-test.sh
-            test/run-test.sh
+    runs-on: ubuntu-latest
+    steps:
+      - run: 
+          chmod +x -R scripts/
+          chmod +x test/run-test.sh
+          test/run-test.sh
 
   DreamChecker:
     runs-on: ubuntu-latest
@@ -39,12 +40,12 @@ jobs:
     env: 
       TEST: LINTING
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
-      with:
-        python-version: '3.5'
-    - name: "Code and Map Linting"
-    - run: ./scripts/build_tgui.sh
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.5'
+      - name: "Code and Map Linting"
+      - run: ./scripts/build_tgui.sh
 
   box_station:
     runs-on: ubuntu-latest
@@ -55,30 +56,30 @@ jobs:
       MAP_META: boxstation
 
     steps:
-    - name: "Unit Tests - Box Station"
-    - run:
-        ./scripts/install-byond.sh
-        source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
+      - name: "Unit Tests - Box Station"
+      - run:
+          ./scripts/install-byond.sh
+          source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
 
   gamma_station:
     runs-on: ubuntu-latest
     env: 
-        TEST: UNIT
-        MAP_NAME: "Gamma Station"
-        MAP_META: gamma
+      TEST: UNIT
+      MAP_NAME: "Gamma Station"
+      MAP_META: gamma
     steps:
-    - name: "Unit Tests - Gamma Station"
-    - run:
-       ./scripts/install-byond.sh
-       source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
+      - name: "Unit Tests - Gamma Station"
+      - run:
+         ./scripts/install-byond.sh
+         source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
 
   compile_everything:
     runs-on: ubuntu-latest
   
     env: 
-        TEST: COMPILE
+      TEST: COMPILE
     steps:
-    - name: "Compile Everything"
-    - run:
-        ./scripts/install-byond.sh
-        source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
+      - name: "Compile Everything"
+      - run:
+          ./scripts/install-byond.sh
+          source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
