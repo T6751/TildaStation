@@ -22,15 +22,12 @@ jobs:
         uses: actions/cache@v2
         with:
           path: $HOME/spaceman_dmm/$SPACEMAN_DMM_VERSION
-          key: ${{ runner.os }}-spacemandmm-${{ env.SPACEMAN_DMM_VERSION }}
+          #key: ${{ runner.os }}-spacemandmm
       - name: Install Dreamchecker
-        run:  ./scripts/install-spaceman-dmm.sh dreamchecker
+        run:  scripts/install-spaceman-dmm.sh dreamchecker
       - name: Run Dreamchecker
         run: ~/dreamchecker
-
-  beforeInstall:
-    runs-on: ubuntu-latest
-    steps:
+      - name: Tests
       - run: |
           chmod +x -R scripts/
           chmod +x test/run-test.sh
