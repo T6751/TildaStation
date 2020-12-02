@@ -40,7 +40,6 @@ jobs:
           TEST: LINTING
           NODE_VERSION: 12
         run: |
-          chmod +x test/run-test.sh
           bash test/run-test.sh
           bash scripts/build_tgui.sh
 
@@ -69,7 +68,6 @@ jobs:
           bash scripts/install-byond.sh
           source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
           chmod +x -R scripts/
-          chmod +x test/run-test.sh
           bash test/run-test.sh
 
   compile_everything:
@@ -89,5 +87,4 @@ jobs:
           bash scripts/install-byond.sh
           source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
           chmod +x -R scripts/
-          chmod +x test/run-test.sh
           bash test/run-test.sh
