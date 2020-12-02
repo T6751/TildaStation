@@ -47,7 +47,6 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        map_name: ["Box Station", "Gamma Station"]
         map_meta: [ boxstation, gamma]
     steps:
       - uses: actions/checkout@v2
@@ -59,7 +58,6 @@ jobs:
       - name: Unit Tests
         env:
           TEST: UNIT
-          MAP_NAME: ${{ matrix.map_name }}
           MAP_META: ${{ matrix.map_meta }}
         run: bash test/run-test.sh
 
