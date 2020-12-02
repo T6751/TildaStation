@@ -47,7 +47,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        map_meta: [ boxstation, gamma]
+        include:
+          - map_meta: boxstation
+            map_name: "Box Station"
+          - map_meta: gamma
+            map_name: "Gamma Station"
     steps:
       - uses: actions/checkout@v2
       - name: Setup Cache
@@ -59,6 +63,7 @@ jobs:
         env:
           TEST: UNIT
           MAP_META: ${{ matrix.map_meta }}
+          MAP_NAME: ${{ matrix.map_name }}
         run: bash test/run-test.sh
 
   compile_everything:
