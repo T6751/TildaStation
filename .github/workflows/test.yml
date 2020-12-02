@@ -43,7 +43,8 @@ jobs:
           bash test/run-test.sh
           bash scripts/build_tgui.sh
 
-  unit_tests:
+  unit_tests_box_station:
+    name: "Unit Tests - Box Station"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -61,6 +62,16 @@ jobs:
           bash scripts/install-byond.sh
           source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
           bash test/run-test.sh
+  unit_tests_gamma_station:
+    name: "Unit Tests - Gamma Station"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Cache
+        uses: actions/cache@v2
+        with:
+          path: $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}
+          key: ${{ runner.os }}-byond-${{ env.BYOND_MAJOR }}-${{ env.BYOND_MINOR }}
       - name: Gamma Station
         env:
           TEST: UNIT
@@ -71,6 +82,7 @@ jobs:
           source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
           bash test/run-test.sh
   compile_everything:
+    name: "Compile Everything"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
