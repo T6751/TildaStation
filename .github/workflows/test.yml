@@ -66,7 +66,7 @@ jobs:
           MAP_NAME: ${{ matrix.map_name }}
         run: |
           bash scripts/install-byond.sh
-          source $HOME/BYOND/byond/bin/byondsetup
+          source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
           bash test/run-test.sh
 
   compile_everything:
@@ -84,5 +84,5 @@ jobs:
           TEST: COMPILE
         run: |
           bash scripts/install-byond.sh
-          source $HOME/BYOND/byond/bin/byondsetup
+          source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
           bash test/run-test.sh
