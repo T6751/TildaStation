@@ -64,7 +64,10 @@ jobs:
           TEST: UNIT
           MAP_META: ${{ matrix.map_meta }}
           MAP_NAME: ${{ matrix.map_name }}
-        run: bash test/run-test.sh
+        run: |
+          bash scripts/install-byond.sh
+          source $HOME/BYOND/byond/bin/byondsetup
+          bash test/run-test.sh
 
   compile_everything:
     name: "Compile Everything"
@@ -79,4 +82,7 @@ jobs:
       - name: "Compile Everything"
         env: 
           TEST: COMPILE
-        run: bash test/run-test.sh
+        run: |
+          bash scripts/install-byond.sh
+          source $HOME/BYOND/byond/bin/byondsetup
+          bash test/run-test.sh
