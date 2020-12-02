@@ -61,7 +61,7 @@
 		message = rebootmsg
 		return TRUE
 	else
-		to_chat(user, "<div class='NoticeBox'>A no server error appears on the screen.</span>")
+		to_chat(user, "<div class='NoticeBox'>A no server error appears on the screen.</div>")
 		return FALSE
 
 /obj/machinery/computer/message_monitor/update_icon()
