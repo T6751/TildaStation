@@ -16,12 +16,6 @@ jobs:
   DreamChecker:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup Cache
-        uses: actions/cache@v2
-        with:
-          path: $HOME/spaceman_dmm/$SPACEMAN_DMM_VERSION
-          key: ${{ runner.os }}-spacemandmm-${{ env.SPACEMAN_DMM_VERSION }}
       - name: Install Dreamchecker
         run:  bash scripts/install-spaceman-dmm.sh dreamchecker
       - name: Run Dreamchecker
@@ -29,12 +23,6 @@ jobs:
   Code:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup Cache
-        uses: actions/cache@v2
-        with:
-          path: $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}
-          key: ${{ runner.os }}-byond-${{ env.BYOND_MAJOR }}-${{ env.BYOND_MINOR }}
       - name: Code and Map Linting
         env: 
           TEST: LINTING
@@ -54,12 +42,6 @@ jobs:
           - map_meta: gamma
             map_name: "Gamma Station"
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup Cache
-        uses: actions/cache@v2
-        with:
-          path: $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}
-          key: ${{ runner.os }}-byond-${{ env.BYOND_MAJOR }}-${{ env.BYOND_MINOR }}
       - name: Unit Tests
         env:
           TEST: UNIT
@@ -76,12 +58,6 @@ jobs:
     name: "Compile Everything"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup Cache
-        uses: actions/cache@v2
-        with:
-          path: $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}
-          key: ${{ runner.os }}-byond-${{ env.BYOND_MAJOR }}-${{ env.BYOND_MINOR }}
       - name: "Compile Everything"
         env: 
           TEST: COMPILE
