@@ -178,7 +178,7 @@ var/list/net_announcer_secret = list()
 
 	var/enter_allowed = 1
 
-	var/python_path = "" //Path to the python executable.  Defaults to "python" on windows and "/usr/bin/env python2" on unix
+	var/python_path = "" //Path to the python executable.  Defaults to "python" on windows and "/usr/bin/env python3" on unix
 	var/use_overmap = 0
 
 	var/chat_bridge = 0
@@ -569,7 +569,7 @@ var/list/net_announcer_secret = list()
 						config.python_path = value
 					else
 						if(world.system_type == UNIX)
-							config.python_path = "/usr/bin/env python2"
+							config.python_path = "/usr/bin/env python3"
 						else //probably windows, if not this should work anyway
 							config.python_path = "python"
 
