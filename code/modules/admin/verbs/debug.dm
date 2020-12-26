@@ -2118,12 +2118,13 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 #define FILTER_RIPPLE           "ripple"
 #define FILTER_WAVE             "wave"
 
+
 /atom/verb/add_filter()
 	set category = "Filters"
 	set name = "Add Filter"
 	set src in view()
 
-	var/type = alert("Select Filter Type", "", FILTER_ANGULAR_BLUR, FILTER_GAUSSIAN_BLUR, FILTER_MOTION_BLUR, FILTER_RADIAL_BLUR)
+	var/type = alert("Select Filter Type", "", FILTER_COLOR_MATRIX, FILTER_GAUSSIAN_BLUR, FILTER_MOTION_BLUR, FILTER_RADIAL_BLUR)
 	switch(type)
 		if(FILTER_ALPHA_MASK)
 			/* FILTER_ALPHA_MASK
@@ -2154,7 +2155,9 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 				space: Value indicating color space: defaults to FILTER_COLOR_RGB
 					FILTER_COLOR_RGB, FILTER_COLOR_HSV, FILTER_COLOR_HSL, FILTER_COLOR_HCY
 			*/
-
+			var/color = input("Horizontal center of effect, in pixels, relative to image center", "Color Matrix Filter") as color
+			//var/space = alert("Amount of blur", "Color Matrix Filter", 1) as text
+			filters += filter(type = FILTER_COLOR_MATRIX, color = color, space = FILTER_COLOR_RGB)
 		if(FILTER_DISPLACEMENT_MAP)
 			/*FILTER_DISPLACEMENT_MAP
 			Args:
