@@ -2101,3 +2101,148 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	usr.client.sent_assets = list()
 
 	to_chat(usr, "Your NanoUI Resource files have been refreshed")
+
+
+
+#define FILTER_ALPHA_MASK       "alpha"
+#define FILTER_ANGULAR_BLUR     "angular_blur"
+#define FILTER_COLOR_MATRIX     "color"
+#define FILTER_DISPLACEMENT_MAP "displace"
+#define FILTER_DROP_SHADOW      "drop_shadow"
+#define FILTER_GAUSSIAN_BLUR    "blur"
+#define FILTER_LAYERING         "layer"
+#define FILTER_MOTION_BLUR      "motion_blur"
+#define FILTER_OUTLINE          "outline"
+#define FILTER_RADIAL_BLUR      "radial_blur"
+#define FILTER_RAYS             "rays"
+#define FILTER_RIPPLE           "ripple"
+#define FILTER_WAVE             "wave"
+
+/atom/verb/add_filter()
+	set category = "Filters"
+	set name = "Add Filter"
+	to_chat(world, "Filter_added")
+/* FILTER_ALPHA_MASK
+Args:
+    x: Horizontal offset of mask (defaults to 0)
+    y: Vertical offset of mask (defaults to 0)
+    icon: Icon to use as a mask
+    render_source: render_target to use as a mask
+    flags: Defaults to 0; use see below for other flags
+*/
+
+/* FILTER_ANGULAR_BLUR
+Args:
+    x: Horizontal center of effect, in pixels, relative to image center
+    y: Vertical center of effect, in pixels, relative to image center
+    size: Amount of blur (defaults to 1)
+*/
+/*FILTER_COLOR_MATRIX
+Args:
+    color: A color matrix
+    space: Value indicating color space: defaults to FILTER_COLOR_RGB
+
+*/
+/*FILTER_DISPLACEMENT_MAP
+Args:
+    x: Horizontal offset of map (defaults to 0)
+    y: Vertical offset of map (defaults to 0)
+    size: Maximum distortion, in pixels
+    icon: Icon to use as a displacement map
+    render_source: render_target to use as a displacement map
+
+*/
+/*FILTER_DROP_SHADOW
+Args:
+    x: Shadow horizontal offset (defaults to 1)
+    y: Shadow horizontal offset (defaults to -1)
+    size: Blur amount (defaults to 1; negative values create inset shadows)
+    offset: Size increase before blur (defaults to 0)
+    color: Shadow color (defaults to 50% transparent black)
+
+
+*/
+/*FILTER_GAUSSIAN_BLUR
+Args:
+    size: Amount of blur (defaults to 1)
+
+
+*/
+/*FILTER_LAYERING
+Args:
+    x: Horizontal offset of second image (defaults to 0)
+    y: Vertical offset of second image (defaults to 0)
+    icon: Icon to use as a second image
+    render_source: render_target to use as a second image
+    flags: FILTER_OVERLAY (default) or FILTER_UNDERLAY
+    color: Color or color matrix to apply to second image
+    transform: Transform to apply to second image
+    blend_mode: Blend mode to apply to the top image
+
+*/
+/*FILTER_MOTION_BLUR
+Args:
+    x: Blur vector on the X axis (defaults to 0)
+    y: Blur vector on the Y axis (defaults to 0)
+
+
+
+*/
+/*FILTER_OUTLINE
+Args:
+    size: Width in pixels (defaults to 1)
+    color: Outline color (defaults to black)
+    flags: Defaults to 0 (see below)
+
+
+
+*/
+/*FILTER_RADIAL_BLUR
+Args:
+    x: Horizontal center of effect, in pixels, relative to image center
+    y: Vertical center of effect, in pixels, relative to image center
+    size: Amount of blur per pixel of distance (defaults to 0.01)
+
+
+*/
+/*FILTER_RAYS
+Args:
+    x: Horiztonal position of ray center, relative to image center (defaults to 0)
+    y: Vertical position of ray center, relative to image center (defaults to 0)
+    size: Maximum length of rays (defaults to 1/2 tile width)
+    color: Ray color (defaults to white)
+    offset: "Time" offset of rays (defaults to 0, repeats after 1000)
+    density: Higher values mean more, narrower rays (defaults to 10, must be whole number)
+    threshold: Low-end cutoff for ray strength (defaults to 0.5, can be 0 to 1)
+    factor: How much ray strength is related to ray length (defaults to 0, can be 0 to 1)
+    flags: Defaults to FILTER_OVERLAY | FILTER_UNDERLAY (see below)
+
+
+*/
+/*FILTER_RIPPLE
+Args:
+    x: Horiztonal position of ripple center, relative to image center (defaults to 0)
+    y: Vertical position of ripple center, relative to image center (defaults to 0)
+    size: Maximum distortion in pixels (defaults to 1)
+    repeat: Wave period, in pixels (defaults to 2)
+    radius: Outer radius of ripple, in pixels (defaults to 0)
+    falloff: How quickly ripples lose strength away from the outer edge (defaults to 1)
+    flags: Defaults to 0; use WAVE_BOUNDED to keep distortion within the image
+
+
+*/
+/*FILTER_WAVE
+Args:
+    x: Horiztonal direction and period of wave
+    y: Vertical direction and period of wave
+    size: Maximum distortion in pixels (defaults to 1)
+    offset: Phase of wave, in periods (e.g., 0 to 1)
+    flags: Defaults to 0; see below for other flags
+
+
+*/
+/atom/verb/clear_filters()
+	set category = "Filters"
+	set name = "Clear Filters"
+	filters = null
+	to_chat(world, "Filters_cleared")
