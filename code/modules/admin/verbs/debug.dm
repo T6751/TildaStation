@@ -2121,128 +2121,142 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 /atom/verb/add_filter()
 	set category = "Filters"
 	set name = "Add Filter"
-	to_chat(world, "Filter_added")
-/* FILTER_ALPHA_MASK
-Args:
-    x: Horizontal offset of mask (defaults to 0)
-    y: Vertical offset of mask (defaults to 0)
-    icon: Icon to use as a mask
-    render_source: render_target to use as a mask
-    flags: Defaults to 0; use see below for other flags
-*/
+	set src in view()
 
-/* FILTER_ANGULAR_BLUR
-Args:
-    x: Horizontal center of effect, in pixels, relative to image center
-    y: Vertical center of effect, in pixels, relative to image center
-    size: Amount of blur (defaults to 1)
-*/
-/*FILTER_COLOR_MATRIX
-Args:
-    color: A color matrix
-    space: Value indicating color space: defaults to FILTER_COLOR_RGB
+	var/type = alert("Select Filter Type", "", FILTER_ANGULAR_BLUR, FILTER_GAUSSIAN_BLUR, FILTER_MOTION_BLUR, FILTER_RADIAL_BLUR)
+	switch(type)
+		if(FILTER_ALPHA_MASK)
+			/* FILTER_ALPHA_MASK
+			Args:
+				x: Horizontal offset of mask (defaults to 0)
+				y: Vertical offset of mask (defaults to 0)
+				icon: Icon to use as a mask
+				render_source: render_target to use as a mask
+				flags: Defaults to 0; use see below for other flags
+					The MASK_INVERSE flag will invert the alpha mask so that opaque areas in the mask become transparent, and vice-versa.
+					There is also a MASK_SWAP flag which treats the source image as the mask and vice-versa, which might be useful for some effects.
+			*/
+		if(FILTER_ANGULAR_BLUR)
+			/* FILTER_ANGULAR_BLUR
+			Args:
+				x: Horizontal center of effect, in pixels, relative to image center
+				y: Vertical center of effect, in pixels, relative to image center
+				size: Amount of blur (defaults to 1)
+			*/
+			var/x = input("Angular Blur Filter", "Horizontal center of effect, in pixels, relative to image center", 0) as num
+			var/y = input("Angular Blur Filter", "Vertical center of effect, in pixels, relative to image center", 0) as num
+			var/size = input("Angular Blur Filter", "Amount of blur", 1) as num
+			filters += filter(type = FILTER_ANGULAR_BLUR, x = x, y = y, size = size)
+		if(FILTER_COLOR_MATRIX)
+			/*FILTER_COLOR_MATRIX
+			Args:
+				color: A color matrix
+				space: Value indicating color space: defaults to FILTER_COLOR_RGB
+					FILTER_COLOR_RGB, FILTER_COLOR_HSV, FILTER_COLOR_HSL, FILTER_COLOR_HCY
+			*/
 
-*/
-/*FILTER_DISPLACEMENT_MAP
-Args:
-    x: Horizontal offset of map (defaults to 0)
-    y: Vertical offset of map (defaults to 0)
-    size: Maximum distortion, in pixels
-    icon: Icon to use as a displacement map
-    render_source: render_target to use as a displacement map
+		if(FILTER_DISPLACEMENT_MAP)
+			/*FILTER_DISPLACEMENT_MAP
+			Args:
+				x: Horizontal offset of map (defaults to 0)
+				y: Vertical offset of map (defaults to 0)
+				size: Maximum distortion, in pixels
+				icon: Icon to use as a displacement map
+				render_source: render_target to use as a displacement map
+			*/
+		if(FILTER_DROP_SHADOW)
+			/*FILTER_DROP_SHADOW
+			Args:
+				x: Shadow horizontal offset (defaults to 1)
+				y: Shadow horizontal offset (defaults to -1)
+				size: Blur amount (defaults to 1; negative values create inset shadows)
+				offset: Size increase before blur (defaults to 0)
+				color: Shadow color (defaults to 50% transparent black)
+			*/
 
-*/
-/*FILTER_DROP_SHADOW
-Args:
-    x: Shadow horizontal offset (defaults to 1)
-    y: Shadow horizontal offset (defaults to -1)
-    size: Blur amount (defaults to 1; negative values create inset shadows)
-    offset: Size increase before blur (defaults to 0)
-    color: Shadow color (defaults to 50% transparent black)
+		if(FILTER_GAUSSIAN_BLUR)
+			/*FILTER_GAUSSIAN_BLUR
+			Args:
+				size: Amount of blur (defaults to 1)
+			*/
+			var/size = input("Gaussian Blur Filter", "Amount of blur", 1) as num
+			filters += filter(type = FILTER_GAUSSIAN_BLUR, size = size)
+		if(FILTER_LAYERING)
+			/*FILTER_LAYERING
+			Args:
+				x: Horizontal offset of second image (defaults to 0)
+				y: Vertical offset of second image (defaults to 0)
+				icon: Icon to use as a second image
+				render_source: render_target to use as a second image
+				flags: FILTER_OVERLAY (default) or FILTER_UNDERLAY
+				color: Color or color matrix to apply to second image
+				transform: Transform to apply to second image
+				blend_mode: Blend mode to apply to the top image
+			*/
+		if(FILTER_MOTION_BLUR)
+			/*FILTER_MOTION_BLUR
+			Args:
+				x: Blur vector on the X axis (defaults to 0)
+				y: Blur vector on the Y axis (defaults to 0)
+			*/
+			var/x = input("Blur vector on the X axis", "Motion Blur Filter", 0) as num
+			var/y = input("Blur vector on the Y axis", "Motion Blur Filter", 0) as num
+			filters += filter(type = FILTER_MOTION_BLUR, x = x, y = y)
+		if(FILTER_OUTLINE)
+			/*FILTER_OUTLINE
+			Args:
+				size: Width in pixels (defaults to 1)
+				color: Outline color (defaults to black)
+				flags: Defaults to 0 (see below)
+			*/
+		if(FILTER_RADIAL_BLUR)
+			/*FILTER_RADIAL_BLUR
+			Args:
+				x: Horizontal center of effect, in pixels, relative to image center
+				y: Vertical center of effect, in pixels, relative to image center
+				size: Amount of blur per pixel of distance (defaults to 0.01)
+			*/
+			var/x = input("Horizontal center of effect, in pixels, relative to image center", "Radial Blur Filter", 0) as num
+			var/y = input("Vertical center of effect, in pixels, relative to image center", "Radial Blur Filter", 0) as num
+			var/size = input("Amount of blur per pixel of distance", "Radial Blur Filter", 0.01) as num
+			filters += filter(type = FILTER_RADIAL_BLUR, x = x, y = y, size = size)
+		//if(FILTER_RAYS)
+			/*FILTER_RAYS
+			Args:
+				x: Horiztonal position of ray center, relative to image center (defaults to 0)
+				y: Vertical position of ray center, relative to image center (defaults to 0)
+				size: Maximum length of rays (defaults to 1/2 tile width)
+				color: Ray color (defaults to white)
+				offset: "Time" offset of rays (defaults to 0, repeats after 1000)
+				density: Higher values mean more, narrower rays (defaults to 10, must be whole number)
+				threshold: Low-end cutoff for ray strength (defaults to 0.5, can be 0 to 1)
+				factor: How much ray strength is related to ray length (defaults to 0, can be 0 to 1)
+				flags: Defaults to FILTER_OVERLAY | FILTER_UNDERLAY (see below)
+			*/
+		//if(FILTER_RIPPLE)
+			/*FILTER_RIPPLE
+			Args:
+				x: Horiztonal position of ripple center, relative to image center (defaults to 0)
+				y: Vertical position of ripple center, relative to image center (defaults to 0)
+				size: Maximum distortion in pixels (defaults to 1)
+				repeat: Wave period, in pixels (defaults to 2)
+				radius: Outer radius of ripple, in pixels (defaults to 0)
+				falloff: How quickly ripples lose strength away from the outer edge (defaults to 1)
+				flags: Defaults to 0; use WAVE_BOUNDED to keep distortion within the image
+			*/
+		//if(FILTER_WAVE)
+			/*FILTER_WAVE
+			Args:
+				x: Horiztonal direction and period of wave
+				y: Vertical direction and period of wave
+				size: Maximum distortion in pixels (defaults to 1)
+				offset: Phase of wave, in periods (e.g., 0 to 1)
+				flags: Defaults to 0; see below for other flags
+			*/
 
-
-*/
-/*FILTER_GAUSSIAN_BLUR
-Args:
-    size: Amount of blur (defaults to 1)
-
-
-*/
-/*FILTER_LAYERING
-Args:
-    x: Horizontal offset of second image (defaults to 0)
-    y: Vertical offset of second image (defaults to 0)
-    icon: Icon to use as a second image
-    render_source: render_target to use as a second image
-    flags: FILTER_OVERLAY (default) or FILTER_UNDERLAY
-    color: Color or color matrix to apply to second image
-    transform: Transform to apply to second image
-    blend_mode: Blend mode to apply to the top image
-
-*/
-/*FILTER_MOTION_BLUR
-Args:
-    x: Blur vector on the X axis (defaults to 0)
-    y: Blur vector on the Y axis (defaults to 0)
-
-
-
-*/
-/*FILTER_OUTLINE
-Args:
-    size: Width in pixels (defaults to 1)
-    color: Outline color (defaults to black)
-    flags: Defaults to 0 (see below)
-
-
-
-*/
-/*FILTER_RADIAL_BLUR
-Args:
-    x: Horizontal center of effect, in pixels, relative to image center
-    y: Vertical center of effect, in pixels, relative to image center
-    size: Amount of blur per pixel of distance (defaults to 0.01)
-
-
-*/
-/*FILTER_RAYS
-Args:
-    x: Horiztonal position of ray center, relative to image center (defaults to 0)
-    y: Vertical position of ray center, relative to image center (defaults to 0)
-    size: Maximum length of rays (defaults to 1/2 tile width)
-    color: Ray color (defaults to white)
-    offset: "Time" offset of rays (defaults to 0, repeats after 1000)
-    density: Higher values mean more, narrower rays (defaults to 10, must be whole number)
-    threshold: Low-end cutoff for ray strength (defaults to 0.5, can be 0 to 1)
-    factor: How much ray strength is related to ray length (defaults to 0, can be 0 to 1)
-    flags: Defaults to FILTER_OVERLAY | FILTER_UNDERLAY (see below)
-
-
-*/
-/*FILTER_RIPPLE
-Args:
-    x: Horiztonal position of ripple center, relative to image center (defaults to 0)
-    y: Vertical position of ripple center, relative to image center (defaults to 0)
-    size: Maximum distortion in pixels (defaults to 1)
-    repeat: Wave period, in pixels (defaults to 2)
-    radius: Outer radius of ripple, in pixels (defaults to 0)
-    falloff: How quickly ripples lose strength away from the outer edge (defaults to 1)
-    flags: Defaults to 0; use WAVE_BOUNDED to keep distortion within the image
-
-
-*/
-/*FILTER_WAVE
-Args:
-    x: Horiztonal direction and period of wave
-    y: Vertical direction and period of wave
-    size: Maximum distortion in pixels (defaults to 1)
-    offset: Phase of wave, in periods (e.g., 0 to 1)
-    flags: Defaults to 0; see below for other flags
-
-
-*/
 /atom/verb/clear_filters()
 	set category = "Filters"
 	set name = "Clear Filters"
+	set src in view()
 	filters = null
 	to_chat(world, "Filters_cleared")
