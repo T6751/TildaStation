@@ -2124,7 +2124,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	set name = "Add Filter"
 	set src in view()
 
-	var/type = alert("Select Filter Type", "", FILTER_COLOR_MATRIX, FILTER_GAUSSIAN_BLUR, FILTER_MOTION_BLUR, FILTER_RADIAL_BLUR)
+	var/type = alert("Select Filter Type", "", FILTER_COLOR_MATRIX, FILTER_OUTLINE, FILTER_GAUSSIAN_BLUR)
 	switch(type)
 		if(FILTER_ALPHA_MASK)
 			/* FILTER_ALPHA_MASK
@@ -2212,6 +2212,9 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 				color: Outline color (defaults to black)
 				flags: Defaults to 0 (see below)
 			*/
+			var/size = input("Width in pixels", "Outline Filter", 0) as num
+			var/color = input("Outline color", "Outline Filter", 0) as color
+			filters += filter(type = FILTER_OUTLINE, size = size, color = color)
 		if(FILTER_RADIAL_BLUR)
 			/*FILTER_RADIAL_BLUR
 			Args:
