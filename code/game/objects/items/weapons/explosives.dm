@@ -48,7 +48,26 @@
 			user.visible_message("<span class ='red'> [user.name] finished planting an explosive on [M.name]!</span>")
 		else
 			location = target
-		target.add_overlay(image('icons/obj/assemblies.dmi', "plastic-explosive2"))
+		if(istype(target, /turf/simulated/wall))
+			var/turf/T = get_turf(user)
+			var/dir = get_dir(user, target)
+			var/dir_text = uppertext(dir2text(dir))
+			var/list/dir_to_pixel = list(
+				"NORTH" = list(0, 32),
+				"NORTHEAST" = list(32, 32),
+				"EAST" = list(32, 0),
+				"SOUTHEAST" = list(32, -32),
+				"SOUTH" = list(0, -32),
+				"SOUTHWEST" = list(-32, -32),
+				"WEST" = list(-32, 0),
+				"NORTHWEST" = list(-32, 32)
+			)
+			var/list/pixel_shifts = dir_to_pixel[dir_text]
+			pixel_x = pixel_shifts[1]
+			pixel_y = pixel_shifts[2]
+			T.vis_contents += src
+		else
+			target.add_overlay(image('icons/obj/assemblies.dmi', "plastic-explosive2"))
 		to_chat(user, "Bomb has been planted. Timer counting down from [timer].")
 		addtimer(CALLBACK(src, .proc/prime_explosion, target, location), timer * 10)
 
