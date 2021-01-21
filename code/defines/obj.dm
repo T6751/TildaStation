@@ -251,7 +251,7 @@ var/global/ManifestJSON
 
 /obj/item/weapon/beach_ball/afterattack(atom/target, mob/user, proximity, params)
 	user.drop_item()
-	src.throw_at(target, throw_range, throw_speed, user)
+	throw_at(target, throw_range, throw_speed, user)
 
 /obj/effect/spawner
 	name = "object spawner"

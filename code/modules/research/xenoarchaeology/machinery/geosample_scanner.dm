@@ -85,7 +85,7 @@
 			else if(choice == "Empty coolant")
 				var/obj/item/weapon/reagent_containers/glass/G = I
 				var/amount_transferred = min(G.reagents.maximum_volume - G.reagents.total_volume, src.reagents.total_volume)
-				src.reagents.trans_to(G, amount_transferred)
+				reagents.trans_to(G, amount_transferred)
 				to_chat(user, "<span class='info'>You remove [amount_transferred]u of coolant from [src].</span>")
 				update_coolant()
 				return
@@ -230,16 +230,16 @@
 			//emergency stop if seal integrity reaches 0
 			if(scanner_seal_integrity <= 0 || (scanner_temperature >= 1273 && !rad_shield))
 				stop_scanning()
-				src.visible_message("<span class='notice'>[bicon(src)] [src] buzzes unhappily. It has failed mid-scan!</span>", 2)
+				visible_message("<span class='notice'>[bicon(src)] [src] buzzes unhappily. It has failed mid-scan!</span>", 2)
 
 			if(prob(5))
-				src.visible_message("<span class='notice'>[bicon(src)] [src] [pick("whirrs", "chuffs", "clicks")][pick(" excitedly", " energetically", " busily")].</span>", 2)
+				visible_message("<span class='notice'>[bicon(src)] [src] [pick("whirrs", "chuffs", "clicks")][pick(" excitedly", " energetically", " busily")].</span>", 2)
 	else
 		//gradually cool down over time
 		if(scanner_temperature > 0)
 			scanner_temperature = max(scanner_temperature - 5 - 10 * rand(), 0)
 		if(prob(0.75))
-			src.visible_message("<span class='notice'>[bicon(src)] [src] [pick("plinks", "hisses")][pick(" quietly", " softly", " sadly", " plaintively")].</span>", 2)
+			visible_message("<span class='notice'>[bicon(src)] [src] [pick("plinks", "hisses")][pick(" quietly", " softly", " sadly", " plaintively")].</span>", 2)
 	last_process_worldtime = world.time
 
 /obj/machinery/radiocarbon_spectrometer/proc/stop_scanning()
@@ -254,11 +254,11 @@
 	radiation = 0
 	t_left_radspike = 0
 	if(used_coolant)
-		src.reagents.remove_any(used_coolant)
+		reagents.remove_any(used_coolant)
 		used_coolant = 0
 
 /obj/machinery/radiocarbon_spectrometer/proc/complete_scan()
-	src.visible_message("<span class='notice'>[bicon(src)] [src] makes an insistent chime.</span>", 2)
+	visible_message("<span class='notice'>[bicon(src)] [src] makes an insistent chime.</span>", 2)
 
 	if(scanned_item)
 		//create report

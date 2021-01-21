@@ -136,7 +136,7 @@
 
 /obj/item/fluff/victor_kaminsky_1/attack_self(mob/user)
 	user.visible_message("[user] shows you: [bicon(src)] [src.name].")
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 
 /obj/item/fluff/ana_issek_2 //suethecake: Ana Issek
 	name = "Faded Badge"
@@ -367,7 +367,7 @@
 	if (!( istype(M, /mob) ))
 		return
 	if (reagents.total_volume)
-		src.reagents.reaction(M, INGEST)
+		reagents.reaction(M, INGEST)
 		if(M.reagents)
 			var/trans = reagents.trans_to(M, amount_per_transfer_from_this)
 			to_chat(user, "<span class='notice'>[trans] units injected. [reagents.total_volume] units remaining in \the [src].</span>")

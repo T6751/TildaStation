@@ -206,7 +206,7 @@ SUBSYSTEM_DEF(ticker)
 		src.mode = config.pick_mode(master_mode)
 
 	// Before assign the crew setup antag roles without crew jobs
-	if (!src.mode.assign_outsider_antag_roles())
+	if (!mode.assign_outsider_antag_roles())
 		message_admins("<B>Unable to start [mode.name].</B> Not enough players, [mode.required_players] players needed.")
 		qdel(mode)
 		mode = null
@@ -217,7 +217,7 @@ SUBSYSTEM_DEF(ticker)
 
 	//Configure mode and assign player to special mode stuff
 	SSjob.DivideOccupations() //Distribute jobs
-	var/can_continue = src.mode.pre_setup()//Setup special modes
+	var/can_continue = mode.pre_setup()//Setup special modes
 	if(!can_continue)
 		message_admins("Preparation phase for [mode.name] has failed.")
 		qdel(mode)
@@ -228,7 +228,7 @@ SUBSYSTEM_DEF(ticker)
 		return 0
 
 	if(!hide_mode)
-		src.mode.announce()
+		mode.announce()
 
 	current_state = GAME_STATE_PLAYING
 	round_start_time = world.time

@@ -604,7 +604,7 @@
 				C.r_arm = new/obj/item/robot_parts/r_arm(C)
 				C.update_icon()
 				new/obj/item/robot_parts/chest(loc)
-				src.Destroy()
+				Destroy()
 			else
 				// Okay we're not removing the cell or an MMI, but maybe something else?
 				var/list/removable_components = list()
@@ -776,7 +776,7 @@
 					for(var/obj/item/weapon/pickaxe/drill/borgdrill/D in src.module.modules)
 						qdel(D)
 					src.module.modules += new /obj/item/weapon/pickaxe/drill/diamond_drill(src.module)
-					src.module.rebuild()
+					module.rebuild()
 				updateicon()
 			else
 				to_chat(user, "You fail to hack [src]'s interface.")
@@ -1071,7 +1071,7 @@
 	scrambledcodes = 1
 	//Disconnect it's camera so it's not so easily tracked.
 	if(src.camera)
-		src.camera.clear_all_networks()
+		camera.clear_all_networks()
 		cameranet.removeCamera(src.camera)
 
 

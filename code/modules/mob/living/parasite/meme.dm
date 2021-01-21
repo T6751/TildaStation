@@ -85,26 +85,26 @@ var/global/const/MAXIMUM_MEME_POINTS = 750
 	if (meme_death == "bdam")
 		if(host.brainloss > 60)
 			to_chat(src, "<span class='warning'><b>Something in your host's brain makes you lose consciousness.. you fade away..</b></span>")
-			src.death()
+			death()
 			return
 	else if (meme_death == "burns")
 		if(host.on_fire)
 			to_chat(src, "<span class='warning'><b>Something on your host's skin makes you unstable.. you fade away..</b></span>")
-			src.death()
+			death()
 			return
 	else if(host.reagents.has_reagent(meme_death))
 		to_chat(src, "<span class='warning'><b>Something in your host's blood makes you lose consciousness.. you fade away..</b></span>")
-		src.death()
+		death()
 		return
 
 	// a host without brain is no good
 	else if(!host.mind)
 		to_chat(src, "<span class='warning'><b>Your host has no mind.. you fade away..</b></span>")
-		src.death()
+		death()
 		return
 	else if(host.stat == DEAD)
 		to_chat(src, "<span class='warning'><b>Your host has died.. you fade away..</b></span>")
-		src.death()
+		death()
 		return
 
 	else if(host.blinded && host.stat != UNCONSCIOUS)
@@ -427,8 +427,8 @@ var/global/const/MAXIMUM_MEME_POINTS = 750
 		to_chat(src, "<b>Your target already is possessed by something..</b>")
 		return
 
-	src.exit_host()
-	src.enter_host(target)
+	exit_host()
+	enter_host(target)
 
 	to_chat(usr, "<b>You successfully jumped to [target].</b>")
 	log_admin("[key_name(src)] has jumped to [target]")
@@ -466,8 +466,8 @@ var/global/const/MAXIMUM_MEME_POINTS = 750
 		to_chat(src, "<b>Your target already is possessed by something..</b>")
 		return
 
-	src.exit_host()
-	src.enter_host(target)
+	exit_host()
+	enter_host(target)
 
 	to_chat(usr, "<b>You successfully jumped to [target].</b>")
 	log_admin("[key_name(src)] has jumped to [target]")
@@ -493,8 +493,8 @@ var/global/const/MAXIMUM_MEME_POINTS = 750
 		to_chat(src, "<b>Your target already is possessed by something..</b>")
 		return
 
-	src.exit_host()
-	src.enter_host(target)
+	exit_host()
+	enter_host(target)
 
 	to_chat(usr, "<b>You successfully jumped to [target].</b>")
 
@@ -516,7 +516,7 @@ var/global/const/MAXIMUM_MEME_POINTS = 750
 	if(!use_points(400))
 		return
 
-	src.indoctrinated.Add(host)
+	indoctrinated.Add(host)
 
 	to_chat(usr, "<b>You successfully indoctrinated [host].</b>")
 	to_chat(host, "<span class='warning'>Your head feels a bit roomier..</span>")

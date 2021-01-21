@@ -595,7 +595,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(src, "<span class='warning'>You cannot doodle there.</span>")
 		return
 
-	if(!choice || choice.amount == 0 || !(src.Adjacent(choice)))
+	if(!choice || choice.amount == 0 || !(Adjacent(choice)))
 		return
 
 	var/datum/dirt_cover/doodle_color = new/datum/dirt_cover(choice.basedatum)

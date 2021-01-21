@@ -381,8 +381,8 @@
 /obj/machinery/power/apc/attackby(obj/item/W, mob/user)
 
 	if(issilicon(user) && get_dist(src,user) > 1)
-		return src.attack_hand(user)
-	src.add_fingerprint(user)
+		return attack_hand(user)
+	add_fingerprint(user)
 	if(iscrowbar(W) && opened)
 		if(has_electronics == 1)
 			if(terminal)
@@ -492,7 +492,7 @@
 		else if(stat & (BROKEN|MAINT))
 			to_chat(user, "Nothing happens.")
 		else
-			if(src.allowed(usr) && !wires.is_index_cut(APC_WIRE_IDSCAN))
+			if(allowed(usr) && !wires.is_index_cut(APC_WIRE_IDSCAN))
 				locked = !locked
 				to_chat(user, "You [ locked ? "lock" : "unlock"] the APC interface.")
 				update_icon()
@@ -650,7 +650,7 @@
 									to_chat (user, "<span class='notice'>There is not enough charge to draw from that APC.</span>")
 									break
 
-								else if(src.cell.use(500))
+								else if(cell.use(500))
 									H.nutrition += C.maxcharge*0.1
 									to_chat(user, "<span class='notice'>Draining... Battery has [round(100.0*H.nutrition/C.maxcharge)]% of charge.</span>")
 
@@ -697,7 +697,7 @@
 			user.visible_message("<span class='warning'>[user.name] removes the power cell from [src.name]!</span>", "You remove the power cell.")
 			//user << "You remove the power cell."
 			charging = 0
-			src.update_icon()
+			update_icon()
 		return
 	// do APC interaction
 	..()
@@ -864,7 +864,7 @@
 					var/datum/game_mode/malfunction/gm_malf = SSticker.mode
 					operating ? gm_malf.apcs++ : gm_malf.apcs--
 
-		src.update()
+		update()
 		update_icon()
 
 	else if(href_list["cmode"])
@@ -901,7 +901,7 @@
 
 	else if(href_list["overload"])
 		if( (issilicon(usr) && !src.aidisabled) || isobserver(usr) )
-			src.overload_lighting()
+			overload_lighting()
 
 	else if(href_list["malfhack"])
 		var/mob/living/silicon/ai/malfai = usr
@@ -936,7 +936,7 @@
 		malfvacate()*/
 
 	if(usingUI)
-		src.updateDialog()
+		updateDialog()
 
 /*/obj/machinery/power/apc/proc/malfoccupy(mob/living/silicon/ai/malf)
 	if(!istype(malf))
@@ -947,7 +947,7 @@
 	if(src.z != ZLEVEL_STATION)
 		return
 	src.occupier = new /mob/living/silicon/ai(src,malf.laws,null,1)
-	src.occupier.adjustOxyLoss(malf.getOxyLoss())
+	occupier.adjustOxyLoss(malf.getOxyLoss())
 	if(!findtext(src.occupier.name,"APC Copy"))
 		src.occupier.name = "[malf.name] APC Copy"
 	if(malf.parent)
@@ -960,23 +960,23 @@
 		qdel(malf)
 	src.occupier.verbs += /mob/living/silicon/ai/proc/corereturn
 	src.occupier.verbs += /datum/game_mode/malfunction/proc/takeover
-	src.occupier.cancel_camera()
+	occupier.cancel_camera()
 
 /obj/machinery/power/apc/proc/malfvacate(forced)
 	if(!src.occupier)
 		return
 	if(src.occupier.parent && src.occupier.parent.stat != DEAD)
-		src.occupier.mind.transfer_to(src.occupier.parent)
-		src.occupier.parent.adjustOxyLoss(src.occupier.getOxyLoss())
-		src.occupier.parent.cancel_camera()
+		occupier.mind.transfer_to(src.occupier.parent)
+		occupier.parent.adjustOxyLoss(occupier.getOxyLoss())
+		occupier.parent.cancel_camera()
 		qdel(src.occupier)
 
 	else
 		to_chat(src.occupier, "<span class='warning'>Primary core damaged, unable to return core processes.</span>")
 		if(forced)
 			src.occupier.loc = src.loc
-			src.occupier.death()
-			src.occupier.gib()*/
+			occupier.death()
+			occupier.gib()*/
 
 
 /obj/machinery/power/apc/proc/ion_act()
@@ -1041,7 +1041,7 @@
 
 	var/excess = surplus()
 
-	if(!src.avail())
+	if(!avail())
 		main_status = 0
 	else if(excess < 0)
 		main_status = 1

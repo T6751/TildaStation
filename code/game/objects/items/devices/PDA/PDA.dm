@@ -774,7 +774,7 @@
 		if("Message")
 
 			var/obj/item/device/pda/P = locate(href_list["target"])
-			src.create_message(U, P, !href_list["notap"])
+			create_message(U, P, !href_list["notap"])
 			if(mode == 2)
 				if(href_list["target"] in conversations)            // Need to make sure the message went through, if not welp.
 					active_conversation = href_list["target"]
@@ -859,7 +859,7 @@
 						useMS = TRUE
 						break
 
-			var/datum/signal/signal = src.telecomms_process()
+			var/datum/signal/signal = telecomms_process()
 
 			if(signal && signal.data["done"])
 				useTC = TRUE
@@ -921,7 +921,7 @@
 						useMS = MS
 						break
 
-			var/datum/signal/signal = src.telecomms_process()
+			var/datum/signal/signal = telecomms_process()
 
 			var/useTC = 0
 			if(signal)
@@ -1132,7 +1132,7 @@
 				useMS = MS
 				break
 
-	var/datum/signal/signal = src.telecomms_process()
+	var/datum/signal/signal = telecomms_process()
 
 	var/useTC = 0
 	if(signal)

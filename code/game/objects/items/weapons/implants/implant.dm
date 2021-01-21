@@ -134,14 +134,14 @@ Implant Specifics:<BR>"}
 
 /obj/item/weapon/implant/dexplosive/trigger(emote, source)
 	if(emote == "deathgasp")
-		src.activate("death")
+		activate("death")
 	return
 
 /obj/item/weapon/implant/dexplosive/activate(cause)
 	if((!cause) || (!src.imp_in))	return 0
 	explosion(src, -1, 0, 2, 3, 0)//This might be a bit much, dono will have to see.
 	if(src.imp_in)
-		src.imp_in.gib()
+		imp_in.gib()
 
 /obj/item/weapon/implant/dexplosive/islegal()
 	return 0
@@ -360,14 +360,14 @@ the implant may become unstable and either pre-maturely inject the subject or si
 
 /obj/item/weapon/implant/chem/trigger(emote, source)
 	if(emote == "deathgasp")
-		src.activate(src.reagents.total_volume)
+		activate(src.reagents.total_volume)
 	return
 
 
 /obj/item/weapon/implant/chem/activate(cause)
 	if((!cause) || (!src.imp_in))	return 0
 	var/mob/living/carbon/R = src.imp_in
-	src.reagents.trans_to(R, cause)
+	reagents.trans_to(R, cause)
 	to_chat(R, "You hear a faint *beep*.")
 	if(!src.reagents.total_volume)
 		to_chat(R, "You hear a faint click from your chest.")

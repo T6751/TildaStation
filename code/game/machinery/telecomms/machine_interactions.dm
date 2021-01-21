@@ -287,7 +287,7 @@
 					P.buffer.links.Add(src)
 
 				if(!(P.buffer in src.links))
-					src.links.Add(P.buffer)
+					links.Add(P.buffer)
 
 				temp = "<font color='#666633'>-% Successfully linked with \ref[P.buffer] [P.buffer.name] %-</font>"
 
@@ -305,7 +305,7 @@
 		temp = "<font color='#666633'>-% Buffer successfully flushed. %-</font>"
 		P.buffer = null
 
-	src.Options_Topic(href, href_list)
+	Options_Topic(href, href_list)
 
 	usr.set_machine(src)
 

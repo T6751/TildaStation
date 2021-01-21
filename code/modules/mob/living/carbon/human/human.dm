@@ -1218,10 +1218,10 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 		reset_view(0)
 		return
 
-	if(src.getBrainLoss() >= 100) //#Z2
+	if(getBrainLoss() >= 100) //#Z2
 		to_chat(src, "Too hard to concentrate... Better stop trying!")
-		src.adjustBrainLoss(7)
-		if(src.getBrainLoss() >= 125) return
+		adjustBrainLoss(7)
+		if(getBrainLoss() >= 125) return
 
 	var/list/names = list()
 	var/list/creatures = list()
@@ -1250,11 +1250,11 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 
 	if (!target)//Make sure we actually have a target
 		return
-	if(src.getBrainLoss() >= 100)
+	if(getBrainLoss() >= 100)
 		to_chat(src, "Too hard to concentrate...")
 		return
 	if (target && (creatures[target] != src))
-		src.adjustBrainLoss(4)
+		adjustBrainLoss(4)
 		remoteview_target = creatures[target]
 		reset_view(creatures[target])
 	else
@@ -1280,7 +1280,7 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 	var/obj/item/organ/internal/lungs/IO = organs_by_name[O_LUNGS]
 
 	if(!IO.is_bruised())
-		src.custom_pain("You feel a stabbing pain in your chest!", 1)
+		custom_pain("You feel a stabbing pain in your chest!", 1)
 		IO.damage = IO.min_bruised_damage
 
 /mob/living/carbon/human/can_pickup(obj/O)
@@ -1336,7 +1336,7 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 	blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
 	hand_dirt_datum = new(dirt_overlay)
 
-	src.update_inv_gloves()	//handles bloody hands overlays and updating
+	update_inv_gloves()	//handles bloody hands overlays and updating
 	verbs += /mob/living/carbon/human/proc/bloody_doodle
 	return 1 //we applied blood to the item
 
@@ -1372,7 +1372,7 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 				BP.take_damage(rand(1,3), 0, 0)
 				if(!BP.is_robotic()) //There is no blood in protheses.
 					BP.status |= ORGAN_BLEEDING
-					src.adjustToxLoss(rand(1,3))
+					adjustToxLoss(rand(1,3))
 
 /mob/living/carbon/human/verb/check_pulse()
 	set category = "Object"
@@ -1405,7 +1405,7 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 	if(usr.l_move_time >= time)	//checks if our mob has moved during the sleep()
 		to_chat(usr, "You moved while counting. Try again.")
 	else
-		to_chat(usr, "<span class='notice'>[self ? "Your" : "[src]'s"] pulse is [src.get_pulse(GETPULSE_HAND)].</span>")
+		to_chat(usr, "<span class='notice'>[self ? "Your" : "[src]'s"] pulse is [get_pulse(GETPULSE_HAND)].</span>")
 
 /mob/living/carbon/human/proc/set_species(new_species, force_organs = TRUE, default_colour = null)
 

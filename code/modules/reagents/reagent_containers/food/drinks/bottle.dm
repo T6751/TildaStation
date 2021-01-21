@@ -75,7 +75,7 @@
 
 	playsound(src, pick(SOUNDIN_SHATTER), VOL_EFFECTS_MASTER)
 	user.put_in_active_hand(B)
-	src.transfer_fingerprints_to(B)
+	transfer_fingerprints_to(B)
 
 	qdel(src)
 
@@ -157,10 +157,10 @@
 	if(src.reagents)
 		for(var/mob/O in viewers(user, null))
 			O.show_message(text("<span class='notice'><B>The contents of the [src] splashes all over [target]!</B></span>"), 1)
-		src.reagents.reaction(target, TOUCH)
+		reagents.reaction(target, TOUCH)
 
 	//Finally, smash the bottle. This kills (del) the bottle.
-	src.smash(target, user)
+	smash(target, user)
 
 	// We're smashing the bottle into mob's face. There's no need for an afterattack.
 	return TRUE
@@ -176,7 +176,7 @@
 		playsound(src, pick(SOUNDIN_SHATTER), VOL_EFFECTS_MASTER)
 		new /obj/item/weapon/shard(loc)
 		if(reagents && reagents.total_volume)
-			src.reagents.reaction(loc, TOUCH)
+			reagents.reaction(loc, TOUCH)
 		qdel(src)
 
 

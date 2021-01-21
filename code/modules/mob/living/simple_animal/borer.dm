@@ -8,7 +8,7 @@
 		if(client.prefs.muted & MUTE_IC)
 			to_chat(src, "<span class='warning'>You cannot speak in IC (muted).</span>")
 			return
-		if (src.client.handle_spam_prevention(message,MUTE_IC))
+		if (client.handle_spam_prevention(message,MUTE_IC))
 			return
 
 	message = sanitize(message)
@@ -130,7 +130,7 @@
 		if(client.prefs.muted & MUTE_IC)
 			to_chat(src, "<span class='warning'>You cannot speak in IC (muted).</span>")
 			return
-		if (src.client.handle_spam_prevention(message,MUTE_IC))
+		if (client.handle_spam_prevention(message,MUTE_IC))
 			return
 
 	if (message[1] == "*")
@@ -381,14 +381,14 @@
 
 	var/list/choices = list()
 	for(var/mob/living/carbon/C in view(1,src))
-		if(C.stat != DEAD && src.Adjacent(C))
+		if(C.stat != DEAD && Adjacent(C))
 			choices += C
 
 	var/mob/living/carbon/M = input(src,"Who do you wish to infest?") in null|choices
 
 	if(!M || !src) return
 
-	if(!(src.Adjacent(M))) return
+	if(!(Adjacent(M))) return
 
 	if(M.has_brain_worms())
 		to_chat(src, "You cannot infest someone who is already infested!")

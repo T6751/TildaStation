@@ -216,7 +216,7 @@
 				popup.open()
 
 	else if (istype(W, /obj/item/device/camera_bug))
-		if(!src.can_use())
+		if(!can_use())
 			to_chat(user, "<span class='notice'>Camera non-functional</span>")
 			return
 		if(bug)

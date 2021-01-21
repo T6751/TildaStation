@@ -176,7 +176,7 @@
 		if(emagged)
 			to_chat(user, "<span class='warning'>The lock seems to be broken</span>")
 			return
-		if(src.allowed(user))
+		if(allowed(user))
 			if(active)
 				src.locked = !src.locked
 				to_chat(user, "The controls are now [src.locked ? "locked." : "unlocked."]")

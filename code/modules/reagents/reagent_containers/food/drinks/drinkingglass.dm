@@ -10,7 +10,7 @@
 	playsound(src, pick(SOUNDIN_SHATTER), VOL_EFFECTS_MASTER)
 	new /obj/item/weapon/shard(loc)
 	if(reagents && reagents.total_volume)
-		src.reagents.reaction(loc, TOUCH)
+		reagents.reaction(loc, TOUCH)
 	qdel(src)
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/on_reagent_change()
 	/*if(reagents.reagent_list.len > 1 )
@@ -539,7 +539,7 @@
 			M.log_combat(user, "splashed with [name], reagents: [contained] (INTENT: [uppertext(user.a_intent)])")
 
 			user.visible_message("<span class='warning'>[target] has been splashed with [src] in the face by [user]!</span>")
-			src.reagents.reaction(target, TOUCH)
+			reagents.reaction(target, TOUCH)
 			addtimer(CALLBACK(reagents, /datum/reagents.proc/clear_reagents), 5)
 			return
 	else
