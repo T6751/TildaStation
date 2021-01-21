@@ -9031,7 +9031,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor{
-	icon_state = "red"
+	icon_state = "red"А
 	},
 /area/station/security/prison)
 "aoF" = (

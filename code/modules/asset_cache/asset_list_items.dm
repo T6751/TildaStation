@@ -158,6 +158,24 @@
 		insert_icon_in_list(imgid, I)
 	return ..()
 
+/datum/asset/spritesheet/outfits
+	name = "outfits"
+
+/datum/asset/spritesheet/outfits/register()
+	var/client/C = locate() in clients
+	var/mob/living/carbon/human/H = new(C.mob.loc)
+	for (var/o in subtypesof(/datum/job))
+		var/datum/job/J = new o
+		for(var/obj/item/I in H)
+			qdel(I)
+		C.prefs.randomize_appearance_for(H)
+		J.equip(H)
+		sleep(4)
+		var/icon/I = getFlatIcon(H)
+		var/imgid = replacetext(replacetext("[o]", "/datum/job/", ""), "/", "-")
+		insert_icon_in_list(imgid, I)
+	return ..()
+
 /datum/asset/spritesheet/cargo
 	name = "cargo"
 

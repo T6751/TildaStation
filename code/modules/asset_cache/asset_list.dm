@@ -94,7 +94,7 @@ var/global/list/asset_datums = list()
 	fdel(fname)
 	text2file(generate_css(), fname)
 	register_asset(res_name, fcopy_rsc(fname))
-	fdel(fname)
+	//fdel(fname)
 
 
 /datum/asset/spritesheet/proc/ensure_stripped(sizes_to_strip = sizes)
@@ -108,7 +108,7 @@ var/global/list/asset_datums = list()
 		fcopy(size[SPRSZ_ICON], fname)
 		world.ext_python("strip_metadata.py", "[fname]")
 		size[SPRSZ_STRIPPED] = icon(fname)
-		fdel(fname)
+		//fdel(fname)
 
 /datum/asset/spritesheet/proc/generate_css()
 	var/list/out = list()

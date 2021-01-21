@@ -11,7 +11,7 @@
 	var/shelleo_id
 	var/out_file = ""
 	var/err_file = ""
-	if(world.system_type == UNIX)
+	if(world.system_type == UNIX || world.system_type == MS_WINDOWS)
 		for(var/seo_id in shelleo_ids)
 			if(!shelleo_ids[seo_id])
 				shelleo_ids[seo_id] = TRUE
