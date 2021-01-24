@@ -8,8 +8,8 @@
 	var/list/L  // The actual queue
 	var/cmp     // The weight function used to order the queue
 
-/PriorityQueue/New(compare)
-	L = list()
+/PriorityQueue/New (compare)
+	L = list ()
 	cmp = compare
 
 /PriorityQueue/proc/IsEmpty()
