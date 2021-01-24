@@ -1593,7 +1593,7 @@
 					 //8
 					 list("key"=/obj/item/weapon/stock_parts/capacitor/super,
 					 		"backkey"=/obj/item/weapon/screwdriver,
-					 		"desc"="Phasic scanner module is secured"),
+							"desc"="Phasic scanner module 	 is secured"),
 					 //9
 					 list("key"=/obj/item/weapon/screwdriver,
 					 		"backkey"=/obj/item/weapon/crowbar,
