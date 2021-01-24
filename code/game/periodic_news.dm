@@ -29,7 +29,7 @@
 				personnel. Heads of Staff will, according to our sources, not be affected."}
 	round_time = 60*40
 
-/datum/news_announcement/revolution_inciting_event/human_experiments
+ /datum/news_announcement/revolution_inciting_event/human_experiments
 	author = "Unauthorized"
 
 	message = {"Unbelievable reports about human experimentation have reached our ears. According
