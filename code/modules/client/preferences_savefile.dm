@@ -314,192 +314,193 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	return 1
 
-/datum/preferences/proc/save_preferences()
-	if(!path)
-		return 0
-	var/savefile/S = new /savefile(path)
-	if(!S)
-		return 0
-	S.cd = "/"
+/datum/preferences
+	proc/save_preferences()
+		if(!path)
+			return 0
+		var/savefile/S = new /savefile(path)
+		if(!S)
+			return 0
+		S.cd = "/"
 
-	S["version"] << SAVEFILE_VERSION_MAX
+		S["version"] << SAVEFILE_VERSION_MAX
 
-	//Account data
-	S["cid_list"]			<< cid_list
-	S["ignore_cid_warning"]	<< ignore_cid_warning
+		//Account data
+		S["cid_list"]			<< cid_list
+		S["ignore_cid_warning"]	<< ignore_cid_warning
 
-	//general preferences
-	S["ooccolor"]			<< ooccolor
-	S["aooccolor"]			<< aooccolor
-	S["lastchangelog"]		<< lastchangelog
-	S["UI_style"]			<< UI_style
-	S["UI_style_color"]		<< UI_style_color
-	S["UI_style_alpha"]		<< UI_style_alpha
-	S["default_slot"]		<< default_slot
-	S["toggles"]			<< toggles
-	S["chat_toggles"]		<< chat_toggles
-	S["ghost_orbit"]		<< ghost_orbit
-	S["chat_ghostsight"]	<< chat_ghostsight
-	S["randomslot"]			<< randomslot
-	S["permamuted"]			<< permamuted
-	S["parallax"]			<< parallax
-	S["parallax_theme"]		<< parallax_theme
-	S["ambientocclusion"]	<< ambientocclusion
+		//general preferences
+		S["ooccolor"]			<< ooccolor
+		S["aooccolor"]			<< aooccolor
+		S["lastchangelog"]		<< lastchangelog
+		S["UI_style"]			<< UI_style
+		S["UI_style_color"]		<< UI_style_color
+		S["UI_style_alpha"]		<< UI_style_alpha
+		S["default_slot"]		<< default_slot
+		S["toggles"]			<< toggles
+		S["chat_toggles"]		<< chat_toggles
+		S["ghost_orbit"]		<< ghost_orbit
+		S["chat_ghostsight"]	<< chat_ghostsight
+		S["randomslot"]			<< randomslot
+		S["permamuted"]			<< permamuted
+		S["parallax"]			<< parallax
+		S["parallax_theme"]		<< parallax_theme
+		S["ambientocclusion"]	<< ambientocclusion
 
-	//TGUI
-	S["tgui_fancy"]		<< tgui_fancy
-	S["tgui_lock"]		<< tgui_lock
+		//TGUI
+		S["tgui_fancy"]		<< tgui_fancy
+		S["tgui_lock"]		<< tgui_lock
 
-	//Sound preferences
-	S["snd_music_vol"]						<< snd_music_vol
-	S["snd_ambient_vol"]					<< snd_ambient_vol
-	S["snd_effects_master_vol"]				<< snd_effects_master_vol
-	S["snd_effects_voice_announcement_vol"]	<< snd_effects_voice_announcement_vol
-	S["snd_effects_misc_vol"]				<< snd_effects_misc_vol
-	S["snd_effects_instrument_vol"]			<< snd_effects_instrument_vol
-	S["snd_notifications_vol"]				<< snd_notifications_vol
-	S["snd_admin_vol"]						<< snd_admin_vol
-	S["snd_jukebox_vol"]					<< snd_jukebox_vol
-	return 1
+		//Sound preferences
+		S["snd_music_vol"]						<< snd_music_vol
+		S["snd_ambient_vol"]					<< snd_ambient_vol
+		S["snd_effects_master_vol"]				<< snd_effects_master_vol
+		S["snd_effects_voice_announcement_vol"]	<< snd_effects_voice_announcement_vol
+		S["snd_effects_misc_vol"]				<< snd_effects_misc_vol
+		S["snd_effects_instrument_vol"]			<< snd_effects_instrument_vol
+		S["snd_notifications_vol"]				<< snd_notifications_vol
+		S["snd_admin_vol"]						<< snd_admin_vol
+		S["snd_jukebox_vol"]					<< snd_jukebox_vol
+		return 1
 
-/datum/preferences/proc/load_saved_character(dir)
-	var/savefile/S = new /savefile(path)
-	if(!S)
-		return 0
-	S.cd = dir
+	/datum/preferences/proc/load_saved_character(dir)
+		var/savefile/S = new /savefile(path)
+		if(!S)
+			return 0
+		S.cd = dir
 
-	var/needs_update = savefile_needs_update(S)
-	if(needs_update == SAVEFILE_TOO_OLD) // fatal, can't load any data
-		return 0
+		var/needs_update = savefile_needs_update(S)
+		if(needs_update == SAVEFILE_TOO_OLD) // fatal, can't load any data
+			return 0
 
-	//Character
-	S["OOC_Notes"]			>> metadata
-	S["real_name"]			>> real_name
-	S["name_is_always_random"] >> be_random_name
-	S["gender"]				>> gender
-	S["age"]				>> age
-	S["species"]			>> species
-	S["language"]			>> language
+		//Character
+		S["OOC_Notes"]			>> metadata
+		S["real_name"]			>> real_name
+		S["name_is_always_random"] >> be_random_name
+		S["gender"]				>> gender
+		S["age"]				>> age
+		S["species"]			>> species
+		S["language"]			>> language
 
-	//colors to be consolidated into hex strings (requires some work with dna code)
-	S["hair_red"]			>> r_hair
-	S["hair_green"]			>> g_hair
-	S["hair_blue"]			>> b_hair
-	S["grad_red"]			>> r_grad
-	S["grad_green"]			>> g_grad
-	S["grad_blue"]			>> b_grad
-	S["facial_red"]			>> r_facial
-	S["facial_green"]		>> g_facial
-	S["facial_blue"]		>> b_facial
-	S["skin_tone"]			>> s_tone
-	S["skin_red"]			>> r_skin
-	S["skin_green"]			>> g_skin
-	S["skin_blue"]			>> b_skin
-	S["hair_style_name"]	>> h_style
-	S["grad_style_name"]	>> grad_style
-	S["facial_style_name"]	>> f_style
-	S["eyes_red"]			>> r_eyes
-	S["eyes_green"]			>> g_eyes
-	S["eyes_blue"]			>> b_eyes
-	S["underwear"]			>> underwear
-	S["undershirt"]			>> undershirt
-	S["socks"]				>> socks
-	S["backbag"]			>> backbag
-	S["b_type"]				>> b_type
-	S["use_skirt"]			>> use_skirt
+		//colors to be consolidated into hex strings (requires some work with dna code)
+		S["hair_red"]			>> r_hair
+		S["hair_green"]			>> g_hair
+		S["hair_blue"]			>> b_hair
+		S["grad_red"]			>> r_grad
+		S["grad_green"]			>> g_grad
+		S["grad_blue"]			>> b_grad
+		S["facial_red"]			>> r_facial
+		S["facial_green"]		>> g_facial
+		S["facial_blue"]		>> b_facial
+		S["skin_tone"]			>> s_tone
+		S["skin_red"]			>> r_skin
+		S["skin_green"]			>> g_skin
+		S["skin_blue"]			>> b_skin
+		S["hair_style_name"]	>> h_style
+		S["grad_style_name"]	>> grad_style
+		S["facial_style_name"]	>> f_style
+		S["eyes_red"]			>> r_eyes
+		S["eyes_green"]			>> g_eyes
+		S["eyes_blue"]			>> b_eyes
+		S["underwear"]			>> underwear
+		S["undershirt"]			>> undershirt
+		S["socks"]				>> socks
+		S["backbag"]			>> backbag
+		S["b_type"]				>> b_type
+		S["use_skirt"]			>> use_skirt
 
-	//Load prefs
-	S["job_preferences"] >> job_preferences
+		//Load prefs
+		S["job_preferences"] >> job_preferences
 
-	//Traits
-	S["all_quirks"]			>> all_quirks
-	S["positive_quirks"]	>> positive_quirks
-	S["negative_quirks"]	>> negative_quirks
-	S["neutral_quirks"]		>> neutral_quirks
+		//Traits
+		S["all_quirks"]			>> all_quirks
+		S["positive_quirks"]	>> positive_quirks
+		S["negative_quirks"]	>> negative_quirks
+		S["neutral_quirks"]		>> neutral_quirks
 
-	//Miscellaneous
-	S["flavor_text"]		>> flavor_text
-	S["med_record"]			>> med_record
-	S["sec_record"]			>> sec_record
-	S["gen_record"]			>> gen_record
-	S["be_role"]			>> be_role
-	S["player_alt_titles"]	>> player_alt_titles
-	S["organ_data"]			>> organ_data
-	S["ipc_head"]			>> ipc_head
-	S["gear"]				>> gear
-	S["custom_items"]		>> custom_items
+		//Miscellaneous
+		S["flavor_text"]		>> flavor_text
+		S["med_record"]			>> med_record
+		S["sec_record"]			>> sec_record
+		S["gen_record"]			>> gen_record
+		S["be_role"]			>> be_role
+		S["player_alt_titles"]	>> player_alt_titles
+		S["organ_data"]			>> organ_data
+		S["ipc_head"]			>> ipc_head
+		S["gear"]				>> gear
+		S["custom_items"]		>> custom_items
 
-	S["nanotrasen_relation"] >> nanotrasen_relation
-	S["home_system"] 		>> home_system
-	S["citizenship"] 		>> citizenship
-	S["faction"] 			>> faction
-	S["religion"] 			>> religion
+		S["nanotrasen_relation"] >> nanotrasen_relation
+		S["home_system"] 		>> home_system
+		S["citizenship"] 		>> citizenship
+		S["faction"] 			>> faction
+		S["religion"] 			>> religion
 
-	S["uplinklocation"] 	>> uplinklocation
+		S["uplinklocation"] 	>> uplinklocation
 
-	UpdateAllowedQuirks()
+		UpdateAllowedQuirks()
 
-	//*** FOR FUTURE UPDATES, SO YOU KNOW WHAT TO DO ***//
-	//try to fix any outdated data if necessary
-	if(needs_update >= 0)
-		update_character(needs_update, S) // needs_update == savefile_version if we need an update (positive integer)
+		//*** FOR FUTURE UPDATES, SO YOU KNOW WHAT TO DO ***//
+		//try to fix any outdated data if necessary
+		if(needs_update >= 0)
+			update_character(needs_update, S) // needs_update == savefile_version if we need an update (positive integer)
 
-	//Sanitize
-	metadata		= sanitize_text(metadata, initial(metadata))
-	real_name		= sanitize_name(real_name)
+		//Sanitize
+		metadata		= sanitize_text(metadata, initial(metadata))
+		real_name		= sanitize_name(real_name)
 
-	if(isnull(species))
-		species = HUMAN
-	var/datum/species/species_obj = all_species[species]
+		if(isnull(species))
+			species = HUMAN
+		var/datum/species/species_obj = all_species[species]
 
-	if(isnull(language)) language = "None"
-	if(isnull(nanotrasen_relation)) nanotrasen_relation = initial(nanotrasen_relation)
-	if(!real_name) real_name = random_name(gender)
-	if(!gear) gear = list()
-	if(!custom_items) custom_items = list()
-	be_random_name	= sanitize_integer(be_random_name, 0, 1, initial(be_random_name))
-	gender			= sanitize_gender(gender)
-	age				= sanitize_integer(age, species_obj.min_age, species_obj.max_age, initial(age))
-	r_hair			= sanitize_integer(r_hair, 0, 255, initial(r_hair))
-	g_hair			= sanitize_integer(g_hair, 0, 255, initial(g_hair))
-	b_hair			= sanitize_integer(b_hair, 0, 255, initial(b_hair))
-	r_grad			= sanitize_integer(r_grad, 0, 255, initial(r_grad))
-	g_grad			= sanitize_integer(g_grad, 0, 255, initial(g_grad))
-	b_grad			= sanitize_integer(b_grad, 0, 255, initial(b_grad))
-	r_facial		= sanitize_integer(r_facial, 0, 255, initial(r_facial))
-	g_facial		= sanitize_integer(g_facial, 0, 255, initial(g_facial))
-	b_facial		= sanitize_integer(b_facial, 0, 255, initial(b_facial))
-	s_tone			= sanitize_integer(s_tone, -185, 34, initial(s_tone))
-	r_skin			= sanitize_integer(r_skin, 0, 255, initial(r_skin))
-	g_skin			= sanitize_integer(g_skin, 0, 255, initial(g_skin))
-	b_skin			= sanitize_integer(b_skin, 0, 255, initial(b_skin))
-	h_style			= sanitize_inlist(h_style, hair_styles_list, initial(h_style))
-	f_style			= sanitize_inlist(f_style, facial_hair_styles_list, initial(f_style))
-	grad_style		= sanitize_inlist(grad_style, hair_gradients, initial(grad_style))
-	r_eyes			= sanitize_integer(r_eyes, 0, 255, initial(r_eyes))
-	g_eyes			= sanitize_integer(g_eyes, 0, 255, initial(g_eyes))
-	b_eyes			= sanitize_integer(b_eyes, 0, 255, initial(b_eyes))
-	underwear		= sanitize_integer(underwear, 1, underwear_m.len, initial(underwear))
-	undershirt		= sanitize_integer(undershirt, 1, undershirt_t.len, initial(undershirt))
-	socks			= sanitize_integer(socks, 1, socks_t.len, initial(socks))
-	backbag			= sanitize_integer(backbag, 1, backbaglist.len, initial(backbag))
-	b_type			= sanitize_text(b_type, initial(b_type))
-	alternate_option = sanitize_integer(alternate_option, 0, 2, initial(alternate_option))
+		if(isnull(language)) language = "None"
+		if(isnull(nanotrasen_relation)) nanotrasen_relation = initial(nanotrasen_relation)
+		if(!real_name) real_name = random_name(gender)
+		if(!gear) gear = list()
+		if(!custom_items) custom_items = list()
+		be_random_name	= sanitize_integer(be_random_name, 0, 1, initial(be_random_name))
+		gender			= sanitize_gender(gender)
+		age				= sanitize_integer(age, species_obj.min_age, species_obj.max_age, initial(age))
+		r_hair			= sanitize_integer(r_hair, 0, 255, initial(r_hair))
+		g_hair			= sanitize_integer(g_hair, 0, 255, initial(g_hair))
+		b_hair			= sanitize_integer(b_hair, 0, 255, initial(b_hair))
+		r_grad			= sanitize_integer(r_grad, 0, 255, initial(r_grad))
+		g_grad			= sanitize_integer(g_grad, 0, 255, initial(g_grad))
+		b_grad			= sanitize_integer(b_grad, 0, 255, initial(b_grad))
+		r_facial		= sanitize_integer(r_facial, 0, 255, initial(r_facial))
+		g_facial		= sanitize_integer(g_facial, 0, 255, initial(g_facial))
+		b_facial		= sanitize_integer(b_facial, 0, 255, initial(b_facial))
+		s_tone			= sanitize_integer(s_tone, -185, 34, initial(s_tone))
+		r_skin			= sanitize_integer(r_skin, 0, 255, initial(r_skin))
+		g_skin			= sanitize_integer(g_skin, 0, 255, initial(g_skin))
+		b_skin			= sanitize_integer(b_skin, 0, 255, initial(b_skin))
+		h_style			= sanitize_inlist(h_style, hair_styles_list, initial(h_style))
+		f_style			= sanitize_inlist(f_style, facial_hair_styles_list, initial(f_style))
+		grad_style		= sanitize_inlist(grad_style, hair_gradients, initial(grad_style))
+		r_eyes			= sanitize_integer(r_eyes, 0, 255, initial(r_eyes))
+		g_eyes			= sanitize_integer(g_eyes, 0, 255, initial(g_eyes))
+		b_eyes			= sanitize_integer(b_eyes, 0, 255, initial(b_eyes))
+		underwear		= sanitize_integer(underwear, 1, underwear_m.len, initial(underwear))
+		undershirt		= sanitize_integer(undershirt, 1, undershirt_t.len, initial(undershirt))
+		socks			= sanitize_integer(socks, 1, socks_t.len, initial(socks))
+		backbag			= sanitize_integer(backbag, 1, backbaglist.len, initial(backbag))
+		b_type			= sanitize_text(b_type, initial(b_type))
+		alternate_option = sanitize_integer(alternate_option, 0, 2, initial(alternate_option))
 
-	all_quirks = SANITIZE_LIST(all_quirks)
-	positive_quirks = SANITIZE_LIST(positive_quirks)
-	negative_quirks = SANITIZE_LIST(negative_quirks)
-	neutral_quirks = SANITIZE_LIST(neutral_quirks)
+		all_quirks = SANITIZE_LIST(all_quirks)
+		positive_quirks = SANITIZE_LIST(positive_quirks)
+		negative_quirks = SANITIZE_LIST(negative_quirks)
+		neutral_quirks = SANITIZE_LIST(neutral_quirks)
 
-	if(!player_alt_titles) player_alt_titles = new()
-	if(!organ_data) src.organ_data = list()
-	if(!ipc_head) src.ipc_head = "Default"
-	if(!be_role) src.be_role = list()
+		if(!player_alt_titles) player_alt_titles = new()
+		if(!organ_data) src.organ_data = list()
+		if(!ipc_head) src.ipc_head = "Default"
+		if(!be_role) src.be_role = list()
 
-	if(!home_system) home_system = "None"
-	if(!citizenship) citizenship = "None"
-	if(!faction)     faction =     "None"
-	if(!religion)    religion =    "None"
+		if(!home_system) home_system = "None"
+		if(!citizenship) citizenship = "None"
+		if(!faction)     faction =     "None"
+		if(!religion)    religion =    "None"
 
 /datum/preferences/proc/random_character()
 	if(!path)
