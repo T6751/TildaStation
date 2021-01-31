@@ -362,7 +362,7 @@
 	if(!user.can_pickup(src))
 		return
 
-	src.pickup(user)
+	pickup(user)
 	add_fingerprint(user)
 	user.put_in_active_hand(src)
 	return
@@ -396,7 +396,7 @@
 		to_chat(user, "<span class='notice'>Your claws aren't capable of such fine manipulation!</span>")
 		return
 
-	src.pickup(user)
+	pickup(user)
 	user.put_in_active_hand(src)
 	return
 
@@ -871,7 +871,7 @@
 
 	M.log_combat(user, "eyestabbed with [name]")
 
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	//if((CLUMSY in user.mutations) && prob(50))
 	//	M = user
 		/*

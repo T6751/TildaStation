@@ -68,7 +68,7 @@
 
 	if(istype(AM, /obj/machinery/bot))
 		var/obj/machinery/bot/bot = AM
-		if(src.check_access(bot.botcard) || emergency)
+		if(check_access(bot.botcard) || emergency)
 			if(density)
 				open()
 		return
@@ -76,7 +76,7 @@
 	if(istype(AM, /obj/mecha))
 		var/obj/mecha/mecha = AM
 		if(density)
-			if(mecha.occupant && (src.allowed(mecha.occupant) || src.check_access_list(mecha.operation_req_access)) || emergency)
+			if(mecha.occupant && (allowed(mecha.occupant) || check_access_list(mecha.operation_req_access)) || emergency)
 				open()
 			else
 				do_animate("deny")
@@ -85,7 +85,7 @@
 	if(istype(AM, /obj/structure/stool/bed/chair/wheelchair))
 		var/obj/structure/stool/bed/chair/wheelchair/wheel = AM
 		if(density)
-			if((wheel.pulling && src.allowed(wheel.pulling)) || emergency)
+			if((wheel.pulling && allowed(wheel.pulling)) || emergency)
 				open()
 			else
 				do_animate("deny")

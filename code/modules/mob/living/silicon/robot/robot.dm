@@ -606,7 +606,7 @@
 				C.r_arm = new/obj/item/robot_parts/r_arm(C)
 				C.update_icon()
 				new/obj/item/robot_parts/chest(loc)
-				src.Destroy()
+				Destroy()
 			else
 				// Okay we're not removing the cell or an MMI, but maybe something else?
 				var/list/removable_components = list()

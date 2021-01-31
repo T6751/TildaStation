@@ -492,9 +492,9 @@
 	if(health <= 0)
 		return
 	if(W.attack_verb.len)
-		src.visible_message("<span class='danger'>\The [src] has been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]</span>")
+		visible_message("<span class='danger'>\The [src] has been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]</span>")
 	else
-		src.visible_message("<span class='danger'>\The [src] has been attacked with \the [W][(user ? " by [user]." : ".")]</span>")
+		visible_message("<span class='danger'>\The [src] has been attacked with \the [W][(user ? " by [user]." : ".")]</span>")
 	var/damage = W.force / 4.0
 	user.SetNextMove(CLICK_CD_MELEE)
 
@@ -506,7 +506,7 @@
 			playsound(src, 'sound/items/Welder.ogg', VOL_EFFECTS_MASTER)
 
 	src.health -= damage
-	src.healthcheck()
+	healthcheck()
 
 
 /obj/structure/alien/egg/proc/healthcheck()

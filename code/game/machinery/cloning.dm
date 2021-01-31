@@ -249,15 +249,15 @@
 	if(stat & NOPOWER) //Autoeject if power is lost
 		if (src.occupant)
 			src.locked = 0
-			src.go_out()
+			go_out()
 		return
 
 	if((src.occupant) && (src.occupant.loc == src))
 
 		if((src.occupant.stat == DEAD) || (src.occupant.suiciding) || !occupant.key)  //Autoeject corpses and suiciding dudes.
 			src.locked = 0
-			src.go_out()
-			src.connected_message("Clone Rejected: Deceased.")
+			go_out()
+			connected_message("Clone Rejected: Deceased.")
 			return
 
 		else if(src.occupant.cloneloss > (100 - src.heal_level))
@@ -286,9 +286,9 @@
 			return
 
 		else if((src.occupant.cloneloss <= (100 - src.heal_level)) && (!src.eject_wait) || src.occupant.health >= 100)
-			src.connected_message("Cloning Process Complete.")
+			connected_message("Cloning Process Complete.")
 			src.locked = 0
-			src.go_out()
+			go_out()
 			return
 
 	else if ((!src.occupant) || (src.occupant.loc != src))
@@ -314,7 +314,7 @@
 	default_deconstruction_crowbar(W)
 
 	if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
-		if (!src.check_access(W))
+		if (!check_access(W))
 			to_chat(user, "<span class='danger'>Access Denied.</span>")
 			return
 		if ((!src.locked) || (isnull(src.occupant)))
@@ -340,7 +340,7 @@
 	user.SetNextMove(CLICK_CD_INTERACT)
 	to_chat(user, "You force an emergency ejection.")
 	src.locked = 0
-	src.go_out()
+	go_out()
 	return TRUE
 
 //Put messages in the connected computer's temp var for display.
@@ -363,7 +363,7 @@
 		return
 	if (usr.incapacitated())
 		return
-	src.go_out()
+	go_out()
 	add_fingerprint(usr)
 	return
 
@@ -395,7 +395,7 @@
 
 /obj/machinery/clonepod/proc/malfunction()
 	if(src.occupant)
-		src.connected_message("Critical Error!")
+		connected_message("Critical Error!")
 		src.mess = 1
 		src.icon_state = "pod_g"
 		src.occupant.ghostize()
@@ -407,7 +407,7 @@
 /obj/machinery/clonepod/relaymove(mob/user)
 	if (user.incapacitated())
 		return
-	src.go_out()
+	go_out()
 	return
 
 /obj/machinery/clonepod/emp_act(severity)

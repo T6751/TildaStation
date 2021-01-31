@@ -24,7 +24,7 @@
 	var/datum/reagents/R = reagents
 	var/fillevel = gulp_size
 
-	if (!src.is_open_container())
+	if (!is_open_container())
 		return 0
 
 	if(!R.total_volume || !R)

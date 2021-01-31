@@ -64,15 +64,15 @@
 					BP.take_damage(d, 0)
 					H.updatehealth()
 				else
-					src.take_bodypart_damage(d)
+					take_bodypart_damage(d)
 				visible_message("<span class='danger'>[user] attacks [src]'s stomach wall with the [I.name]!</span>")
 				playsound(user, 'sound/effects/attackblob.ogg', VOL_EFFECTS_MASTER)
 
-				if(prob(src.getBruteLoss() - 50))
+				if(prob(getBruteLoss() - 50))
 					for(var/atom/movable/A in stomach_contents)
 						A.loc = loc
 						stomach_contents.Remove(A)
-					src.gib()
+					gib()
 
 /mob/living/carbon/attack_animal(mob/living/simple_animal/attacker)
 	if(istype(attacker, /mob/living/simple_animal/headcrab))
@@ -166,7 +166,7 @@
 
 
 /mob/living/carbon/proc/swap_hand()
-	var/obj/item/item_in_hand = src.get_active_hand()
+	var/obj/item/item_in_hand = get_active_hand()
 	if(item_in_hand) //this segment checks if the item in your hand is twohanded.
 		if(istype(item_in_hand, /obj/item/weapon/twohanded) || istype(item_in_hand, /obj/item/weapon/gun/projectile/automatic/l6_saw))	//OOP? Generics? Hue hue hue hue ...
 			if(item_in_hand:wielded)
@@ -215,7 +215,7 @@
 	if (src.health >= config.health_threshold_crit)
 		if(src == M && istype(src, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = src
-			src.visible_message( \
+			visible_message( \
 				text("<span class='notice'>[src] examines [].</span>",src.gender==MALE?"himself":"herself"), \
 				"<span class='notice'>You check yourself for injuries.</span>" \
 				)
@@ -446,11 +446,11 @@
 
 	if(!item) return //Grab processing has a chance of returning null
 
-	src.remove_from_mob(item)
+	remove_from_mob(item)
 
 	//actually throw it!
 	if (item)
-		src.visible_message("<span class='rose'>[src] has thrown [item].</span>")
+		visible_message("<span class='rose'>[src] has thrown [item].</span>")
 
 		newtonian_move(get_dir(target, src))
 
