@@ -19,3 +19,6 @@ jobs:
     - name: Verify Manifest
       run: bash tools/check_icon_state_manifest/action.sh
       continue-on-error: true
+    - uses: actions/checkout@v2
+      with:
+        status: neutral
