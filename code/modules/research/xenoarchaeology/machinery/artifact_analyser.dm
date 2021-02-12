@@ -79,7 +79,7 @@
 		else
 			results = get_scan_info(scanned_object)
 		owned_scanner.icon_state = "xenoarch_scanner"
-		visible_message("<b>[name]</b> states, \"Scanning complete.\"")
+		src.visible_message("<b>[name]</b> states, \"Scanning complete.\"")
 		var/obj/item/weapon/paper/P = new(src.loc)
 		P.name = "[src] report #[++report_num]"
 		P.info = "<b>[src] analysis report #[report_num]</b><br>"
@@ -122,23 +122,23 @@
 						A.being_used = 1
 
 				if(artifact_in_use)
-					visible_message("<b>[name]</b> states, \"Cannot scan. Too much interference.\"")
+					src.visible_message("<b>[name]</b> states, \"Cannot scan. Too much interference.\"")
 					playsound(src, 'sound/machines/buzz-two.ogg', VOL_EFFECTS_MASTER, 20)
 				else
 					scanned_object = O
 					scan_in_progress = 1
 					scan_completion_time = world.time + scan_duration
-					visible_message("<b>[name]</b> states, \"Scanning begun.\"")
+					src.visible_message("<b>[name]</b> states, \"Scanning begun.\"")
 					owned_scanner.icon_state = "xenoarch_scanner_scanning"
 					flick("xenoarch_console_working", src)
 				break
 			if(!scanned_object)
-				visible_message("<b>[name]</b> states, \"Unable to isolate scan target.\"")
+				src.visible_message("<b>[name]</b> states, \"Unable to isolate scan target.\"")
 	if(href_list["halt_scan"])
 		playsound(src, pick(SOUNDIN_KEYBOARD), VOL_EFFECTS_MASTER, null, FALSE)
 		owned_scanner.icon_state = "xenoarch_scanner"
 		scan_in_progress = 0
-		visible_message("<b>[name]</b> states, \"Scanning halted.\"")
+		src.visible_message("<b>[name]</b> states, \"Scanning halted.\"")
 
 	updateDialog()
 

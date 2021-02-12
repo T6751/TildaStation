@@ -132,7 +132,7 @@
 	if(src.occupant)
 		if(get_charge() > 0)
 			thrusters_active = !thrusters_active
-			log_message("Toggled thrusters.")
+			src.log_message("Toggled thrusters.")
 			occupant_message("<font color='[src.thrusters_active? "blue" : "red"]'>Thrusters [thrusters_active? "en" : "dis"]abled.</font>")
 	return
 
@@ -152,7 +152,7 @@
 		return
 	if(src.occupant.client)
 		src.zoom_mode = !src.zoom_mode
-		log_message("Toggled zoom mode.")
+		src.log_message("Toggled zoom mode.")
 		occupant_message("<font color='[src.zoom_mode?"blue":"red"]'>Zoom mode [zoom_mode?"en":"dis"]abled.</font>")
 		if(zoom_mode)
 			src.occupant.client.view = 12
@@ -193,11 +193,11 @@
 /obj/mecha/combat/marauder/Topic(href, href_list)
 	..()
 	if(href_list["smoke"])
-		smoke()
+		src.smoke()
 	if(href_list["toggle_zoom"])
-		zoom()
+		src.zoom()
 	if(href_list["toggle_thrusters"])
-		toggle_thrusters()
+		src.toggle_thrusters()
 	return
 
 #undef ENERGY_USE_WITH_THRUSTERS

@@ -36,14 +36,14 @@
 						</head>
 						<body>
 						<div id='content'>
-						[get_stats_part()]
+						[src.get_stats_part()]
 						</div>
 						<div id='eq_list'>
-						[get_equipment_list()]
+						[src.get_equipment_list()]
 						</div>
 						<hr>
 						<div id='commands'>
-						[get_commands()]
+						[src.get_commands()]
 						</div>
 						</body>
 						</html>
@@ -221,7 +221,7 @@
 		if(usr != src.occupant)
 			return
 
-		send_byjax(src.occupant,"exosuit.browser","content",get_stats_part())
+		send_byjax(src.occupant,"exosuit.browser","content",src.get_stats_part())
 		return
 
 	if(href_list["close"])
@@ -241,33 +241,33 @@
 			selected = equip
 			occupant_message("You switch to [equip]")
 			visible_message("[src] raises [equip]")
-			send_byjax(src.occupant,"exosuit.browser","eq_list",get_equipment_list())
+			send_byjax(src.occupant,"exosuit.browser","eq_list",src.get_equipment_list())
 		return
 
 	if(href_list["eject"])
 		if(usr != src.occupant)
 			return
-		eject()
+		src.eject()
 		return
 
 	if(href_list["toggle_lights"])
 		if(usr != src.occupant)
 			return
 		occupant.playsound_local(null, 'sound/mecha/UI_SCI-FI_Tone_10.ogg', VOL_EFFECTS_MASTER, null, FALSE)
-		toggle_lights()
+		src.toggle_lights()
 		return
 	if(href_list["toggle_strafe"])
 		if(usr != src.occupant)
 			return
 		occupant.playsound_local(null, 'sound/mecha/UI_SCI-FI_Tone_10.ogg', VOL_EFFECTS_MASTER, null, FALSE)
-		toggle_strafe()
+		src.toggle_strafe()
 		return
 
 	if(href_list["toggle_airtank"])
 		if(usr != src.occupant)
 			return
 		occupant.playsound_local(null, 'sound/mecha/UI_SCI-FI_Tone_10.ogg', VOL_EFFECTS_MASTER, null, FALSE)
-		toggle_internal_tank()
+		src.toggle_internal_tank()
 		return
 
 	if(href_list["rmictoggle"])
@@ -301,21 +301,21 @@
 		if(usr != src.occupant)
 			return
 		occupant.playsound_local(null, 'sound/mecha/UI_SCI-FI_Tone_10.ogg', VOL_EFFECTS_MASTER, null, FALSE)
-		disconnect_from_port()
+		src.disconnect_from_port()
 		return
 
 	if (href_list["connect_to_port"])
 		if(usr != src.occupant)
 			return
 		occupant.playsound_local(null, 'sound/mecha/UI_SCI-FI_Tone_10.ogg', VOL_EFFECTS_MASTER, null, FALSE)
-		connect_to_port()
+		src.connect_to_port()
 		return
 
 	if (href_list["view_log"])
 		if(usr != src.occupant)
 			return
 		occupant.playsound_local(null, 'sound/mecha/UI_SCI-FI_Tone_10.ogg', VOL_EFFECTS_MASTER, null, FALSE)
-		src.occupant << browse(get_log_html(), "window=exosuit_log")
+		src.occupant << browse(src.get_log_html(), "window=exosuit_log")
 		onclose(occupant, "exosuit_log")
 		return
 
@@ -422,7 +422,7 @@
 		if(usr != src.occupant)
 			return
 		occupant_message("Recalibrating coordination system.")
-		log_message("Recalibration of coordination system started.")
+		src.log_message("Recalibration of coordination system started.")
 		occupant.playsound_local(null, 'sound/mecha/UI_SCI-FI_Compute_01_Wet.ogg', VOL_EFFECTS_MASTER, null, FALSE)
 		addtimer(CALLBACK(src, .proc/stationary_repair), TIME_TO_RECALIBRATION, TIMER_UNIQUE)
 
@@ -431,11 +431,11 @@
 ///Repairs internal damage if the mech hasn't moved.
 /obj/mecha/proc/stationary_repair(location)
 	if(location == loc)
-		clearInternalDamage(MECHA_INT_CONTROL_LOST)
+		src.clearInternalDamage(MECHA_INT_CONTROL_LOST)
 		occupant.playsound_local(null, 'sound/mecha/UI_SCI-FI_Tone_Deep_Wet_22_complite.ogg', VOL_EFFECTS_MASTER, null, FALSE)
 		occupant_message("<font color='blue'>Recalibration successful.</font>")
-		log_message("Recalibration of coordination system finished with 0 errors.")
+		src.log_message("Recalibration of coordination system finished with 0 errors.")
 	else
 		occupant.playsound_local(null, 'sound/mecha/UI_SCI-FI_Tone_Deep_Wet_15_error.ogg', VOL_EFFECTS_MASTER, null, FALSE)
 		occupant_message("<font color='red'>Recalibration failed.</font>")
-		log_message("Recalibration of coordination system failed with 1 error.", 1)
+		src.log_message("Recalibration of coordination system failed with 1 error.", 1)

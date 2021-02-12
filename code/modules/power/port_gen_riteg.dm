@@ -67,7 +67,7 @@
 				active = 0
 				icon_state = initial(icon_state)
 
-	updateUsrDialog()
+	src.updateUsrDialog()
 
 
 /obj/machinery/power/port_gen/riteg/proc/Pulse_radiation()
@@ -82,7 +82,7 @@
 		add_avail(power_gen * power_output)
 		UseFuel()
 		Pulse_radiation()
-		updateDialog()
+		src.updateDialog()
 
 	else
 		active = 0

@@ -33,7 +33,7 @@
 	clamp_values()
 	UpdateDamage()
 	if(health < 0)
-		dust()
+		src.dust()
 
 
 /mob/living/blob/proc/clamp_values()
@@ -101,7 +101,7 @@
 		to_chat(usr, "There is a porus blob nearby, move more than 2 tiles away from it!")
 		creating_blob = 0
 	B.change_to("Node")
-	dust()
+	src.dust()
 	return
 
 
@@ -138,7 +138,7 @@
 			creating_blob = 0
 			return
 	B.change_to("Factory")
-	dust()
+	src.dust()
 	return
 
 
@@ -162,7 +162,7 @@
 		creating_blob = 0
 		return
 	B.change_to("Normal")
-	dust()
+	src.dust()
 	return
 
 
@@ -182,7 +182,7 @@
 		creating_blob = 0
 		return
 	new/obj/effect/blob(src.loc)
-	dust()
+	src.dust()
 	return
 
 

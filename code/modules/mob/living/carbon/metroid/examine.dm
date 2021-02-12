@@ -3,9 +3,9 @@
 	if (src.stat == DEAD)
 		msg += "<span class='deadsay'>It is limp and unresponsive.</span>\n"
 	else
-		if (getBruteLoss())
+		if (src.getBruteLoss())
 			msg += "<span class='warning'>"
-			if (getBruteLoss() < 40)
+			if (src.getBruteLoss() < 40)
 				msg += "It has some punctures in its flesh!"
 			else
 				msg += "<B>It has severe punctures and tears in its flesh!</B>"

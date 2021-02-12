@@ -74,7 +74,7 @@
 
 /turf/bullet_act(obj/item/projectile/Proj)
 	if(istype(Proj ,/obj/item/projectile/beam/pulse))
-		ex_act(2)
+		src.ex_act(2)
 	else if(istype(Proj ,/obj/item/projectile/bullet/gyro))
 		explosion(src, -1, 0, 2)
 	..()
@@ -110,7 +110,7 @@
 				return 0
 
 	//Then, check the turf itself
-	if (!CanPass(mover, src))
+	if (!src.CanPass(mover, src))
 		mover.Bump(src, 1)
 		return 0
 
@@ -400,7 +400,7 @@
 
 
 /turf/proc/ReplaceWithLattice()
-	ChangeTurf(basetype)
+	src.ChangeTurf(basetype)
 	spawn()
 		new /obj/structure/lattice( locate(src.x, src.y, src.z) )
 

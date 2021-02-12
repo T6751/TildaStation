@@ -135,7 +135,7 @@
 		for(var/mob/M in nearby)
 			if ((M.client && M.machine == src))
 				is_in_use = TRUE
-				interact(M)
+				src.interact(M)
 		var/ai_in_use = AutoUpdateAI(src)
 
 		in_use = is_in_use|ai_in_use
@@ -175,7 +175,7 @@
 /obj/item/proc/updateSelfDialog()
 	var/mob/M = src.loc
 	if(istype(M) && M.client && M.machine == src)
-		attack_self(M)
+		src.attack_self(M)
 
 
 /obj/proc/alter_health()

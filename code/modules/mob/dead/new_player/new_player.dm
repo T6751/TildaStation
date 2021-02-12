@@ -244,7 +244,7 @@ commented cause polls are kinda broken now, needs refactoring */
 		if(istext(pollid))
 			pollid = text2num(pollid)
 		if(isnum(pollid))
-			poll_player(pollid)
+			src.poll_player(pollid)
 		return
 
 	if(href_list["votepollid"] && href_list["votetype"])

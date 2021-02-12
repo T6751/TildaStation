@@ -401,7 +401,7 @@
 		user.drop_item()
 		B.loc = src
 		to_chat(user, "You add the beaker to the machine!")
-		updateUsrDialog()
+		src.updateUsrDialog()
 		icon_state = "mixer1"
 
 	else if(!condi && istype(B, /obj/item/weapon/storage/pill_bottle))
@@ -413,7 +413,7 @@
 		user.drop_item()
 		B.loc = src
 		to_chat(user, "You add the pill bottle into the dispenser slot!")
-		updateUsrDialog()
+		src.updateUsrDialog()
 
 	return
 
@@ -549,7 +549,7 @@
 				return FALSE
 			if(useramount > 300)
 				return FALSE
-			Topic(null, list("amount" = "[useramount]", "add" = "[id]"))
+			src.Topic(null, list("amount" = "[useramount]", "add" = "[id]"))
 
 		else if(href_list["remove"])
 			if(href_list["amount"])
@@ -573,7 +573,7 @@
 				return FALSE
 			if(useramount > 300)
 				return FALSE
-			Topic(null, list("amount" = "[useramount]", "remove" = "[id]"))
+			src.Topic(null, list("amount" = "[useramount]", "remove" = "[id]"))
 
 		else if(href_list["eject"])
 			if(beaker)
@@ -609,7 +609,7 @@
 					P.pixel_y = rand(-7, 7)
 					reagents.trans_to(P,vol_each)
 
-	updateUsrDialog()
+	src.updateUsrDialog()
 
 /obj/machinery/chem_master/ui_interact(mob/user)
 	if(!(user.client in has_sprites))
@@ -619,7 +619,7 @@
 				usr << browse_rsc(icon('icons/obj/chemical.dmi', "pill[i]"), "pill[i].png")
 			for(var/i = 1 to MAX_BOTTLE_SPRITE)
 				usr << browse_rsc(icon('icons/obj/chemical.dmi', "bottle[i]"), "bottle[i].png")
-			updateUsrDialog()
+			src.updateUsrDialog()
 
 	var/dat = ""
 	if(beaker)
@@ -748,7 +748,7 @@
 		user.drop_item()
 		B.loc = src
 		to_chat(user, "You add the beaker to the machine!")
-		updateUsrDialog()
+		src.updateUsrDialog()
 		icon_state = "mixer1"
 
 	else if(!condi && istype(B, /obj/item/weapon/storage/pill_bottle))
@@ -759,7 +759,7 @@
 		user.drop_item()
 		B.loc = src
 		to_chat(user, "You add the pill bottle into the dispenser slot!")
-		updateUsrDialog()
+		src.updateUsrDialog()
 
 	return
 
@@ -859,7 +859,7 @@
 			B.name = "[name] culture bottle"
 			B.desc = "A small bottle. Contains [D.agent] culture in synthblood medium."
 			B.reagents.add_reagent("blood",20,data)
-			updateUsrDialog()
+			src.updateUsrDialog()
 			wait = 1
 			spawn(1000)
 				src.wait = null
@@ -893,7 +893,7 @@
 		usr << browse(null, "window=pandemic")
 		return FALSE
 
-	updateUsrDialog()
+	src.updateUsrDialog()
 
 
 /obj/machinery/computer/pandemic/ui_interact(mob/user)
@@ -995,7 +995,7 @@
 		user.drop_item()
 		I.loc = src
 		to_chat(user, "You add the beaker to the machine!")
-		updateUsrDialog()
+		src.updateUsrDialog()
 		icon_state = "mixer1"
 
 	else if(isscrewdriver(I))
@@ -1102,7 +1102,7 @@
 			user.drop_item()
 			O.loc = src
 			update_icon()
-			updateUsrDialog()
+			src.updateUsrDialog()
 			return 0
 
 	if(holdingitems && holdingitems.len >= limit)
@@ -1123,7 +1123,7 @@
 		if(!O.contents.len)
 			to_chat(user, "You empty the plant bag into the All-In-One grinder.")
 
-		updateUsrDialog()
+		src.updateUsrDialog()
 		return 0
 
 	if (!is_type_in_list(O, blend_items) && !is_type_in_list(O, juice_items))
@@ -1132,7 +1132,7 @@
 
 	user.drop_from_inventory(O, src)
 	holdingitems += O
-	updateUsrDialog()
+	src.updateUsrDialog()
 	return 0
 
 /obj/machinery/reagentgrinder/attack_ai(mob/user)
@@ -1202,7 +1202,7 @@
 		if ("detach")
 			detach()
 
-	updateUsrDialog()
+	src.updateUsrDialog()
 
 /obj/machinery/reagentgrinder/proc/detach()
 

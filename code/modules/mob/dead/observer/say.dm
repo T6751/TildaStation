@@ -14,7 +14,7 @@
 		if (src.client.handle_spam_prevention(message,MUTE_DEADCHAT))
 			return
 
-	. = say_dead(message)
+	. = src.say_dead(message)
 
 
 /mob/dead/observer/emote(act, type, message, auto)
@@ -36,4 +36,4 @@
 		if(src.client.handle_spam_prevention(message, MUTE_DEADCHAT))
 			return
 
-	. = emote_dead(message)
+	. = src.emote_dead(message)

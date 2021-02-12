@@ -87,5 +87,5 @@
 		return
 
 	if( href_list["update"] )
-		updateDialog()
+		src.updateDialog()
 		return

@@ -258,4 +258,4 @@
 		if (vmode > 1)
 			vmode = 0
 
-	updateUsrDialog()
+	src.updateUsrDialog()

@@ -72,16 +72,16 @@
 			qdel(src)
 		return
 	else if (W)
-		add_fingerprint(user)
+		src.add_fingerprint(user)
 		src.health -= W.force
 		user.SetNextMove(CLICK_CD_MELEE)
-		healthcheck()
+		src.healthcheck()
 	..()
 
 
 /obj/machinery/power/solar/blob_act()
 	src.health--
-	healthcheck()
+	src.healthcheck()
 	return
 
 
@@ -104,7 +104,7 @@
 		add_overlay(image('icons/obj/power.dmi', icon_state = "solar_panel-b", layer = FLY_LAYER))
 	else
 		add_overlay(image('icons/obj/power.dmi', icon_state = "solar_panel", layer = FLY_LAYER))
-		set_dir(angle2dir(adir))
+		src.set_dir(angle2dir(adir))
 	return
 
 
@@ -334,7 +334,7 @@
 				A.anchored = 1
 				qdel(src)
 	else
-		attack_hand(user)
+		src.attack_hand(user)
 	return
 
 
@@ -354,7 +354,7 @@
 		set_panels(cdir)
 		update_icon()
 
-	updateDialog()
+	src.updateDialog()
 
 
 // called by solar tracker when sun position changes
@@ -364,7 +364,7 @@
 	cdir = angle
 	set_panels(cdir)
 	update_icon()
-	updateDialog()
+	src.updateDialog()
 
 
 /obj/machinery/power/solar_control/ui_interact(mob/user)
@@ -442,7 +442,7 @@
 
 	set_panels(cdir)
 	update_icon()
-	updateUsrDialog()
+	src.updateUsrDialog()
 
 
 /obj/machinery/power/solar_control/proc/set_panels(cdir)

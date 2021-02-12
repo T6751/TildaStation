@@ -340,7 +340,7 @@ Doesn't work on other aliens/AI.*/
 					stomach_contents.Remove(M)
 					M.loc = loc
 					M.Paralyse(2)
-			visible_message("<span class='warning'>[src] hurls out the contents of their stomach!</span>")
+			src.visible_message("<span class='warning'>[src] hurls out the contents of their stomach!</span>")
 	return
 
 /mob/living/carbon/xenomorph/humanoid/verb/air_plant()

@@ -55,7 +55,7 @@
 	else if(href_list["return"])
 		screen = 0
 
-	updateUsrDialog()
+	src.updateUsrDialog()
 
 
 
@@ -112,7 +112,7 @@
 	qdel(src)
 
 /obj/item/mecha_parts/mecha_tracking/proc/get_mecha_log()
-	if(!in_mecha())
+	if(!src.in_mecha())
 		return 0
 	var/obj/mecha/M = src.loc
 	return M.get_log_html()

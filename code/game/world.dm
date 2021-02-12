@@ -70,7 +70,7 @@ var/base_commit_sha = 0
 
 	Get_Holiday()
 
-	update_status()
+	src.update_status()
 
 	. = ..()
 

@@ -138,7 +138,7 @@ var/global/list/obj/item/candle/ghost/ghost_candles = list()
 
 /obj/item/candle/ghost/attack_ghost()
 	if(!lit)
-		light("<span class='warning'>\The [name] suddenly lights up.</span>")
+		src.light("<span class='warning'>\The [name] suddenly lights up.</span>")
 		if(prob(10))
 			spook()
 

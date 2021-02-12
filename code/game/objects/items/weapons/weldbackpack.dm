@@ -81,7 +81,7 @@
 		if(src.loc == user)
 			if(!Connected_Flamethrower)
 				to_chat(user, "You connected your M2 flamethrower to fuel backpack.")
-				equip(user, I)
+				src.equip(user, I)
 			else
 				to_chat(user, "Flamethrower allready connected.")
 		else

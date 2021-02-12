@@ -7,10 +7,10 @@
 
 		if (src.stat!=0)
 			src.cameraFollow = null
-			reset_view(null)
-			unset_machine()
+			src.reset_view(null)
+			src.unset_machine()
 
-		updatehealth()
+		src.updatehealth()
 		update_gravity(mob_has_gravity())
 		update_action_buttons()
 
@@ -27,7 +27,7 @@
 
 		if (src.machine)
 			if (!( src.machine.check_eye(src) ))
-				reset_view(null)
+				src.reset_view(null)
 
 		// Handle power damage (oxy)
 		if(src:aiRestorePowerRoutine != 0)
@@ -99,8 +99,8 @@
 					to_chat(src, "You've lost power!")
 //							world << "DEBUG CODE TIME! [loc] is the area the AI is sucking power from"
 					if (!is_special_character(src))
-						set_zeroth_law("")
-					//clear_supplied_laws() // Don't reset our laws.
+						src.set_zeroth_law("")
+					//src.clear_supplied_laws() // Don't reset our laws.
 					//var/time = time2text(world.realtime,"hh:mm:ss")
 					//lawchanges.Add("[time] <b>:</b> [src.name]'s noncore laws have been reset due to power failure")
 					spawn(20)
@@ -167,7 +167,7 @@
 									apc_override = 0
 									src:aiRestorePowerRoutine = 3
 									to_chat(src, "Here are your current laws:")
-									show_laws()
+									src.show_laws()
 							sleep(50)
 							theAPC = null
 

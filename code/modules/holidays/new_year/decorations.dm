@@ -15,7 +15,7 @@
 		return
 	if(istype(target,/turf/simulated/wall))
 		usr.remove_from_mob(src)
-		forceMove(target)
+		src.forceMove(target)
 
 // Garland
 /obj/item/decoration/garland
@@ -158,7 +158,7 @@
 	if(how_many_gifts)
 		var/obj/item/weapon/gift/G = choosen_gift
 		to_chat(user, "<span class='notice'>Looks like there is [how_many_gifts] gifts for you under \the tree!</span>")
-		visible_message("<span class='notice'>[H] takes a gift from \the [src].</span>",
+		src.visible_message("<span class='notice'>[H] takes a gift from \the [src].</span>",
 			"<span class='notice'>You take a gift from \the [src].</span>")
 		G.forceMove(H.loc)
 		user.put_in_active_hand(G)
@@ -220,7 +220,7 @@
 			I.anchored = 0
 			decals.Cut()
 
-		visible_message("Something dropped from \the [src].")
+		src.visible_message("Something dropped from \the [src].")
 
 /obj/item/device/flashlight/lamp/fir/special/alternative
 	icon = 'icons/obj/flora/pinetrees.dmi'
@@ -241,7 +241,7 @@
 			user.drop_item()
 			qdel(W)
 			icon_state = "snowman_hat"
-			visible_message("<span class='notice'>[user] puts a hat on the snowman. He looks happy!</span>",
+			src.visible_message("<span class='notice'>[user] puts a hat on the snowman. He looks happy!</span>",
 			"<span class='notice'>You put a hat on the snowman. He looks happy!</span>")
 		else
 			to_chat(user, "<span class='warning'>But snowman already has a hat!</span>")

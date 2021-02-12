@@ -121,4 +121,4 @@
 				gravity_generator:on = 1
 				A.gravitychange(TRUE)
 
-	updateUsrDialog()
+	src.updateUsrDialog()

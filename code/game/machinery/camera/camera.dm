@@ -216,7 +216,7 @@
 				popup.open()
 
 	else if (istype(W, /obj/item/device/camera_bug))
-		if(!can_use())
+		if(!src.can_use())
 			to_chat(user, "<span class='notice'>Camera non-functional</span>")
 			return
 		if(bug)
@@ -322,13 +322,13 @@
 			//If someone knows a better way to do this, let me know. -Giacom
 			switch(i)
 				if(NORTH)
-					set_dir(SOUTH)
+					src.set_dir(SOUTH)
 				if(SOUTH)
-					set_dir(NORTH)
+					src.set_dir(NORTH)
 				if(WEST)
-					set_dir(EAST)
+					src.set_dir(EAST)
 				if(EAST)
-					set_dir(WEST)
+					src.set_dir(WEST)
 			break
 
 //Return a working camera that can see a given mob

@@ -56,7 +56,7 @@ var/bomb_set
 /obj/machinery/nuclearbomb/attackby(obj/item/weapon/O, mob/user)
 
 	if (isscrewdriver(O))
-		add_fingerprint(user)
+		src.add_fingerprint(user)
 		if (removal_stage == 5)
 			if (src.opened == 0)
 				src.opened = 1
@@ -96,7 +96,7 @@ var/bomb_set
 			usr.drop_item()
 			O.loc = src
 			src.auth = O
-			add_fingerprint(user)
+			src.add_fingerprint(user)
 			return
 
 	if (src.anchored)

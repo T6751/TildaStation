@@ -59,35 +59,35 @@
 	switch(mode_type)
 		if("revolution")
 			src.text = ""
-			build_rev(correct_person)
+			src.build_rev(correct_person)
 			return src.text
 		if("gang")
 			src.text = ""
-			build_gang(correct_person)
+			src.build_gang(correct_person)
 			return src.text
 		if("cult")
 			src.text = ""
-			build_cult(correct_person)
+			src.build_cult(correct_person)
 			return src.text
 		if("wizard")
 			src.text = ""
-			build_wizard(correct_person)
+			src.build_wizard(correct_person)
 			return src.text
 		if("nuke")
 			src.text = ""
-			build_nuke(correct_person)
+			src.build_nuke(correct_person)
 			return src.text
 		if("traitor")
 			src.text = ""
-			build_traitor(correct_person)
+			src.build_traitor(correct_person)
 			return src.text
 		if("malf")
 			src.text = ""
-			build_malf(correct_person)
+			src.build_malf(correct_person)
 			return src.text
 		if("changeling","traitorchan")
 			src.text = ""
-			build_changeling(correct_person)
+			src.build_changeling(correct_person)
 			return src.text
 		else
 			return null
@@ -107,7 +107,7 @@
 
 
 /datum/intercept_text/proc/pick_fingerprints()
-	var/mob/living/carbon/human/dude = pick_mob()
+	var/mob/living/carbon/human/dude = src.pick_mob()
 	//if (!dude) return pick_fingerprints() //who coded that is totally crasy or just a traitor. -- rastaf0
 	if(dude)
 		return num2text(md5(dude.dna.uni_identity))
@@ -230,9 +230,9 @@
 		if(correct_person:assigned_role=="MODE")
 			changeling_name = correct_person:current
 		else
-			changeling_name = pick_mob()
+			changeling_name = src.pick_mob()
 	else
-		changeling_name = pick_mob()
+		changeling_name = src.pick_mob()
 	*/
 
 	src.text += "<BR><BR>We have received a report that a dangerous alien lifeform known only as \"[cname]\" may have infiltrated your crew.  "

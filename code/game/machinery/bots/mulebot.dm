@@ -109,11 +109,11 @@
 
 		open = !open
 		if(open)
-			visible_message("[user] opens the maintenance hatch of [src]", "<span class='notice'>You open [src]'s maintenance hatch.</span>")
+			src.visible_message("[user] opens the maintenance hatch of [src]", "<span class='notice'>You open [src]'s maintenance hatch.</span>")
 			on = 0
 			icon_state="mulebot-hatch"
 		else
-			visible_message("[user] closes the maintenance hatch of [src]", "<span class='notice'>You close [src]'s maintenance hatch.</span>")
+			src.visible_message("[user] closes the maintenance hatch of [src]", "<span class='notice'>You close [src]'s maintenance hatch.</span>")
 			icon_state = "mulebot0"
 
 		updateDialog()
@@ -236,7 +236,7 @@
 
 	switch(href_list["op"])
 		if("lock", "unlock")
-			if(allowed(usr))
+			if(src.allowed(usr))
 				locked = !locked
 			else
 				to_chat(usr, "<span class='warning'>Access denied.</span>")
@@ -631,7 +631,7 @@
 // called when bot reaches current target
 /obj/machinery/bot/mulebot/proc/at_target()
 	if(!reached_target)
-		visible_message("[src] makes a chiming sound!", "You hear a chime.")
+		src.visible_message("[src] makes a chiming sound!", "You hear a chime.")
 		playsound(src, 'sound/machines/chime.ogg', VOL_EFFECTS_MASTER, null, FALSE)
 		reached_target = 1
 
@@ -669,9 +669,9 @@
 		var/mob/M = obs
 		if(ismob(M))
 			if(istype(M,/mob/living/silicon/robot))
-				visible_message("<span class='warning'>[src] bumps into [M]!</span>")
+				src.visible_message("<span class='warning'>[src] bumps into [M]!</span>")
 			else
-				visible_message("<span class='warning'>[src] knocks over [M]!</span>")
+				src.visible_message("<span class='warning'>[src] knocks over [M]!</span>")
 				M.stop_pulling()
 				M.Stun(8)
 				M.Weaken(5)
@@ -685,7 +685,7 @@
 // called from mob/living/carbon/human/Crossed()
 // when mulebot is in the same loc
 /obj/machinery/bot/mulebot/proc/RunOver(mob/living/carbon/human/H)
-	visible_message("<span class='warning'>[src] drives over [H]!</span>")
+	src.visible_message("<span class='warning'>[src] drives over [H]!</span>")
 	playsound(src, 'sound/effects/splat.ogg', VOL_EFFECTS_MASTER)
 
 	var/damage = rand(5,15)
@@ -838,7 +838,7 @@
 
 
 /obj/machinery/bot/mulebot/explode()
-	visible_message("<span class='danger'>[src] blows apart!</span>")
+	src.visible_message("<span class='danger'>[src] blows apart!</span>")
 	var/turf/Tsec = get_turf(src)
 
 	new /obj/item/device/assembly/prox_sensor(Tsec)

@@ -1,5 +1,5 @@
 /turf/simulated/floor/engine/attack_paw(mob/user)
-	return attack_hand(user)
+	return src.attack_hand(user)
 
 /turf/simulated/floor/engine/ex_act(severity)
 	switch(severity)

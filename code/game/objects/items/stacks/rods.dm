@@ -45,7 +45,7 @@
 		return ..()
 
 /obj/item/stack/rods/attack_self(mob/user)
-	add_fingerprint(user)
+	src.add_fingerprint(user)
 
 	if(!istype(user.loc,/turf)) return 0
 

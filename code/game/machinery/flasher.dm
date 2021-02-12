@@ -112,7 +112,7 @@
 	if(istype(AM, /mob/living/carbon))
 		var/mob/living/carbon/M = AM
 		if ((M.m_intent != "walk") && (src.anchored))
-			flash()
+			src.flash()
 
 /obj/machinery/flasher/portable/attackby(obj/item/weapon/W, mob/user)
 	if (iswrench(W))
@@ -122,11 +122,11 @@
 
 		if (!src.anchored)
 			to_chat(user, "<span class='warning'>[src] can now be moved.</span>")
-			cut_overlays()
+			src.cut_overlays()
 
 		else if (src.anchored)
 			to_chat(user, "<span class='warning'>[src] is now secured.</span>")
-			add_overlay("[base_state]-s")
+			src.add_overlay("[base_state]-s")
 
 /obj/machinery/flasher_button/attackby(obj/item/weapon/W, mob/user)
 	return attack_hand(user)

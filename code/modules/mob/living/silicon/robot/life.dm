@@ -147,7 +147,7 @@
 		src.blinded = 1
 
 	if(!is_component_functioning("actuator"))
-		Paralyse(3)
+		src.Paralyse(3)
 
 
 	return 1

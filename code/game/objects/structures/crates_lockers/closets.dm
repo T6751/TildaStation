@@ -102,13 +102,13 @@
 	if(src.opened)
 		return 0
 
-	if(!can_open())
+	if(!src.can_open())
 		return 0
 
 	src.icon_state = src.icon_opened
 	src.opened = 1
 
-	dump_contents()
+	src.dump_contents()
 
 	if(istype(src, /obj/structure/closet/body_bag))
 		playsound(src, 'sound/items/zip.ogg', VOL_EFFECTS_MASTER, 15, null, -3)
@@ -121,7 +121,7 @@
 /obj/structure/closet/proc/close()
 	if(!src.opened)
 		return 0
-	if(!can_close())
+	if(!src.can_close())
 		return 0
 
 	collect_contents()
@@ -137,7 +137,7 @@
 	return 1
 
 /obj/structure/closet/proc/toggle(mob/user)
-	if(!(src.opened ? close() : open()))
+	if(!(src.opened ? src.close() : src.open()))
 		to_chat(user, "<span class='notice'>It won't budge!</span>")
 	return
 
@@ -213,7 +213,7 @@
 				return TRUE
 			else
 				src.welded = !src.welded
-				update_icon()
+				src.update_icon()
 				user.visible_message("[user] [welded?"welded":"unwelded"] [src]'s shutter with [WT].",
 				                     "<span class='notice'>You [welded?"welded":"remove weld from"] [src]'s shutter with [WT].</span>")
 				return TRUE
@@ -229,7 +229,7 @@
 	if(user.incapacitated() || !isturf(src.loc))
 		return
 
-	if(!open())
+	if(!src.open())
 		to_chat(user, "<span class='notice'>It won't budge!</span>")
 		if(!lastbang)
 			lastbang = 1
@@ -240,17 +240,17 @@
 
 
 /obj/structure/closet/attack_paw(mob/user)
-	return attack_hand(user)
+	return src.attack_hand(user)
 
 /obj/structure/closet/attack_hand(mob/user)
-	add_fingerprint(user)
+	src.add_fingerprint(user)
 	user.SetNextMove(CLICK_CD_RAPID)
-	toggle(user)
+	src.toggle(user)
 
 // tk grab then use on self
 /obj/structure/closet/attack_self_tk(mob/user)
-	add_fingerprint(user)
-	if(!toggle())
+	src.add_fingerprint(user)
+	if(!src.toggle())
 		to_chat(usr, "<span class='notice'>It won't budge!</span>")
 
 /obj/structure/closet/verb/verb_toggleopen()
@@ -262,8 +262,8 @@
 		return
 
 	if(ishuman(usr))
-		add_fingerprint(usr)
-		toggle(usr)
+		src.add_fingerprint(usr)
+		src.toggle(usr)
 	else
 		to_chat(usr, "<span class='warning'>This mob type can't use this verb.</span>")
 

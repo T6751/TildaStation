@@ -89,7 +89,7 @@
 		container.loc = src.loc
 		container = null
 
-	updateUsrDialog()
+	src.updateUsrDialog()
 
 
 /obj/machinery/computer/curer/proc/createcure(obj/item/weapon/reagent_containers/container)

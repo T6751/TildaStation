@@ -77,7 +77,7 @@
 			icon_state = "[base_state]-d"
 		if (!src.disable)
 			user.visible_message("<span class='warning'>[user] has reconnected the [src]!</span>", "<span class='warning'>You fix the connection to the [src].</span>")
-			if(powered())
+			if(src.powered())
 				icon_state = "[base_state]"
 			else
 				icon_state = "[base_state]-p"

@@ -140,7 +140,7 @@
 	if(usr.incapacitated())
 		return
 
-	set_dir(turn(src.dir, 90))
+	src.set_dir(turn(src.dir, 90))
 	handle_rotation()
 	return
 

@@ -114,7 +114,7 @@
 	if(mob.reagents.has_reagent("spaceacillin"))
 		if(!mob.is_infected_with_zombie_virus())
 			if(stage == 1 && prob(20))
-				cure(mob)
+				src.cure(mob)
 			return
 		else
 			if(prob(50)) //Antibiotics slow down zombie virus progression but dont stop it completely

@@ -277,7 +277,7 @@ var/global/list/autolathe_recipes_hidden = list( \
 	if (I && I.loc == src)
 		qdel(I)
 	busy = 0
-	updateUsrDialog()
+	src.updateUsrDialog()
 
 /obj/machinery/autolathe/Topic(href, href_list)
 	if(!istype(usr, /mob/living/silicon/pai))
@@ -354,4 +354,4 @@ var/global/list/autolathe_recipes_hidden = list( \
 				if(src.g_amount < 0)
 					src.g_amount = 0
 				busy = 0
-	updateUsrDialog()
+	src.updateUsrDialog()

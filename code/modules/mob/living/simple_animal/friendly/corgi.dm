@@ -119,7 +119,7 @@
 		emagged = 1
 		visible_message("<span class='warning'>[user] swipes a card through [src].</span>", "<span class='notice'>You overload [src]s internal reactor.</span>")
 		spawn (1000)
-			explode()
+			src.explode()
 		return TRUE
 	return FALSE
 

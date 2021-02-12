@@ -448,7 +448,7 @@
 		visible_message("<span class='alert'>No target detected.</span>")
 		src.engaged = 0
 	teleporter_hub.update_icon()
-	add_fingerprint(user)
+	src.add_fingerprint(user)
 	return
 
 /obj/machinery/teleport/station/power_change()

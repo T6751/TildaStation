@@ -45,7 +45,7 @@
 
 /obj/machinery/computer/atmos_alert/process()
 	if(..())
-		updateDialog()
+		src.updateDialog()
 
 /obj/machinery/computer/atmos_alert/update_icon()
 	if(stat & NOPOWER)

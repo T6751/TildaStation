@@ -72,15 +72,15 @@
 	if( powered() )
 		src.ispowered = 1
 		stat &= ~NOPOWER
-		update_icon()
+		src.update_icon()
 	else
 		spawn(rand(0, 15))
 			src.ispowered = 0
 			stat |= NOPOWER
 			src.islocked = 0
 			src.isopen = 1
-			dump_everything()
-			update_icon()
+			src.dump_everything()
+			src.update_icon()
 			update_power_use()
 	update_power_use()
 
@@ -89,12 +89,12 @@
 	switch(severity)
 		if(1.0)
 			if(prob(50))
-				dump_everything() //So suits dont survive all the time
+				src.dump_everything() //So suits dont survive all the time
 			qdel(src)
 			return
 		if(2.0)
 			if(prob(50))
-				dump_everything()
+				src.dump_everything()
 				qdel(src)
 			return
 		else
@@ -146,26 +146,26 @@
 		return
 
 	if (href_list["toggleUV"])
-		toggleUV(usr)
+		src.toggleUV(usr)
 	else if (href_list["togglesafeties"])
-		togglesafeties(usr)
+		src.togglesafeties(usr)
 	else if (href_list["dispense_helmet"])
-		dispense_helmet(usr)
+		src.dispense_helmet(usr)
 	else if (href_list["dispense_suit"])
-		dispense_suit(usr)
+		src.dispense_suit(usr)
 	else if (href_list["dispense_mask"])
-		dispense_mask(usr)
+		src.dispense_mask(usr)
 	else if (href_list["toggle_open"])
-		toggle_open(usr)
+		src.toggle_open(usr)
 	else if (href_list["toggle_lock"])
-		toggle_lock(usr)
+		src.toggle_lock(usr)
 	else if (href_list["start_UV"])
-		start_UV(usr)
+		src.start_UV(usr)
 	else if (href_list["eject_guy"])
-		eject_occupant(usr)
+		src.eject_occupant(usr)
 
-	updateUsrDialog()
-	update_icon()
+	src.updateUsrDialog()
+	src.update_icon()
 
 
 /obj/machinery/suit_storage_unit/proc/toggleUV(mob/user)
@@ -254,7 +254,7 @@
 		src.MASK.loc = src.loc
 		src.MASK = null
 	if(src.OCCUPANT)
-		eject_occupant(OCCUPANT)
+		src.eject_occupant(OCCUPANT)
 	return
 
 
@@ -263,7 +263,7 @@
 		to_chat(user, "<font color='red'>Unable to open unit.</font>")
 		return
 	if(src.OCCUPANT)
-		eject_occupant(user)
+		src.eject_occupant(user)
 		return  // eject_occupant opens the door, so we need to return
 	src.isopen = !src.isopen
 	return
@@ -293,8 +293,8 @@
 	src.isUV = 1
 	if(src.OCCUPANT && !src.islocked)
 		src.islocked = 1 //Let's lock it for good measure
-	update_icon()
-	updateUsrDialog()
+	src.update_icon()
+	src.updateUsrDialog()
 
 	var/i //our counter
 	for(i=0,i<4,i++)
@@ -327,10 +327,10 @@
 				src.isbroken = 1
 				src.isopen = 1
 				src.islocked = 0
-				eject_occupant(OCCUPANT) //Mixing up these two lines causes bug. DO NOT DO IT.
+				src.eject_occupant(OCCUPANT) //Mixing up these two lines causes bug. DO NOT DO IT.
 			src.isUV = 0 //Cycle ends
-	update_icon()
-	updateUsrDialog()
+	src.update_icon()
+	src.updateUsrDialog()
 	return
 
 /*	spawn(200) //Let's clean dat shit after 20 secs  //Eh, this doesn't work
@@ -341,8 +341,8 @@
 		if(src.MASK)
 			MASK.clean_blood()
 		src.isUV = 0 //Cycle ends
-		update_icon()
-		updateUsrDialog()
+		src.update_icon()
+		src.updateUsrDialog()
 
 	var/i
 	for(i=0,i<4,i++) //Gradually give the guy inside some damaged based on the intensity
@@ -384,7 +384,7 @@
 	src.OCCUPANT = null
 	if(!src.isopen)
 		src.isopen = 1
-	update_icon()
+	src.update_icon()
 	return
 
 
@@ -439,13 +439,13 @@
 //		usr.metabslow = 1
 		src.OCCUPANT = usr
 		src.isopen = 0 //Close the thing after the guy gets inside
-		update_icon()
+		src.update_icon()
 
 //		for(var/obj/O in src)
 //			qdel(O)
 
-		add_fingerprint(usr)
-		updateUsrDialog()
+		src.add_fingerprint(usr)
+		src.updateUsrDialog()
 		return
 	else
 		src.OCCUPANT = null //Testing this as a backup sanity test
@@ -459,7 +459,7 @@
 		src.panelopen = !src.panelopen
 		playsound(src, 'sound/items/Screwdriver.ogg', VOL_EFFECTS_MASTER)
 		to_chat(user, text("<font color='blue'>You [] the unit's maintenance panel.</font>",(src.panelopen ? "open up" : "close") ))
-		updateUsrDialog()
+		src.updateUsrDialog()
 		return
 	if ( istype(I, /obj/item/weapon/grab) )
 		var/obj/item/weapon/grab/G = I
@@ -489,10 +489,10 @@
 
 			//for(var/obj/O in src)
 			//	O.loc = src.loc
-			add_fingerprint(user)
+			src.add_fingerprint(user)
 			qdel(G)
-			updateUsrDialog()
-			update_icon()
+			src.updateUsrDialog()
+			src.update_icon()
 			return
 		return
 	if( istype(I,/obj/item/clothing/suit/space) )
@@ -506,8 +506,8 @@
 		user.drop_item()
 		S.loc = src
 		src.SUIT = S
-		update_icon()
-		updateUsrDialog()
+		src.update_icon()
+		src.updateUsrDialog()
 		return
 	if( istype(I,/obj/item/clothing/head/helmet) )
 		if(!src.isopen)
@@ -520,8 +520,8 @@
 		user.drop_item()
 		H.loc = src
 		src.HELMET = H
-		update_icon()
-		updateUsrDialog()
+		src.update_icon()
+		src.updateUsrDialog()
 		return
 	if( istype(I,/obj/item/clothing/mask) )
 		if(!src.isopen)
@@ -534,11 +534,11 @@
 		user.drop_item()
 		M.loc = src
 		src.MASK = M
-		update_icon()
-		updateUsrDialog()
+		src.update_icon()
+		src.updateUsrDialog()
 		return
-	update_icon()
-	updateUsrDialog()
+	src.update_icon()
+	src.updateUsrDialog()
 	return
 
 

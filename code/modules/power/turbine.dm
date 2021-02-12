@@ -315,9 +315,9 @@
 	else if(href_list["search"])
 		search_turbine()
 
-	updateUsrDialog()
+	src.updateUsrDialog()
 
 
 /obj/machinery/computer/turbine_computer/process()
-	updateDialog()
+	src.updateDialog()
 	return

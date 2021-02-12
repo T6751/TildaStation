@@ -57,7 +57,7 @@
 			dish = null
 
 			icon_state = "analyser"
-			state("\The [src] prints a sheet of paper.")
+			src.state("\The [src] prints a sheet of paper.")
 
 	else if(dish && !scanning && !pause)
 		if(dish.virus2)
@@ -69,6 +69,6 @@
 				dish.loc = src.loc
 				dish = null
 
-				state("\The [src] buzzes, \"Insufficient growth density to complete analysis.\"")
+				src.state("\The [src] buzzes, \"Insufficient growth density to complete analysis.\"")
 				pause = 0
 	return

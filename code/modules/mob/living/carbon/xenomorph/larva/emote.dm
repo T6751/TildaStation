@@ -57,11 +57,11 @@
 //  ========== EXTENDED ==========
 
 		if("dance")
-			if (!restrained())
+			if (!src.restrained())
 				message = "<B>The [src.name]</B> dances around [pick("happily", "joyfully")]."
 				m_type = SHOWMSG_VISUAL
 		if("roll")
-			if (!restrained())
+			if (!src.restrained())
 				message = "<B>The [src.name]</B> rolls [pick("like a snake", "on the floor", "around itslef")]."
 				m_type = SHOWMSG_VISUAL
 		if("gnarl")
@@ -69,11 +69,11 @@
 				message = "<B>The [src.name]</B> gnarls and shows its teeth."
 				m_type = SHOWMSG_VISUAL
 		if("jump")
-			if(!restrained())
+			if(!src.restrained())
 				message = "<B>The [src.name]</B> jumps around[pick(" happily", " joyfully", "")]."
 				m_type = SHOWMSG_VISUAL
 		if("scratch")
-			if (!restrained())
+			if (!src.restrained())
 				message = "<B>The [src.name]</B> scratches."
 				m_type = SHOWMSG_VISUAL
 		if ("pray")

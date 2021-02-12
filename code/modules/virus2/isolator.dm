@@ -45,7 +45,7 @@
 	nanomanager.update_uis(src)
 	update_icon()
 
-	attack_hand(user)
+	src.attack_hand(user)
 
 /obj/machinery/disease2/isolator/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
 	var/data[0]

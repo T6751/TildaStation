@@ -32,7 +32,7 @@
 		qdel(I)
 		return
 
-	attack_hand(user)
+	src.attack_hand(user)
 
 /obj/machinery/computer/diseasesplicer/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
 	var/data[0]

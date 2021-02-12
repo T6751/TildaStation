@@ -77,7 +77,7 @@
 			W.loc = src
 			src.diskette = W
 			to_chat(user, "You insert [W].")
-			updateUsrDialog()
+			src.updateUsrDialog()
 			return
 	else
 		..()
@@ -216,13 +216,13 @@
 		scantemp = ""
 
 		loading = 1
-		updateUsrDialog()
+		src.updateUsrDialog()
 
 		spawn(20)
-			scan_mob(src.scanner.occupant)
+			src.scan_mob(src.scanner.occupant)
 
 			loading = 0
-			updateUsrDialog()
+			src.updateUsrDialog()
 
 
 		//No locking an open scanner.
@@ -254,7 +254,7 @@
 		else if (src.menu == 4)
 			var/obj/item/weapon/card/id/C = usr.get_active_hand()
 			if (istype(C)||istype(C, /obj/item/device/pda))
-				if(check_access(C))
+				if(src.check_access(C))
 					src.records.Remove(src.active_record)
 					qdel(src.active_record)
 					src.temp = "Record deleted."
@@ -267,12 +267,12 @@
 			if("load")
 				if ((isnull(src.diskette)) || isnull(src.diskette.buf))
 					src.temp = "Load error."
-					updateUsrDialog()
+					src.updateUsrDialog()
 					return
 				if (isnull(src.active_record))
 					src.temp = "Record error."
 					src.menu = 1
-					updateUsrDialog()
+					src.updateUsrDialog()
 					return
 
 				src.active_record = src.diskette.buf
@@ -286,7 +286,7 @@
 	else if (href_list["save_disk"]) //Save to disk!
 		if ((isnull(src.diskette)) || (src.diskette.read_only) || (isnull(src.active_record)))
 			src.temp = "Save error."
-			updateUsrDialog()
+			src.updateUsrDialog()
 			return
 
 		// DNA2 makes things a little simpler.
@@ -303,7 +303,7 @@
 		src.temp = "Save \[[href_list["save_disk"]]\] successful."
 
 	else if (href_list["refresh"])
-		updateUsrDialog()
+		src.updateUsrDialog()
 
 	else if (href_list["clone"])
 		var/datum/dna2/record/C = locate(href_list["clone"])
@@ -347,7 +347,7 @@
 	else if (href_list["menu"])
 		src.menu = text2num(href_list["menu"])
 
-	updateUsrDialog()
+	src.updateUsrDialog()
 
 /obj/machinery/computer/cloning/proc/scan_mob(mob/living/carbon/human/subject)
 	if ((isnull(subject)) || (!(ishuman(subject))) || subject.species.flags[NO_SCAN] || (!subject.dna))

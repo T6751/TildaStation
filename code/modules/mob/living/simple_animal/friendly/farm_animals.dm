@@ -45,7 +45,7 @@
 		if(enemies.len && prob(10))
 			enemies = list()
 			LoseTarget()
-			visible_message("<span class='notice'>[src] calms down.</span>")
+			src.visible_message("<span class='notice'>[src] calms down.</span>")
 
 		if(stat == CONSCIOUS)
 			if(udder && prob(5))
@@ -66,7 +66,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/Retaliate()
 	..()
-	visible_message("<span class='warning'>[src] gets an evil-looking gleam in their eye.</span>")
+	src.visible_message("<span class='warning'>[src] gets an evil-looking gleam in their eye.</span>")
 
 /mob/living/simple_animal/hostile/retaliate/goat/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0)
 	. = ..()

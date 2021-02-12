@@ -312,7 +312,7 @@
 	else
 		to_chat(user, "<span class='notice'>The cloaking device is now inactive.</span>")
 		src.icon_state = "shield0"
-	add_fingerprint(user)
+	src.add_fingerprint(user)
 	return
 
 /obj/item/weapon/cloaking_device/emp_act(severity)

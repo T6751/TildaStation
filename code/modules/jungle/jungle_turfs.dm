@@ -71,7 +71,7 @@
 		if(J.type == src.type)
 			P = J
 		else
-			P = new type(J)
+			P = new src.type(J)
 
 		if(P && prob(probability))
 			P.Spread(probability - prob_loss)

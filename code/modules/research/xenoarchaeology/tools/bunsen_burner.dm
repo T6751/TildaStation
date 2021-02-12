@@ -50,11 +50,11 @@
 	held_container = null
 
 /obj/machinery/bunsen_burner/proc/try_heating()
-	visible_message("<span class='notice'>[bicon(src)] [src] hisses.</span>")
+	src.visible_message("<span class='notice'>[bicon(src)] [src] hisses.</span>")
 	if(held_container && heating)
 		heated = TRUE
 		if(istype(held_container, /obj/item/weapon/reagent_containers/food/snacks/meat))
-			visible_message("<span class='notice'> [bicon(held_container)] [held_container] was successfully fried on the [src].</span>")
+			src.visible_message("<span class='notice'> [bicon(held_container)] [held_container] was successfully fried on the [src].</span>")
 			new /obj/item/weapon/reagent_containers/food/snacks/meatsteak(get_turf(src))
 			held_container = 0
 			cut_overlays()

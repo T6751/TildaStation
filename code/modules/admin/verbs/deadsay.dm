@@ -15,7 +15,7 @@
 		to_chat(src, "<span class='warning'>You have deadchat muted.</span>")
 		return
 
-	if (handle_spam_prevention(msg,MUTE_DEADCHAT))
+	if (src.handle_spam_prevention(msg,MUTE_DEADCHAT))
 		return
 
 	var/stafftype = null

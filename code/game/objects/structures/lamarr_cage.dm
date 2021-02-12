@@ -19,17 +19,17 @@
 		if (2)
 			if (prob(50))
 				src.health -= 15
-				healthcheck()
+				src.healthcheck()
 		if (3)
 			if (prob(50))
 				src.health -= 5
-				healthcheck()
+				src.healthcheck()
 
 
 /obj/structure/lamarr/bullet_act(obj/item/projectile/Proj)
 	health -= Proj.damage
 	..()
-	healthcheck()
+	src.healthcheck()
 	return
 
 
@@ -62,11 +62,11 @@
 
 /obj/structure/lamarr/attackby(obj/item/weapon/W, mob/user)
 	src.health -= W.force
-	healthcheck()
+	src.healthcheck()
 	..()
 
 /obj/structure/lamarr/attack_paw(mob/user)
-	return attack_hand(user)
+	return src.attack_hand(user)
 
 /obj/structure/lamarr/attack_hand(mob/user)
 	if (src.destroyed)

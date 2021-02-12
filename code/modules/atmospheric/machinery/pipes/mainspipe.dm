@@ -597,7 +597,7 @@
 		return attack_hand(user)
 
 /obj/machinery/atmospherics/mains_pipe/valve/attack_hand(mob/user as mob)
-	add_fingerprint(usr)
+	src.add_fingerprint(usr)
 	update_icon(1)
 	sleep(10)
 	if (open)
@@ -614,10 +614,10 @@
 	var/datum/radio_frequency/radio_connection
 
 /obj/machinery/atmospherics/mains_pipe/valve/digital/attack_ai(mob/user as mob)
-	return attack_hand(user)
+	return src.attack_hand(user)
 
 /obj/machinery/atmospherics/mains_pipe/valve/digital/attack_hand(mob/user as mob)
-	if(!allowed(user))
+	if(!src.allowed(user))
 		to_chat(user, "<span class='warning'>Access denied.</span>")
 		return
 	..()

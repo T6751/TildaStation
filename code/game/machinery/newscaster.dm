@@ -190,21 +190,21 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 	if(!ispowered || isbroken)
 		icon_state = "newscaster_off"
 		if(isbroken) //If the thing is smashed, add crack overlay on top of the unpowered sprite.
-			cut_overlays()
-			add_overlay(image(src.icon, "crack3"))
+			src.cut_overlays()
+			src.add_overlay(image(src.icon, "crack3"))
 		return
 
-	cut_overlays() //reset overlays
+	src.cut_overlays() //reset overlays
 
 	if(news_network.wanted_issue) //wanted icon state, there can be no overlays on it as it's a priority message
 		icon_state = "newscaster_wanted"
 		return
 
 	if(alert) //new message alert overlay
-		add_overlay("newscaster_alert")
+		src.add_overlay("newscaster_alert")
 
 	if(hitstaken > 0) //Cosmetic damage overlay
-		add_overlay(image(src.icon, "crack[hitstaken]"))
+		src.add_overlay(image(src.icon, "crack[hitstaken]"))
 
 	icon_state = "newscaster_normal"
 	return
@@ -212,15 +212,15 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 /obj/machinery/newscaster/power_change()
 	if(isbroken) //Broken shit can't be powered.
 		return
-	if( powered() )
+	if( src.powered() )
 		src.ispowered = 1
 		stat &= ~NOPOWER
-		update_icon()
+		src.update_icon()
 	else
 		spawn(rand(0, 15))
 			src.ispowered = 0
 			stat |= NOPOWER
-			update_icon()
+			src.update_icon()
 	update_power_use()
 
 /obj/machinery/newscaster/ex_act(severity)
@@ -233,12 +233,12 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 			if(prob(50))
 				qdel(src)
 			else
-				update_icon() //can't place it above the return and outside the if-else. or we might get runtimes of null.update_icon() if(prob(50)) goes in.
+				src.update_icon() //can't place it above the return and outside the if-else. or we might get runtimes of null.update_icon() if(prob(50)) goes in.
 			return
 		else
 			if(prob(50))
 				src.isbroken=1
-			update_icon()
+			src.update_icon()
 			return
 
 /obj/machinery/newscaster/ui_interact(mob/user)            //########### THE MAIN BEEF IS HERE! And in the proc below this...############
@@ -254,7 +254,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 		var/dat
 		dat = ""
 
-		scan_user(human_or_robot_user) //Newscaster scans you
+		src.scan_user(human_or_robot_user) //Newscaster scans you
 
 		switch(screen)
 			if(0)
@@ -543,7 +543,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 	src.hitstaken++
 	if(src.hitstaken==3)
 		src.isbroken = 1
-	update_icon()*/
+	src.update_icon()*/
 
 
 /obj/machinery/newscaster/Topic(href, href_list)
@@ -553,11 +553,11 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 
 	if(href_list["set_channel_name"])
 		src.channel_name = sanitize_safe(input(usr, "Название Новостного Канала", "Обработчик Сети Новостей", input_default(channel_name)), MAX_LNAME_LEN)
-		//update_icon()
+		//src.update_icon()
 
 	else if(href_list["set_channel_lock"])
 		src.c_locked = !src.c_locked
-		//update_icon()
+		//src.update_icon()
 
 	else if(href_list["submit_new_channel"])
 		//var/list/existing_channels = list() //OBSOLETE
@@ -587,7 +587,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 					NEWSCASTER.channel_list += newChannel*/                     //Now that it is sane, get it into the list. -OBSOLETE
 				news_network.network_channels += newChannel                        //Adding channel to the global network
 				src.screen = 5
-		//update_icon()
+		//src.update_icon()
 
 	else if(href_list["set_channel_receiving"])
 		//var/list/datum/feed_channel/available_channels = list()
@@ -635,7 +635,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 		if(!src.paper_remaining)
 			src.screen = 21
 		else
-			print_paper()
+			src.print_paper()
 			src.screen = 20
 
 	else if(href_list["menu_censor_story"])
@@ -854,7 +854,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 		else
 			src.viewing_channel.lock_comments = TRUE
 
-	updateUsrDialog()
+	src.updateUsrDialog()
 
 /obj/machinery/newscaster/attackby(obj/item/I, mob/user)
 	if(iswrench(I))
@@ -889,7 +889,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 					playsound(src, 'sound/effects/Glasshit.ogg', VOL_EFFECTS_MASTER)
 		else
 			to_chat(user, "<span class='info'>This does nothing.</span>")
-	update_icon()
+	src.update_icon()
 
 /obj/machinery/newscaster/attack_paw(mob/user)
 	to_chat(user, "<span class='info'>The newscaster controls are far too complicated for your tiny brain!</span>")
@@ -1090,7 +1090,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 			playsound(src, pick(SOUNDIN_PAGETURN), VOL_EFFECTS_MASTER)
 
 		if (istype(src.loc, /mob))
-			attack_self(src.loc)
+			src.attack_self(src.loc)
 
 
 /obj/item/weapon/newspaper/attackby(obj/item/I, mob/user, params)
@@ -1105,7 +1105,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 				return
 			src.scribble_page = src.curr_page
 			src.scribble = s
-			attack_self(user)
+			src.attack_self(user)
 		return
 	return ..()
 

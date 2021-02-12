@@ -116,7 +116,7 @@ Frequency:
 		else
 			for(var/mob/M in viewers(1, src))
 				if (M.client)
-					attack_self(M)
+					src.attack_self(M)
 	return
 
 
@@ -176,7 +176,7 @@ Frequency:
 	var/obj/effect/portal/P = new /obj/effect/portal( get_turf(src) )
 	P.target = T
 	P.creator = src
-	add_fingerprint(user)
+	src.add_fingerprint(user)
 	return
 
 

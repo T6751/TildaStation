@@ -51,18 +51,18 @@
 
 	if(href_list["betraitor"])
 		if(charges < 1)
-			updateUsrDialog()
+			src.updateUsrDialog()
 			return
 		var/mob/M = locate(href_list["traitormob"])
 		if(M.mind.special_role)
 			temptext = "<i>We have no need for you at this time. Have a pleasant day.</i><br>"
-			updateUsrDialog()
+			src.updateUsrDialog()
 			return
 		charges -= 1
 		switch(rand(1,2))
 			if(1)
 				temptext = "<font color=red><i><b>Double-crosser. You planned to betray us from the start. Allow us to repay the favor in kind.</b></i></font>"
-				updateUsrDialog()
+				src.updateUsrDialog()
 				spawn(rand(50,200))
 					selfdestruct()
 				return
@@ -104,7 +104,7 @@
 				to_chat(M, "<B>Objective #[obj_count]</B>: [OBJ.explanation_text]")
 				obj_count++
 
-	updateUsrDialog()
+	src.updateUsrDialog()
 
 
 /obj/machinery/syndicate_beacon/proc/selfdestruct()

@@ -47,14 +47,14 @@
 			var/mob/M = usr
 			var/obj/item/weapon/card/id/I = M.get_active_hand()
 			if (I && istype(I))
-				if(check_access(I))
+				if(src.check_access(I))
 					authenticated = 1
 		if("deactivate")
 			src.connected_E.stopping = 1
 		if("logout")
 			authenticated = 0
 
-	updateUsrDialog()
+	src.updateUsrDialog()
 
 /obj/machinery/computer/am_engine/ui_interact(mob/user)
 	var/dat = ""

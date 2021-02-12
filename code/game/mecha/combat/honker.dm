@@ -97,14 +97,14 @@
 						</head>
 						<body>
 						<div id='content'>
-						[get_stats_part()]
+						[src.get_stats_part()]
 						</div>
 						<div id='eq_list'>
-						[get_equipment_list()]
+						[src.get_equipment_list()]
 						</div>
 						<hr>
 						<div id='commands'>
-						[get_commands()]
+						[src.get_commands()]
 						</div>
 						</body>
 						</html>

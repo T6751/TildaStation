@@ -54,7 +54,7 @@
 	if(prob(30))
 		var/msg = pick(insults)
 		msg = "Hey, [A.name].. [msg]"
-		say(msg)
+		src.say(msg)
 	else
 		var/msg = pick(comments)
-		say(msg)
+		src.say(msg)

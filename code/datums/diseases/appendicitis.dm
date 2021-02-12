@@ -20,12 +20,12 @@
 	if(istype(affected_mob,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = affected_mob
 		if(H.species.name == DIONA || H.species.name == IPC || H.species.name == VOX)
-			cure()
+			src.cure()
 
 	if(stage == 1)
 		if(affected_mob.op_stage.appendix == 2.0)
 			// appendix is removed, can't get infected again
-			cure()
+			src.cure()
 		if(prob(5))
 			to_chat(affected_mob, "<span class='warning'>You feel a stinging pain in your abdomen!</span>")
 			affected_mob.emote("groan")
@@ -54,4 +54,4 @@
 			BP.sever_artery()
 			BP.germ_level = max(INFECTION_LEVEL_TWO, BP.germ_level)
 			H.adjustToxLoss(25)
-			cure()
+			src.cure()

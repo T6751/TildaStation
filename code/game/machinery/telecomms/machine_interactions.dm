@@ -305,7 +305,7 @@
 		temp = "<font color='#666633'>-% Buffer successfully flushed. %-</font>"
 		P.buffer = null
 
-	Options_Topic(href, href_list)
+	src.Options_Topic(href, href_list)
 
 	usr.set_machine(src)
 

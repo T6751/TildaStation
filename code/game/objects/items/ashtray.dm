@@ -24,7 +24,7 @@
 		if (istype(I, /obj/item/clothing/mask/cigarette))
 			var/obj/item/clothing/mask/cigarette/cig = I
 			if (cig.lit == 1)
-				visible_message("[user] crushes [cig] in [src], putting it out.")
+				src.visible_message("[user] crushes [cig] in [src], putting it out.")
 				STOP_PROCESSING(SSobj, cig)
 				var/obj/item/butt = new cig.type_butt(src)
 				cig.transfer_fingerprints_to(butt)
@@ -56,14 +56,14 @@
 			die()
 			return
 		if (contents.len)
-			visible_message("<span class='warning'>[src] slams into [hit_atom] spilling its contents!</span>")
+			src.visible_message("<span class='warning'>[src] slams into [hit_atom] spilling its contents!</span>")
 		for (var/obj/item/clothing/mask/cigarette/O in contents)
 			O.loc = src.loc
 		icon_state = icon_empty
 	return ..()
 
 /obj/item/ashtray/proc/die()
-	visible_message("<span class='warning'>[src] shatters spilling its contents!</span>")
+	src.visible_message("<span class='warning'>[src] shatters spilling its contents!</span>")
 	for (var/obj/item/clothing/mask/cigarette/O in contents)
 		O.loc = src.loc
 	icon_state = icon_broken

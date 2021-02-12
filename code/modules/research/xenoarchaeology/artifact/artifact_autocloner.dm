@@ -52,17 +52,17 @@
 		if(!previous_power_state)
 			previous_power_state = 1
 			icon_state = "autocloner_on"
-			visible_message("<span class='notice'>[bicon(src)] [src] suddenly comes to life!</span>")
+			src.visible_message("<span class='notice'>[bicon(src)] [src] suddenly comes to life!</span>")
 
 		// slowly grow a mob
 		if(prob(5))
-			visible_message("<span class='notice'>[bicon(src)] [src] [pick("gloops", "glugs", "whirrs", "whooshes", "hisses", "purrs", "hums", "gushes")].</span>")
+			src.visible_message("<span class='notice'>[bicon(src)] [src] [pick("gloops", "glugs", "whirrs", "whooshes", "hisses", "purrs", "hums", "gushes")].</span>")
 
 		// if we've finished growing...
 		if(time_spent_spawning >= time_per_spawn)
 			time_spent_spawning = 0
 			set_power_use(IDLE_POWER_USE)
-			visible_message("<span class='notice'>[bicon(src)] [src] pings!</span>")
+			src.visible_message("<span class='notice'>[bicon(src)] [src] pings!</span>")
 			icon_state = "autocloner_on"
 			desc = "It's full of a bubbling viscous liquid, and is lit by a mysterious glow."
 			if(spawn_type)
@@ -83,7 +83,7 @@
 		if(previous_power_state)
 			previous_power_state = 0
 			icon_state = "autocloner_off"
-			visible_message("<span class='notice'>[bicon(src)] [src] suddenly shuts down.</span>")
+			src.visible_message("<span class='notice'>[bicon(src)] [src] suddenly shuts down.</span>")
 
 		// cloned mob slowly breaks down
 		time_spent_spawning = max(time_spent_spawning + last_process - world.time, 0)

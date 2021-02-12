@@ -261,7 +261,7 @@
 	else if(selected && selected.is_melee())
 		selected.action(target)
 	else
-		melee_action(target)
+		src.melee_action(target)
 	return
 
 
@@ -436,25 +436,25 @@
 		src.spark_system.start()
 		diag_hud_set_mechhealth()
 	else
-		destroy()
+		src.destroy()
 	return
 
 /obj/mecha/attack_hand(mob/user)
-	log_message("Attack by hand/paw. Attacker - [user].",1)
+	src.log_message("Attack by hand/paw. Attacker - [user].",1)
 	user.do_attack_animation(src)
 	user.SetNextMove(CLICK_CD_MELEE)
 
 	if ((HULK in user.mutations) && !prob(src.deflect_chance))
-		take_damage(15)
-		check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
+		src.take_damage(15)
+		src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 		user.visible_message("<font color='red'><b>[user] hits [src.name], doing some damage.</b></font>", "<font color='red'><b>You hit [src.name] with all your might. The metal creaks and bends.</b></font>")
 	else
 		user.visible_message("<font color='red'><b>[user] hits [src.name]. Nothing happens</b></font>","<font color='red'><b>You hit [src.name] with no visible effect.</b></font>")
-		log_append_to_last("Armor saved.")
+		src.log_append_to_last("Armor saved.")
 	return
 
 /obj/mecha/attack_paw(mob/user)
-	return attack_hand(user)
+	return src.attack_hand(user)
 
 /obj/mecha/proc/toggle_strafe()
 	strafe = !strafe
@@ -464,17 +464,17 @@
 
 
 /obj/mecha/attack_alien(mob/user)
-	log_message("Attack by alien. Attacker - [user].",1)
+	src.log_message("Attack by alien. Attacker - [user].",1)
 	user.do_attack_animation(src)
 	user.SetNextMove(CLICK_CD_MELEE)
 	if(!prob(src.deflect_chance))
-		take_damage(15)
-		check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
+		src.take_damage(15)
+		src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 		playsound(src, 'sound/weapons/slash.ogg', VOL_EFFECTS_MASTER)
 		to_chat(user, "<span class='warning'>You slash at the armored suit!</span>")
 		visible_message("<span class='warning'>The [user] slashes at [src.name]'s armor!</span>")
 	else
-		log_append_to_last("Armor saved.")
+		src.log_append_to_last("Armor saved.")
 		playsound(src, 'sound/weapons/slash.ogg', VOL_EFFECTS_MASTER)
 		to_chat(user, "<span class='notice'>Your claws had no effect!</span>")
 		occupant_message("<span class='notice'>The [user]'s claws are stopped by the armor.</span>")
@@ -483,7 +483,7 @@
 
 
 /obj/mecha/attack_animal(mob/living/simple_animal/attacker)
-	log_message("Attack by simple animal. Attacker - [attacker].",1)
+	src.log_message("Attack by simple animal. Attacker - [attacker].",1)
 	..()
 
 	if(attacker.melee_damage == 0)
@@ -491,12 +491,12 @@
 	else
 		if(!prob(src.deflect_chance))
 			var/damage = attacker.melee_damage
-			take_damage(damage)
-			check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
+			src.take_damage(damage)
+			src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 			visible_message("<span class='warning'><B>[attacker]</B> [attacker.attacktext] [src]!</span>")
 			attacker.attack_log += "\[[time_stamp()]\] <font color='red'>attacked [src.name]</font>"
 		else
-			log_append_to_last("Armor saved.")
+			src.log_append_to_last("Armor saved.")
 			playsound(src, 'sound/weapons/slash.ogg', VOL_EFFECTS_MASTER)
 			occupant_message("<span class='notice'>The [attacker]'s attack is stopped by the armor.</span>")
 			visible_message("<span class='notice'>The [attacker] rebounds off [src.name]'s armor!</span>")
@@ -504,32 +504,32 @@
 
 /obj/mecha/hitby(atom/movable/AM, datum/thrownthing/throwingdatum) //wrapper
 	..()
-	log_message("Hit by [AM].",1)
+	src.log_message("Hit by [AM].",1)
 	call((proc_res["dynhitby"]||src), "dynhitby")(AM, throwingdatum)
 	return
 
 /obj/mecha/proc/dynhitby(atom/movable/AM, datum/thrownthing/throwingdatum)
 	if(istype(AM, /obj/item/mecha_parts/mecha_tracking))
 		AM.forceMove(src)
-		visible_message("The [AM] fastens firmly to [src].")
+		src.visible_message("The [AM] fastens firmly to [src].")
 		return
 	if(prob(src.deflect_chance) || ismob(AM))
 		occupant_message("<span class='notice'>The [AM] bounces off the armor.</span>")
-		visible_message("The [AM] bounces off the [src.name] armor")
-		log_append_to_last("Armor saved.")
+		src.visible_message("The [AM] bounces off the [src.name] armor")
+		src.log_append_to_last("Armor saved.")
 		if(isliving(AM))
 			var/mob/living/M = AM
 			M.take_bodypart_damage(10)
 	else if(isobj(AM))
 		var/obj/O = AM
 		if(O.throwforce)
-			take_damage(O.throwforce)
-			check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
+			src.take_damage(O.throwforce)
+			src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 	return
 
 
 /obj/mecha/bullet_act(obj/item/projectile/Proj) //wrapper
-	log_message("Hit by projectile. Type: [Proj.name]([Proj.flag]).",1)
+	src.log_message("Hit by projectile. Type: [Proj.name]([Proj.flag]).",1)
 	call((proc_res["dynbulletdamage"]||src), "dynbulletdamage")(Proj) //calls equipment
 	..()
 	return
@@ -537,8 +537,8 @@
 /obj/mecha/proc/dynbulletdamage(obj/item/projectile/Proj)
 	if(prob(src.deflect_chance))
 		occupant_message("<span class='notice'>The armor deflects incoming projectile.</span>")
-		visible_message("The [src.name] armor deflects the projectile")
-		log_append_to_last("Armor saved.")
+		src.visible_message("The [src.name] armor deflects the projectile")
+		src.log_append_to_last("Armor saved.")
 		return
 	var/ignore_threshold
 	if(is_type_in_list(Proj, taser_projectiles)) //taser_projectiles defined in projectile.dm
@@ -546,8 +546,8 @@
 		return
 	if(istype(Proj, /obj/item/projectile/beam/pulse))
 		ignore_threshold = 1
-	take_damage(Proj.damage,Proj.flag)
-	check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST,MECHA_INT_SHORT_CIRCUIT),ignore_threshold)
+	src.take_damage(Proj.damage,Proj.flag)
+	src.check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST,MECHA_INT_SHORT_CIRCUIT),ignore_threshold)
 	Proj.on_hit(src)
 	return
 
@@ -572,10 +572,10 @@
 	qdel(src)
 
 /obj/mecha/ex_act(severity)
-	log_message("Affected by explosion of severity: [severity].",1)
+	src.log_message("Affected by explosion of severity: [severity].",1)
 	if(prob(src.deflect_chance))
 		severity++
-		log_append_to_last("Armor saved, changing severity to [severity].")
+		src.log_append_to_last("Armor saved, changing severity to [severity].")
 	switch(severity)
 		if(1.0)
 			destroy()
@@ -583,32 +583,32 @@
 			if (prob(30))
 				destroy()
 			else
-				take_damage(initial(src.health)/2)
-				check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST,MECHA_INT_SHORT_CIRCUIT),1)
+				src.take_damage(initial(src.health)/2)
+				src.check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST,MECHA_INT_SHORT_CIRCUIT),1)
 		if(3.0)
 			if (prob(5))
 				destroy()
 			else
-				take_damage(initial(src.health)/5)
-				check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST,MECHA_INT_SHORT_CIRCUIT),1)
+				src.take_damage(initial(src.health)/5)
+				src.check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST,MECHA_INT_SHORT_CIRCUIT),1)
 	return
 
 /*Will fix later -Sieve
 /obj/mecha/attack_blob(mob/user as mob)
-	log_message("Attack by blob. Attacker - [user].",1)
+	src.log_message("Attack by blob. Attacker - [user].",1)
 	if(!prob(src.deflect_chance))
-		take_damage(6)
-		check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
+		src.take_damage(6)
+		src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 		playsound(src, 'sound/effects/blobattack.ogg', VOL_EFFECTS_MASTER)
 		to_chat(user, "<span class='warning'>You smash at the armored suit!</span>")
 		for (var/mob/V in viewers(src))
 			if(V.client && !(V.blinded))
 				V.oldshow_message("<span class='warning'>The [user] smashes against [src.name]'s armor!</span>", 1)
 	else
-		log_append_to_last("Armor saved.")
+		src.log_append_to_last("Armor saved.")
 		playsound(src, 'sound/effects/blobattack.ogg', VOL_EFFECTS_MASTER)
 		to_chat(user, "<span class='notice'>Your attack had no effect!</span>")
-		occupant_message("<span class='notice'>The [user]'s attack is stopped by the armor.</span>")
+		src.occupant_message("<span class='notice'>The [user]'s attack is stopped by the armor.</span>")
 		for (var/mob/V in viewers(src))
 			if(V.client && !(V.blinded))
 				V.oldshow_message("<span class='notice'>The [user] rebounds off the [src.name] armor!</span>", 1)
@@ -626,29 +626,29 @@
 		use_power((cell.charge/2)/severity)
 		diag_hud_set_mechcell()
 		take_damage(50 / severity,"energy")
-	log_message("EMP detected",1)
+	src.log_message("EMP detected",1)
 	check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_CONTROL_LOST,MECHA_INT_SHORT_CIRCUIT),1)
 	return
 
 /obj/mecha/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature>src.max_temperature)
-		log_message("Exposed to dangerous temperature.",1)
-		take_damage(5,"fire")
-		check_for_internal_damage(list(MECHA_INT_FIRE, MECHA_INT_TEMP_CONTROL))
+		src.log_message("Exposed to dangerous temperature.",1)
+		src.take_damage(5,"fire")
+		src.check_for_internal_damage(list(MECHA_INT_FIRE, MECHA_INT_TEMP_CONTROL))
 	return
 
 /obj/mecha/proc/dynattackby(obj/item/weapon/W, mob/user)
 	user.do_attack_animation(src)
-	log_message("Attacked by [W]. Attacker - [user]")
+	src.log_message("Attacked by [W]. Attacker - [user]")
 	if(prob(src.deflect_chance))
 		to_chat(user, "<span class='warning'>\The [W] bounces off [src.name].</span>")
-		log_append_to_last("Armor saved.")
+		src.log_append_to_last("Armor saved.")
 	else
 		occupant_message("<font color='red'><b>[user] hits [src] with [W].</b></font>")
 		user.visible_message("<font color='red'><b>[user] hits [src] with [W].</b></font>", "<font color='red'><b>You hit [src] with [W].</b></font>")
 		playsound(src, 'sound/mecha/mecha_attacked.ogg', VOL_EFFECTS_MASTER, 100, FALSE)
-		take_damage(W.force,W.damtype)
-		check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
+		src.take_damage(W.force,W.damtype)
+		src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 	return
 
 //////////////////////
@@ -723,7 +723,7 @@
 			src.cell = null
 			state = 4
 			to_chat(user, "You unscrew and pry out the powercell.")
-			log_message("Powercell removed")
+			src.log_message("Powercell removed")
 		else if(state==4 && src.cell)
 			state=3
 			to_chat(user, "You screw the cell in place")
@@ -737,7 +737,7 @@
 				user.drop_item()
 				W.forceMove(src)
 				src.cell = W
-				log_message("Powercell installed")
+				src.log_message("Powercell installed")
 			else
 				to_chat(user, "There's already a powercell installed.")
 			diag_hud_set_mechcell()
@@ -788,7 +788,7 @@
 		src.name = P.new_name
 		src.desc = P.new_desc
 		src.initial_icon = P.new_icon
-		reset_icon()
+		src.reset_icon()
 
 		user.drop_item()
 		qdel(P)
@@ -804,20 +804,20 @@
 		user.SetNextMove(CLICK_CD_MELEE)
 		call((proc_res["dynattackby"]||src), "dynattackby")(W,user)
 /*
-		log_message("Attacked by [W]. Attacker - [user]")
+		src.log_message("Attacked by [W]. Attacker - [user]")
 		if(prob(src.deflect_chance))
 			to_chat(user, "<span class='warning'>The [W] bounces off [src.name] armor.</span>")
-			log_append_to_last("Armor saved.")
+			src.log_append_to_last("Armor saved.")
 /*
 			for (var/mob/V in viewers(src))
 				if(V.client && !(V.blinded))
 					V.oldshow_message("The [W] bounces off [src.name] armor.", 1)
 */
 		else
-			occupant_message("<font color='red'><b>[user] hits [src] with [W].</b></font>")
+			src.occupant_message("<font color='red'><b>[user] hits [src] with [W].</b></font>")
 			user.visible_message("<font color='red'><b>[user] hits [src] with [W].</b></font>", "<font color='red'><b>You hit [src] with [W].</b></font>")
-			take_damage(W.force,W.damtype)
-			check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
+			src.take_damage(W.force,W.damtype)
+			src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 */
 	return
 
@@ -910,7 +910,7 @@
 
 	connected_port.connected_device = null
 	connected_port = null
-	log_message("Disconnected from gas port.")
+	src.log_message("Disconnected from gas port.")
 	return 1
 
 
@@ -970,7 +970,7 @@
 
 	use_internal_tank = !use_internal_tank
 	occupant_message("Now taking air from [use_internal_tank?"internal airtank":"environment"].")
-	log_message("Now taking air from [use_internal_tank?"internal airtank":"environment"].")
+	src.log_message("Now taking air from [use_internal_tank?"internal airtank":"environment"].")
 	return
 
 /obj/mecha/MouseDrop_T(mob/user)
@@ -981,7 +981,7 @@
 		to_chat(usr,"<span class='warning'>You can't climb into the exosuit while buckled!</span>")
 		return
 
-	log_message("[usr] tries to move in.")
+	src.log_message("[usr] tries to move in.")
 	if(iscarbon(usr))
 		var/mob/living/carbon/C = usr
 		if(C.handcuffed)
@@ -989,7 +989,7 @@
 			return
 	if (src.occupant)
 		to_chat(usr, "<span class='notice'><B>The [src.name] is already occupied!</B></span>")
-		log_append_to_last("Permission denied.")
+		src.log_append_to_last("Permission denied.")
 		return
 /*
 	if (usr.abiotic())
@@ -1000,11 +1000,11 @@
 	if(src.dna)
 		if(usr.dna.unique_enzymes==src.dna)
 			passed = 1
-	else if(operation_allowed(usr))
+	else if(src.operation_allowed(usr))
 		passed = 1
 	if(!passed)
 		to_chat(usr, "<span class='warning'>Access denied</span>")
-		log_append_to_last("Permission denied.")
+		src.log_append_to_last("Permission denied.")
 		return
 	for(var/mob/living/carbon/slime/M in range(1,usr))
 		if(M.Victim == usr)
@@ -1028,11 +1028,11 @@
 		H.reset_view(src)
 		H.forceMove(src)
 		src.occupant = H
-		add_fingerprint(H)
-		forceMove(src.loc)
-		log_append_to_last("[H] moved in as pilot.")
+		src.add_fingerprint(H)
+		src.forceMove(src.loc)
+		src.log_append_to_last("[H] moved in as pilot.")
 		log_admin("[key_name(H)] has moved in [src.type] with name [src.name]")
-		src.icon_state = reset_icon()
+		src.icon_state = src.reset_icon()
 		set_dir(dir_in)
 		playsound(src, 'sound/machines/windowdoor.ogg', VOL_EFFECTS_MASTER)
 		GrantActions(H, human_occupant = 1)
@@ -1089,11 +1089,11 @@
 		brainmob.canmove = 1
 		mmi_as_oc.loc = src
 		mmi_as_oc.mecha = src
-		Entered(mmi_as_oc)
-		Move(src.loc)
-		src.icon_state = reset_icon()
+		src.Entered(mmi_as_oc)
+		src.Move(src.loc)
+		src.icon_state = src.reset_icon()
 		set_dir(dir_in)
-		log_message("[mmi_as_oc] moved in as pilot.")
+		src.log_message("[mmi_as_oc] moved in as pilot.")
 		log_admin("[key_name(mmi_as_oc)] has moved in [src.type] with name [src.name] as MMI brain by [key_name(user)]")
 		if(!hasInternalDamage())
 			occupant.playsound_local(null, 'sound/mecha/nominal.ogg', VOL_EFFECTS_MASTER, null, FALSE)
@@ -1106,7 +1106,7 @@
 		return
 
 	//pr_update_stats.start()
-	src.occupant << browse(get_stats_html(), "window=exosuit")
+	src.occupant << browse(src.get_stats_html(), "window=exosuit")
 	return
 
 /*
@@ -1114,14 +1114,14 @@
 	set category = "Object"
 	set name = "Force Eject"
 	set src in view(5)
-	go_out()
+	src.go_out()
 	return
 */
 
 /obj/mecha/proc/eject()
 	if(usr != src.occupant)
 		return
-	go_out()
+	src.go_out()
 	add_fingerprint(usr)
 	return
 
@@ -1163,7 +1163,7 @@
 			to_chat(occupant, "You were blown out of the mech!")
 	*/
 		playsound(src, 'sound/mecha/mech_eject.ogg', VOL_EFFECTS_MASTER, 75, FALSE, -3)
-		log_message("[mob_container] moved out.")
+		src.log_message("[mob_container] moved out.")
 		log_admin("[key_name(mob_container)] has moved out of [src.type] with name [src.name]")
 		occupant.reset_view()
 		/*
@@ -1182,8 +1182,8 @@
 			mmi.mecha = null
 			src.occupant.canmove = 0
 		src.occupant = null
-		src.icon_state = reset_icon()+"-open"
-		set_dir(dir_in)
+		src.icon_state = src.reset_icon()+"-open"
+		src.set_dir(dir_in)
 	return
 
 /////////////////////////
@@ -1192,14 +1192,14 @@
 
 /obj/mecha/proc/operation_allowed(mob/living/carbon/human/H)
 	for(var/ID in list(H.get_active_hand(), H.wear_id, H.belt))
-		if(check_access(ID,src.operation_req_access))
+		if(src.check_access(ID,src.operation_req_access))
 			return 1
 	return 0
 
 
 /obj/mecha/proc/internals_access_allowed(mob/living/carbon/human/H)
 	for(var/atom/ID in list(H.get_active_hand(), H.wear_id, H.belt))
-		if(check_access(ID,src.internals_req_access))
+		if(src.check_access(ID,src.internals_req_access))
 			return 1
 	return 0
 
@@ -1410,7 +1410,7 @@
 
 	occupant << browse(output, "window=ex_debug")
 	//src.health = initial(src.health)/2.2
-	//check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
+	//src.check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 	return
 */
 
