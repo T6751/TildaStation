@@ -38,7 +38,7 @@ to translate concepts between old and new tgui, read this
 You will need these programs to start developing in tgui:
 
 - [Node v12.13+](https://nodejs.org/en/download/)
-- [Yarn v1.19+](https://yarnpkg.com/en/docs/install)
+- [Yarn v1.19+](https://yarnpkg.com/en/docs/install) (optional)
 - [MSys2](https://www.msys2.org/) (optional)
 
 > MSys2 closely replicates a unix-like environment which is necessary for
@@ -54,52 +54,30 @@ You will need these programs to start developing in tgui:
 
 First and foremost, change your directory to `tgui`.
 
-Run `bin/tgui --install-git-hooks` (optional) to install merge drivers
-which will assist you in conflict resolution when rebasing your branches.
+Run `bin/tgui --install-git-hooks` to install merge drivers which will
+assist you in conflict resolution when rebasing your branches. Only has
+to be done once.
 
-Run one of the following:
+Run `bin/tgui` with any of the options listed below.
 
-- `bin/tgui` - build the project in production mode.
-- `bin/tgui --dev` - launch a development server.
-  - tgui development server provides you with incremental compilation,
-  hot module replacement and logging facilities in all running instances
-  of tgui. In short, this means that you will instantly see changes in the
-  game as you code it. Very useful, highly recommended.
-  - In order to use it, you should start the game server first, connect to it
-  and wait until the world has been properly loaded and you are no longer
-  in the lobby. Start tgui dev server, and once it has finished building,
-  press F5 on any tgui window. You'll know that it's hooked correctly if
-  you see a green bug icon in titlebar and data gets dumped to the console.
-- `bin/tgui --dev --reload` - reload byond cache once.
-- `bin/tgui --dev --debug` - run server with debug logging enabled.
-- `bin/tgui --dev --no-hot` - disable hot module replacement (helps when
-doing development on IE8).
-- `bin/tgui --lint` - show problems with the code.
-- `bin/tgui --lint --fix` - auto-fix problems with the code.
-- `bin/tgui --analyze` - run a bundle analyzer.
-- `bin/tgui --clean` - clean up project repo.
-- `bin/tgui [webpack options]` - build the project with custom webpack
-options.
-
-**For everyone else:**
+**For Windows CMD or PowerShell users:**
 
 If you haven't opened the console already, you can do that by holding
 Shift and right clicking on the `tgui` folder, then pressing
 either `Open command window here` or `Open PowerShell window here`.
 
-Run `yarn install` to install npm dependencies, then one of the following:
+Run `.\bin\tgui.bat` with any of the options listed below.
 
-- `yarn run build` - build the project in production mode.
-- `yarn run watch` - launch a development server.
-- `yarn run lint` - show problems with the code.
-- `yarn run lint --fix` - auto-fix problems with the code.
-- `yarn run analyze` - run a bundle analyzer.
+> If using PowerShell, you will receive errors if trying to run
+> `.\bin\tgui.ps1`, because default Windows policy does not allow direct
+> execution of PS1 scripts. Run `.\bin\tgui.bat` instead.
 
-We also got some batch files in store, for those who don't like fiddling
-with the console:
+**For everyone else:**
 
-- `bin/tgui-build.bat` - build the project in production mode.
-- `bin/tgui-dev-server.bat` - launch a development server.
+You can double-click these batch files to achieve the same thing:
+
+- `bin\tgui.bat` - Build the project in production mode.
+- `bin\tgui-dev-server.bat` - Launch a development server.
 
 > Remember to always run a full build before submitting a PR. It creates
 > a compressed javascript bundle which is then referenced from DM code.
