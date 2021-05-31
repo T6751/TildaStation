@@ -362,17 +362,121 @@ var/count = L.len
 ### Особенности BYOND
 #### Использование `spawn()`
 
-```
-Не используйте. В зависимости от используемого спавна есть два пути замены:
+Не используйте. В зависимости от того, как используется спавн есть два пути замены:
 - Если spawn(time):
-  - Addtimer(CALLBACK(thingtocall, .proc/proc_name, args), time)
-  - VARSET_IN(datum, var, var_value, time)
+  - Как правило, такие спавны заменяются на addtimer(CALLBACK())
+	- ```addtimer(CALLBACK(thingtocall, .proc/proc_name, args), time)```
+  - Если с помощью спавна лишь изменяется переменная датума, то лучше использоать VARSET_IN.
+	- ```VARSET_IN(datum, var, var_value, time)```
 - Если spawn() или spawn(0):
-  - Если спавн содержит лишь один прок, то можно убрать спавн а прок записать внутрь INVOKE_ASYNC(). INVOKE_ASYNC(thingtocall, .proc/proc_name, args)
-  - Иначе:
-  - Обернуть всё, что вызывается внутри спавна в прок и вызывать с помощью INVOKE_ASYNC(thingtocall, .proc/proc_name, args)
-  - Обернуть всё, что вызывается внутри спавна в прок, а в самом проке прописать set waitfor = FALSE
+  - Если спавн содержит единственный прок, то просто оберните его в INVOKE_ASYNC. Иначе перенесите всё содержимое спавна в новый прок, который и добавите в INVOKE_ASYNC()
+	- ```INVOKE_ASYNC(thingtocall, .proc/proc_name, args)```
+  - Если всё содержимое прока обернуто в спавн, то в самом проке прописать set waitfor = FALSE
+	- ```set waitfor = FALSE```
+
+Примеры под спойлерами:
+
+<details>
+	<summary>Пример замены spawn(time)</summary>
+
+```dm
+//Плохо:
+/mob/some/class/proc/foo()
+	code
+	spawn(20)
+		switch(variable)
+			if(1)
+				do_something
+			if(2)
+				return
+
+	spawn(40)
+		other_mob.do_something_crazy(a, b)
+
+	spawn(30)
+		name = "Steve"
+
+//Хорошо:
+/mob/some/class/proc/foo()
+	code
+	Addtimer(CALLBACK(src, .proc/do_something_wrapper, variable), 20)
+	Addtimer(CALLBACK(other_mob, .proc/do_something_crazy, a, b), 40)
+	VARSET_IN(src, name, "Steve", 30)
+
+/mob/some/class/proc/do_something_wrapper(variable)
+	switch(variable)
+		if(1)
+			do_something
+		if(2)
+			return
 ```
+
+</details>
+
+
+<details>
+	<summary>Пример замены spawn(0)</summary>
+
+```dm
+//Плохо:
+/mob/some/class/proc/foo()
+	spawn(0)
+		switch(variable)
+			if(1)
+				do_something
+			if(2)
+				return
+		
+//Хорошо:
+/mob/some/class/proc/foo()
+	set waitfor = FALSE
+
+	switch(variable)
+		if(1)
+			do_something
+		if(2)
+			return
+
+```
+
+```dm
+//Плохо:
+/mob/some/class/proc/foo()
+	code
+	spawn(0)
+		switch(variable)
+			if(1)
+				do_something
+			if(2)
+				return
+		
+//Хорошо:
+/mob/some/class/proc/foo()
+	code
+	INVOKE_ASYNC(src, .proc/do_something_wrapper, variable)
+
+/mob/some/class/proc/do_something_wrapper(variable)
+	switch(variable)
+		if(1)
+			do_something
+		if(2)
+			return
+
+//Хорошо:
+/mob/some/class/proc/foo()
+	code
+	do_something_wrapper(variable)
+
+/mob/some/class/proc/do_something_wrapper(variable)
+	set waitfor = FALSE
+
+	switch(variable)
+		if(1)
+			do_something
+		if(2)
+			return
+```
+</details>
 
 #### Работа с циклами (black magic)
 ```
