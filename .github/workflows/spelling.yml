@@ -1,8 +1,8 @@
 name: Spell checking
 on:
-  pull_request_target:
   push:
-  issue_comment:
+    branches:
+      - master
 
 jobs:
   spelling:
