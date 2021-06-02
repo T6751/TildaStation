@@ -232,7 +232,7 @@ function run_configured_tests {
         ;;
         *) fail "invalid option for \$TEST: '$TEST'" ;;
     esac
-}
+} 
 
 find_code
 run_configured_tests
