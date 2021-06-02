@@ -3,7 +3,7 @@ var/global/BSACooldown = 0
 
 
 ////////////////////////////////
-proc/message_admins(msg, reg_flag = R_ADMIN)
+/proc/message_admins(msg, reg_flag = R_ADMIN)
 	log_adminwarn(msg) // todo: msg in html format, dublicates other logs; must be removed, use logs_*() where necessary (also, thanks you dear ZVE)
 	msg = "<span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message\">[msg]</span></span>"
 	for(var/client/C in admins)
@@ -224,8 +224,8 @@ proc/message_admins(msg, reg_flag = R_ADMIN)
 	if(!key || !config.sql_enabled)
 		return
 
-	if(!establish_db_connection())
-		usr.show_message("Notes [key] from DB don't available.")
+	if(!establish_db_connection("erro_messages", "erro_ban"))
+		to_chat(usr, "Notes [key] from DB don't available.")
 		return
 
 	//Display player age and player warn bans
@@ -331,7 +331,6 @@ proc/message_admins(msg, reg_flag = R_ADMIN)
 		"DATE_FORMAT(unbanned_datetime, '[timestamp_format]')",
 		"DATEDIFF(unbanned_datetime, '[days_ago_start_date]')",
 		"unbanned_ckey",
-		"rounds",
 		"round_id"
 	 )
 	var/DBQuery/query = dbcon.NewQuery("SELECT " + sql_fields.Join(", ") + " FROM erro_ban WHERE (ckey = '[ckey(player_ckey)]') ORDER BY id LIMIT 100")
@@ -356,8 +355,7 @@ proc/message_admins(msg, reg_flag = R_ADMIN)
 		var/unbanned_timestamp = query.item[11]
 		var/unbanned_days_ago = text2num(query.item[12])
 		var/unbanned_a_ckey = query.item[13]
-		var/rounds_ban_counter = text2num(query.item[14])  // legacy field, but it can be in DB now
-		var/rid = text2num(query.item[15])
+		var/rid = text2num(query.item[14])
 
 		if(rid)
 			notes_record.round_id = rid
@@ -373,8 +371,6 @@ proc/message_admins(msg, reg_flag = R_ADMIN)
 		// Ban Record creating
 		if(length(a_ckey))
 			notes_record.author = a_ckey
-		if(rounds_ban_counter)
-			duration += " and [rounds_ban_counter] rounds"
 		var/description = "([ip_cid.Join(", ")]): [reason]"
 		switch(bantype)
 			if (BANTYPE_JOB_PERMA_STR)
@@ -904,10 +900,10 @@ proc/message_admins(msg, reg_flag = R_ADMIN)
 	set category = "Server"
 	set desc="Change facehuggers control type"
 	set name="Change FH control type"
-	var/FH_control_type = input("Choose a control type of facehuggers.","FH control type") as null|anything in list("Static AI(default)", "Dynamic AI", "Playable(+SAI)")
+	var/FH_control_type = input("Choose a control type of facehuggers.","FH control type") as null|anything in list("Playable(+SAI)(default)", "Dynamic AI", "Static AI")
 	feedback_add_details("admin_verb","CFHAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	switch(FH_control_type)
-		if("Static AI(default)")
+		if("Static AI")
 			facehuggers_control_type = FACEHUGGERS_STATIC_AI
 			for(var/obj/item/clothing/mask/facehugger/FH in facehuggers_list)
 				STOP_PROCESSING(SSobj, FH)
@@ -915,7 +911,7 @@ proc/message_admins(msg, reg_flag = R_ADMIN)
 			facehuggers_control_type = FACEHUGGERS_DYNAMIC_AI
 			for(var/obj/item/clothing/mask/facehugger/FH in facehuggers_list)
 				START_PROCESSING(SSobj, FH)
-		if("Playable(+SAI)")
+		if("Playable(+SAI)(default)")
 			facehuggers_control_type = FACEHUGGERS_PLAYABLE
 			for(var/obj/item/clothing/mask/facehugger/FH in facehuggers_list)
 				STOP_PROCESSING(SSobj, FH)
@@ -1024,6 +1020,15 @@ proc/message_admins(msg, reg_flag = R_ADMIN)
 	message_admins("[key_name(usr)] toggled Job restrictions for xenos.")
 	feedback_add_details("admin_verb","TJR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/datum/admins/proc/toggle_deathmatch_arena()
+	set category = "Server"
+	set desc = "Toggle arena on the round end."
+	set name = "Toggle Roundend Deathmatch"
+	config.deathmatch_arena = !config.deathmatch_arena
+	log_admin("[key_name(usr)] toggled Deathmatch Arena to [config.deathmatch_arena].")
+	message_admins("[key_name_admin(usr)] toggled Deathmatch Arena [config.deathmatch_arena ? "on" : "off"].")
+	feedback_add_details("admin_verb","TDA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 /datum/admins/proc/unprison(mob/M in mob_list)
 	set category = "Admin"
 	set name = "Unprison"
@@ -1046,10 +1051,10 @@ proc/message_admins(msg, reg_flag = R_ADMIN)
 	if (!istype(M))
 		return 0
 	if((M.mind in SSticker.mode.head_revolutionaries) || (M.mind in SSticker.mode.revolutionaries))
-		if (SSticker.mode.config_tag == "revolution")
+		if (SSticker.mode.config_tag == "rp-revolution")
 			return 2
 		return 1
-	if(M.mind in SSticker.mode.cult)
+	if(global.cult_religion?.is_member(M))
 		if (SSticker.mode.config_tag == "cult")
 			return 2
 		return 1
@@ -1133,7 +1138,7 @@ proc/message_admins(msg, reg_flag = R_ADMIN)
 	else
 		new chosen(usr.loc)
 
-	log_admin("[key_name(usr)] spawned [chosen] at ([usr.x],[usr.y],[usr.z])")
+	log_admin("[key_name(usr)] spawned [chosen] at [COORD(usr)]")
 	feedback_add_details("admin_verb","SA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
