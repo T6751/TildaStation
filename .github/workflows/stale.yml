@@ -1,8 +1,8 @@
 name: 'Close stale issues and PRs'
 on:
   schedule:
-    - cron: '47 17 * * *'
-
+    - cron: '0,30 * * * *'
+    
 jobs:
   stale:
     runs-on: ubuntu-latest
@@ -21,6 +21,7 @@ jobs:
           exempt-pr-labels: 'Pinned'
           days-before-pr-stale: 7
           days-before-pr-close: 7
+          remove-pr-stale-when-updated: true
           close-issue-message:  >
             Данное предложение пробыло без активности открытым более полугода. Если вы найдёте того, кто его реализует,
             и вам нужно открыть данный ишью, пожалуйста, обратитесь к кому-либо из мейнтейнеров.
