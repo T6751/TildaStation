@@ -10,7 +10,7 @@ jobs:
   stale:
     runs-on: ubuntu-latest
     steps:
-      - uses: T6751/stale@main
+      - uses: francoiscampbell/stale@remove-label-on-update
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           stale-pr-message: >
