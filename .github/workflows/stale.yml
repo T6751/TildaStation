@@ -1,8 +1,8 @@
 name: 'Close stale issues and PRs'
 on:
   schedule:
-    - cron: '5 * * * *'
-    
+    - cron: '35,40 * * * *'
+
 jobs:
   stale:
     runs-on: ubuntu-latest
@@ -10,12 +10,12 @@ jobs:
       - uses: actions/stale@v3
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          stale-pr-message: > 
+          stale-pr-message: >
             Данный ПР автоматически отмечен как застоявшийся по причине длительного отсутствия обновлений.
             Он будет закрыт через 7 дней, если никакой активности не будет проявлено.
             Если вы считаете, что ПР еще актуален, или что я (злобный робот) пристаю к вам зря - просто напишите любой комментарий.
             Спасибо за ваш вклад.
-          close-pr-message: > 
+          close-pr-message: >
             ПР закрыт из-за длительного отсуствия активности. Для переоткрытия ПРа, пожалуйста, обратитесь к
             кому-либо из мейнтейнеров. Вы можете призвать их в комментарии слапнув ``@TauCetiStation/maintainers``.
           exempt-pr-labels: 'Pinned'
