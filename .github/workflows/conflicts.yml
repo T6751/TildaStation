@@ -1,3 +1,4 @@
+name: 'Check for merge conflicts'
 on:
   push:
     branches:
