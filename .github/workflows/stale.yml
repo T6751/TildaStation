@@ -1,6 +1,6 @@
 name: 'Close stale issues and PRs'
 on:
-  push:
+  pull_request:
     branches:
      - master
   issue_comment:
