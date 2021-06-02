@@ -7,7 +7,7 @@
 #
 # The general structure of the test execution is as follows:
 # - find_code:              Look for the project root directory and fail fast if
-#                           it can't be found. Assumes that it is in . or ..;
+#                           it can't be found. Assumes that it is in . or ..; 
 #                           custom locations can be specified in CODEPATH
 #                           environment variable.
 # - run_all_tests:          Run every test group in sequence.
