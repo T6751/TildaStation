@@ -20,7 +20,7 @@ jobs:
             Спасибо за ваш вклад.  
           close-pr-message: >
             ПР закрыт из-за длительного отсуствия активности. Для переоткрытия ПРа, пожалуйста, обратитесь к
-            кому-либо из мейнтейнеров. Вы можете призвать их в комментарии слапнув ``@TauCetiStation/maintainers``.   
+            кому-либо из мейнтейнеров. Вы можете призвать их в комментарии слапнув ``@TauCetiStation/maintainers``.    
           exempt-pr-labels: 'Pinned'
           days-before-pr-stale: 7
           days-before-pr-close: 7
