@@ -7,7 +7,7 @@
 	set name = "Smoke Bomb"
 	set desc = "Blind your enemies momentarily with a well-placed smoke bomb."
 	set category = "Ninja Ability"
-	set popup_menu = 0//Will not see it when right clicking.
+	set popup_menu = FALSE//Will not see it when right clicking.
 
 	if(!ninjacost(,2))
 		var/mob/living/carbon/human/U = affecting

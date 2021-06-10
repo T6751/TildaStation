@@ -38,7 +38,7 @@
 	set category = "Fun"
 	set name = "Spawn Space Ninja"
 	set desc = "Spawns a space ninja for when you need a teenager with attitude."
-	set popup_menu = 0
+	set popup_menu = FALSE
 
 	if(!holder)
 		to_chat(src, "Only administrators may use this command.")

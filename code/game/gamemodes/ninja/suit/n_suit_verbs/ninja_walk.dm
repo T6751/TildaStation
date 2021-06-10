@@ -4,7 +4,7 @@
 	set name = "Shadow Walk"
 	set desc = "Combines the VOID-shift and CLOAK-tech devices to freely move between solid matter. Toggle on or off."
 	set category = "Ninja Ability"
-	set popup_menu = 0
+	set popup_menu = FALSE
 
 	var/mob/living/carbon/human/U = affecting
 	if(!U.incorporeal_move)

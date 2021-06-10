@@ -4,7 +4,7 @@
 	set name = "Energy Blade (500E)"
 	set desc = "Create a focused beam of energy in your active hand."
 	set category = "Ninja Ability"
-	set popup_menu = 0
+	set popup_menu = FALSE
 
 	var/C = 50
 	if(!ninjacost(C,0)) //Same spawn cost but higher upkeep cost

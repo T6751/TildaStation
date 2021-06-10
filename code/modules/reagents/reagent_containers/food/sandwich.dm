@@ -144,7 +144,7 @@
 	..()
 
 /obj/item/weapon/reagent_containers/food/snacks/csandwich/proc/complete()
-	set waitfor = 0
+	set waitfor = FALSE
 
 	var/list/pos_filler = subtypesof(/obj/item/weapon/reagent_containers/food/snacks) - typesof(/obj/item/weapon/reagent_containers/food/snacks/breadslice)
 	var/list/pos_slices = typesof(/obj/item/weapon/reagent_containers/food/snacks/breadslice)

@@ -1,5 +1,5 @@
 /mob/living/carbon/slime/Life()
-	set invisibility = 0
+	set invisibility = FALSE
 	//set background = 1
 
 	if (notransform)

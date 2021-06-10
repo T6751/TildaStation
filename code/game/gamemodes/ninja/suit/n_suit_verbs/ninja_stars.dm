@@ -7,7 +7,7 @@
 	set name = "Energy Star (800E)"
 	set desc = "Launches an energy star at a random living target."
 	set category = "Ninja Ability"
-	set popup_menu = 0
+	set popup_menu = FALSE
 
 	var/C = 80
 	if(!ninjacost(C,1))

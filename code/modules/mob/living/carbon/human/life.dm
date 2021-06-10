@@ -24,7 +24,7 @@
 
 
 /mob/living/carbon/human/Life(seconds)
-	set invisibility = 0
+	set invisibility = FALSE
 	set background = 1
 
 	if (notransform)

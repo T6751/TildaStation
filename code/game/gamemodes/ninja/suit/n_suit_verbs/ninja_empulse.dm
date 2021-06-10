@@ -6,7 +6,7 @@
 	set name = "EM Burst (2,000E)"
 	set desc = "Disable any nearby technology with a electro-magnetic pulse."
 	set category = "Ninja Ability"
-	set popup_menu = 0
+	set popup_menu = FALSE
 
 	var/C = 200
 	if(!ninjacost(C,0)) // EMP's now cost 1,000Energy about 30%

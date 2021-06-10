@@ -92,7 +92,7 @@
 	H.update_hair()
 
 /proc/trigger_side_effect(mob/living/carbon/human/H)
-	set waitfor = 0
+	set waitfor = FALSE
 	if(!H || !istype(H))
 		return
 	var/tp = pick(typesof(/datum/genetics/side_effect) - /datum/genetics/side_effect)

@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/larva/Life()
-	set invisibility = 0
+	set invisibility = FALSE
 	var/larva_in_embryo = FALSE //the larva in the embryo should not grow
 
 	if (notransform)

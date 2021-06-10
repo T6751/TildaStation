@@ -7,7 +7,7 @@
 	set name = "Adrenaline Boost"
 	set desc = "Inject a secret chemical that will counteract all movement-impairing effect."
 	set category = "Ninja Ability"
-	set popup_menu = 0
+	set popup_menu = FALSE
 
 	if(!ninjacost(,3))//Have to make sure stat is not counted for this ability.
 		var/mob/living/carbon/human/U = affecting

@@ -194,7 +194,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/weapon/gun/energy/sniperrifle/verb/toggle_zoom()
 	set category = "Object"
 	set name = "Use Sniper Scope"
-	set popup_menu = 0
+	set popup_menu = FALSE
 	if(usr.incapacitated() || !(istype(usr,/mob/living/carbon/human)))
 		to_chat(usr, "You are unable to focus down the scope of the rifle.")
 		return

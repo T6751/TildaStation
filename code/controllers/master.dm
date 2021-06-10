@@ -110,7 +110,7 @@ var/CURRENT_TICKLIMIT = TICK_LIMIT_RUNNING
 // Please don't stuff random bullshit here,
 // Make a subsystem, give it the SS_NO_FIRE flag, and do your work in it's Initialize()
 /datum/controller/master/Initialize(delay, init_sss)
-	set waitfor = 0
+	set waitfor = FALSE
 
 	if(delay)
 		sleep(delay)
@@ -170,7 +170,7 @@ var/CURRENT_TICKLIMIT = TICK_LIMIT_RUNNING
 
 // Starts the mc, and sticks around to restart it if the loop ever ends.
 /datum/controller/master/proc/StartProcessing(delay)
-	set waitfor = 0
+	set waitfor = FALSE
 	if(delay)
 		sleep(delay)
 	var/rtn = Loop()

@@ -91,12 +91,12 @@
 	return ..()
 
 /obj/effect/portal/tsci_wormhole/Bumped(mob/M)
-	set waitfor = 0
+	set waitfor = FALSE
 	if(teleport(M, TELE_CHECK_ALL, TRUE, FALSE))
 		handle_special_effects(M)
 
 /obj/effect/portal/tsci_wormhole/Crossed(atom/movable/AM)
-	set waitfor = 0
+	set waitfor = FALSE
 
 	. = .()
 	if(teleport(AM, TELE_CHECK_ALL, TRUE, FALSE))

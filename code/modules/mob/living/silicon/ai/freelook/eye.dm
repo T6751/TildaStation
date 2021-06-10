@@ -49,12 +49,12 @@
 
 // Hide popout menu verbs
 /mob/camera/Eye/examinate(atom/A as mob|obj|turf in view())
-	set popup_menu = 0
+	set popup_menu = FALSE
 	set src = usr.contents
 	return 0
 
 /mob/camera/Eye/pointed()
-	set popup_menu = 0
+	set popup_menu = FALSE
 	set src = usr.contents
 	return 0
 

@@ -4,7 +4,7 @@
 	set name = "Phase Slayer"
 	set desc = "Utilizes the internal VOID-shift device to mutilate creatures in a straight line."
 	set category = "Ninja Ability"
-	set popup_menu = 0
+	set popup_menu = FALSE
 
 	if(!ninjacost())
 		var/mob/living/carbon/human/U = affecting

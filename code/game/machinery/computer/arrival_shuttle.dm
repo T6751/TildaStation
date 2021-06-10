@@ -41,7 +41,7 @@ var/lastMove = 0
 	return TRUE
 
 /obj/machinery/computer/arrival_shuttle/proc/arrival_shuttle_move()
-	set waitfor = 0
+	set waitfor = FALSE
 	if(moving)
 		return
 	if(!arrival_shuttle_ready_move())

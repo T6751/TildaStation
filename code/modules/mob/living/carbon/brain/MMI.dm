@@ -164,7 +164,7 @@
 	set desc = "Toggle broadcasting channel on or off."
 	set category = "MMI"
 	set src = usr.loc//In user location, or in MMI in this case.
-	set popup_menu = 0//Will not appear when right clicking.
+	set popup_menu = FALSE//Will not appear when right clicking.
 
 	if(brainmob.incapacitated())//Only the brainmob will trigger these so no further check is necessary.
 		to_chat(brainmob, "Can't do that while incapacitated or dead.")
@@ -178,7 +178,7 @@
 	set desc = "Toggle listening channel on or off."
 	set category = "MMI"
 	set src = usr.loc
-	set popup_menu = 0
+	set popup_menu = FALSE
 
 	if(brainmob.incapacitated())
 		to_chat(brainmob, "Can't do that while incapacitated or dead.")

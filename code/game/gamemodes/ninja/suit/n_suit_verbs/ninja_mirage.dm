@@ -5,7 +5,7 @@ This is so anime it hurts. But that's the point.*/
 	set name = "Spider Mirage"
 	set desc = "Utilizes the internal VOID-shift device to create decoys and teleport behind a random target."
 	set category = "Ninja Ability"
-	set popup_menu = 0
+	set popup_menu = FALSE
 
 	if(!ninjacost())//Simply checks for stat.
 		var/mob/living/carbon/human/U = affecting

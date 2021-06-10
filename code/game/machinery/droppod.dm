@@ -515,7 +515,7 @@
 	set name = "Drop Pod Interface"
 	set category = "Drop Pod"
 	set src = usr.loc
-	set popup_menu = 0
+	set popup_menu = FALSE
 	if(usr != intruder)
 		return
 	intruder << browse(get_stats_html(), "window=droppod")

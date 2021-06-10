@@ -129,7 +129,7 @@ var/const/SAFETY_COOLDOWN = 100
 
 
 /obj/machinery/recycler/proc/stop(mob/living/L)
-	set waitfor = 0
+	set waitfor = FALSE
 	playsound(src, 'sound/machines/buzz-sigh.ogg', VOL_EFFECTS_MASTER, null, FALSE)
 	safety_mode = 1
 	update_icon()

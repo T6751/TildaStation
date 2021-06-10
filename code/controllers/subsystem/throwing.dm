@@ -110,7 +110,7 @@ SUBSYSTEM_DEF(throwing)
 			return
 
 /datum/thrownthing/proc/finialize(hit = FALSE, atom/movable/AM)
-	set waitfor = 0
+	set waitfor = FALSE
 	SSthrowing.processing -= thrownthing
 	//done throwing, either because it hit something or it finished moving
 	if (!QDELETED(thrownthing) && thrownthing.throwing)

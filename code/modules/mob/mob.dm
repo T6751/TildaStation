@@ -179,7 +179,7 @@
 	return 0
 
 /mob/proc/Life()
-	set waitfor = 0
+	set waitfor = FALSE
 	return
 
 /mob/proc/incapacitated(restrained_type = ARMS)
@@ -1176,7 +1176,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 ///Spin this mob around it's central axis
 /mob/proc/spin(spintime, speed)
-	set waitfor = 0
+	set waitfor = FALSE
 	var/D = dir
 	if((spintime < 1) || (speed < 1) || !spintime|| !speed)
 		return
