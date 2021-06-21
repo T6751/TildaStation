@@ -25,7 +25,8 @@
 		"json2.min.js" = 'code/modules/goonchat/browserassets/js/json2.min.js',
 		"browserOutput.js" = 'code/modules/goonchat/browserassets/js/browserOutput.js',
 		"emojib64.css" = 'code/modules/goonchat/browserassets/css/emojib64.css',
-		"browserOutput.css" = 'code/modules/goonchat/browserassets/css/browserOutput.css'
+		"browserOutput.css" = 'code/modules/goonchat/browserassets/css/browserOutput.css',
+		"RussianNouns.min.js" = 'code/modules/goonchat/browserassets/js/RussianNouns.min.js'
 	)
 
 /datum/asset/simple/fontawesome
