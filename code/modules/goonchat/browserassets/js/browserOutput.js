@@ -156,6 +156,156 @@ function emojify(node) {
 	});
 }
 
+// перевод
+function localize(node) {
+	const rne = new RussianNouns.Engine();
+	const L = RussianNouns.createLemma;
+	const CASE = {
+		"им" : RussianNouns.Case.NOMINATIVE,
+		"ро" : RussianNouns.Case.GENITIVE,
+		"да" : RussianNouns.Case.DATIVE,
+		"ви" : RussianNouns.Case.ACCUSATIVE,
+		"тв" : RussianNouns.Case.INSTRUMENTAL,
+		"пр" : RussianNouns.Case.PREPOSITIONAL,
+		"ме" : RussianNouns.Case.LOCATIVE,
+		"и" : RussianNouns.Case.NOMINATIVE,
+		"р" : RussianNouns.Case.GENITIVE,
+		"д" : RussianNouns.Case.DATIVE,
+		"в" : RussianNouns.Case.ACCUSATIVE,
+		"т" : RussianNouns.Case.INSTRUMENTAL,
+		"п" : RussianNouns.Case.PREPOSITIONAL,
+		"м" : RussianNouns.Case.LOCATIVE
+	}
+	const GENDER = {
+		"жен" : RussianNouns.Gender.FEMININE,
+		"муж" : RussianNouns.Gender.MASCULINE,
+		"ср": RussianNouns.Gender.NEUTER,
+		"общ" : RussianNouns.Gender.COMMON,
+		"neuter" : RussianNouns.Gender.NEUTER,
+		"male" : RussianNouns.Gender.MASCULINE,
+		"female" : RussianNouns.Gender.FEMININE
+	}
+	function findGender(word) {
+		if(["ая", "ия"].indexOf(word.slice(-2)) != -1 || ["а","я"].indexOf(word.slice(-1)) != -1 || ["ень","ать"].indexOf(word.slice(-3)) != -1) {
+			return RussianNouns.Gender.FEMININE
+		}
+		if(["ий"].indexOf(word.slice(-2)) != -1 || ["ь","й"].indexOf(word.slice(-1)) != -1) {
+			return RussianNouns.Gender.MASCULINE
+		}
+		if(["о","е"].indexOf(word.slice(-1)) != -1) {
+			return RussianNouns.Gender.NEUTER
+		}
+	}
+
+    //var list = document.getElementsByTagName("L")
+    var list = [document.getElementById("in")]
+
+	//несколняемые слова, аббревиатуры
+    var undecided = ["блюспейс","днк"]
+    //предлоги
+    const prepositions = ["а-ля","без","безо","благодаря","близ","близко","в",
+    "вблизи","ввиду","вглубь","вдогон","вдоль","взамен","включая",
+    "вкруг","вместо","вне","внизу","внутри","внутрь","во","вовнутрь","возле","вокруг",
+    "вопреки","вослед","впереди","вплоть","впредь","вразрез","вроде","вслед","вследствие",
+    "встречу","выключая","для","для-ради","до","за","замест","заместо","из","из-за","из-под","из-подо","изнутри",
+    "изо","исключая","исходя","к","касаемо","касательно","ко","кончая","кроме","кругом","лицом","меж","между","мимо",
+    "на","наверху","навроде","навстречу","над","надо","назад","назади","назло","накануне","наместо","наперекор",
+    "наперерез","наперехват","наподобие","наподобье","напротив","наряду","насупротив","насчёт","начиная","считая",
+    "невзирая","недалеко","независимо","несмотря","ниже","о","об","обо","обок","обочь","около",
+    "окрест","окроме","окромя","округ","опосля","опричь","от","относительно","ото","перед","передо",
+    "по","по-за","по-над","по-под","поблизости","повдоль","поверх","под","подле","подо","подобно",
+    "позади","позадь","позднее","помимо","поперёд","поперёк","порядка","посверху","посереди","посередине","посерёдке","посередь",
+    "после","посреди","посредине","посредством","пред","предо","преж","прежде","при","применительно","про",
+    "промеж","промежду","против","противно","противу","путём","ради","рядом","с","сверх"]
+
+    var css = document.getElementById("css")
+
+	var words = node.innerText.split(" ")
+	for(var j = 0; j < words.length; j++) {
+		var word = words[j]
+		if(undecided.indexOf(word.toLowerCase()) != -1)
+		{
+			continue
+		}
+		if(prepositions.find(word.toLowerCase()) != -1)
+		{
+			break
+		}
+		if(word.trim() === "")
+		{
+			continue
+		}
+		if(word[0] === "(" || word[0] === "[" || word[0] === "{")
+		{
+			break
+		}
+		const regex = /[^\u0430-\u044f]$/g;
+		if(word.toLowerCase().trim().search(regex) != -1)
+		{
+			break
+		}
+		css_list = css.value.split(" ")
+		var Case = null
+		var Gender = null
+		var is_undefined_gender = false
+		var Plural = false
+		var Indeclinable = false
+		var Surname = false
+		var isnoun = false
+		for(k in css_list)
+		{
+			css_class = css_list[k]
+			if(css_class.trim() === "")
+				continue
+			css_class = css_class.toLowerCase()
+			if(css_class in CASE)
+			{
+				Case = CASE[css_class]
+				continue
+			}
+			if(css_class in GENDER)
+			{
+				Gender = GENDER[css_class]
+				continue
+			}
+			if(css_class == "мн" || css_class == "plural")
+			{
+				Plural = true
+				continue
+			}
+		}
+		// Не указан падеж
+		if(!Case)
+		{
+			return
+		}
+		// Попытаться определить род по окончанию
+		if(!Gender)
+		{
+			is_undefined_gender = true
+			Gender = findGender(word) || RussianNouns.Gender.COMMON
+		}
+		// если не прилагательное, то считать, что существительное
+		if(["ая","яя","ое","ее","ие","ые","ой","ий","ый"].indexOf(word.slice(-2)) == -1)
+		{
+			isnoun = true
+		}
+		// Исправление окончаний прилагательных на ой
+		if(["хой","жой","лой", "мой", "ной"].indexOf(word.slice(-3).toLowerCase()) != -1){
+			Surname = true
+		}
+		var lemma = L({text: word, gender: Gender, pluraleTantum: Plural, indeclinable: Indeclinable, surname: Surname})
+		words[j] = rne.decline(lemma, Case)[0]
+		// связь не согласование
+		if(isnoun)
+		{
+			break
+		}
+	}
+	node.innerHTML = words.join(" ")
+}
+
+
 // Colorizes the highlight spans
 function setHighlightColor(match) {
 	match.style.background = opts.highlightColor;
@@ -263,6 +413,12 @@ function output(message, flag) {
 
 		for(var i = 0; i < to_emojify.length; ++i) {
 			emojify(to_emojify[i]);
+		}
+
+		var to_localize = $(entry).find("L");
+
+		for(var i = 0; i < to_localize.length; ++i) {
+			localize(to_localize[i]);
 		}
 
 		//Actually do the snap

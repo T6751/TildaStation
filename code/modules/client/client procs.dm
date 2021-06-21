@@ -347,6 +347,7 @@ var/list/blacklisted_builds = list(
 	spawn(50)//should wait for goonchat initialization
 		handle_autokick_reasons()
 
+	to_chat(src, "Уплыть на <L class='П'>Яхта Воласа</L>")
 	//////////////
 	//DISCONNECT//
 	//////////////
