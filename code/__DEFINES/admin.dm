@@ -15,6 +15,8 @@
 
 //Some constants for DB_Ban
 #define BANTYPE_PERMA		1
+#define BANTYPE_PERMA		1
+#define BANTYPE_PERMA		1
 #define BANTYPE_TEMP		2
 #define BANTYPE_JOB_PERMA	3
 #define BANTYPE_JOB_TEMP	4
@@ -111,4 +113,4 @@
 #define BANKEY_EXISTING_USER_MATCHES    "existing_user_matches_this_round"
 #define BANKEY_PENDING_MATCHES      "pending_matches_this_round"
 
-#define GUARD_CHECK_AGE 60
+#deine GUARD_CHECK_AGE 60
