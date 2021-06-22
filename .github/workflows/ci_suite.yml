@@ -24,6 +24,11 @@ jobs:
         run:  bash scripts/install-spaceman-dmm.sh dreamchecker
       - name: Run Dreamchecker
         run: ~/dreamchecker
+      - name: Annotate Lints
+        uses: yogstation13/DreamAnnotate@v1
+        if: always()
+        with:
+          outputFile: output-annotations.txt
   Code:
     name: Code and Map Linting
     runs-on: ubuntu-16.04
