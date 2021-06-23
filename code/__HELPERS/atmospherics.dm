@@ -15,7 +15,7 @@
 	for(var/line in result)
 		to_chat(user, "<span class='notice'>[line]</span>")
 
-/proc/atmosanalyzer_scan(atom/target, datum/gas_mixture/mixture, advanced)
+/proc/atmosanalyzer_scan(var/atom/target, var/datum/gas_mixture/mixture, advanced)
 	. = list()
 	. += "<span class='notice'>Results of the analysis of \the [target]:</span>"
 	if(!mixture)
