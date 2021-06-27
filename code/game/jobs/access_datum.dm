@@ -12,7 +12,7 @@
 	desc = "Security Equipment"
 	region = ACCESS_REGION_SECURITY
 
-/datum/access/security
+/datum/access/holding
 	id = ACCESS_BRIG
 	desc = "Holding Cells"
 	region = ACCESS_REGION_SECURITY
