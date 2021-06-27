@@ -328,6 +328,41 @@
 	desc = "Xenoarchaeology"
 	region = ACCESS_REGION_RESEARCH
 
+/datum/access/minisat
+	id = ACCESS_MINISAT
+	desc = "AI Satellite"
+	region = list(ACCESS_REGION_RESEARCH, ACCESS_REGION_ENGINEERING)
+
+/datum/access/recycler
+	id = ACCESS_RECYCLER
+	desc = "Recycler"
+	region = ACCESS_REGION_SUPPLY
+
+/datum/access/detective
+	id = ACCESS_DETECTIVE
+	desc = "Detective"
+	region = ACCESS_REGION_SECURITY
+
+/datum/access/barber
+	id = ACCESS_BARBER
+	desc = "Barber"
+	region = ACCESS_REGION_GENERAL
+
+/datum/access/paramedic
+	id = ACCESS_PARAMEDIC
+	desc = "Paramedic"
+	region = ACCESS_REGION_GENERAL
+
+/datum/access/engineering_lobby
+	id = ACCESS_ENGINEERING_LOBBY
+	desc = "Engineering Department"
+	region = ACCESS_REGION_ENGINEERING
+
+/datum/access/medbay_storage
+	id = ACCESS_MEDBAY_STORAGE
+	desc = "Medbay Storage"
+	region = ACCESS_REGION_MEDBAY
+
 /******************
 * Central Command *
 ******************/
@@ -381,6 +416,10 @@
 ***************/
 /datum/access/syndicate
 	id = ACCESS_SYNDICATE
+	access_type = ACCESS_TYPE_SYNDICATE
+
+/datum/access/syndicate_commander
+	id = ACCESS_SYNDICATE_COMMANDER
 	access_type = ACCESS_TYPE_SYNDICATE
 
 /*******

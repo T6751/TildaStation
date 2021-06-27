@@ -119,7 +119,7 @@
 	return priv_all_access_datums_region
 
 /proc/get_access_ids(access_types = ACCESS_TYPE_ALL)
-	var/list/L = new()
+	var/list/L = list()
 	for(var/datum/access/A in get_all_access_datums())
 		if(A.access_type & access_types)
 			L += A.id
@@ -161,7 +161,8 @@
 		for(var/datum/access/A in get_all_access_datums())
 			if(!priv_region_access["[A.region]"])
 				priv_region_access["[A.region]"] = list()
-			priv_region_access["[A.region]"] += A.id
+			for(var/r in A.region)
+				priv_region_access["[A.region]"] += A.id
 
 	return priv_region_access["[code]"]
 
