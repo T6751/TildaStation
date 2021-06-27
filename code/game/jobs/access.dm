@@ -100,13 +100,23 @@
 		priv_all_access_datums = init_subtypes(/datum/access)
 	return priv_all_access_datums
 
-/proc/get_all_access_datums_assoc()
-	var/static/list/datum/access/priv_all_access_datums_assoc
-	if(!priv_all_access_datums_assoc)
-		priv_all_access_datums_assoc = list()
+/proc/get_all_access_datums_by_id()
+	var/static/list/datum/access/priv_all_access_datums_id
+	if(!priv_all_access_datums_id)
+		priv_all_access_datums_id = list()
 		for(var/datum/access/A in get_all_access_datums())
-			priv_all_access_datums_assoc["[A.id]"] = A
-	return priv_all_access_datums_assoc
+			priv_all_access_datums_id["[A.id]"] = A
+	return priv_all_access_datums_id
+
+/proc/get_all_access_datums_by_region()
+	var/static/list/datum/access/priv_all_access_datums_region
+	if(!priv_all_access_datums_region)
+		priv_all_access_datums_region = list()
+		for(var/datum/access/A in get_all_access_datums())
+			if(!priv_all_access_datums_region[A.region])
+				priv_all_access_datums_region[A.region] = list()
+			priv_all_access_datums_region[A.region] += A
+	return priv_all_access_datums_region
 
 /proc/get_access_ids(access_types = ACCESS_TYPE_ALL)
 	var/list/L = new()
@@ -176,7 +186,7 @@
 
 
 /proc/get_access_desc(id)
-	var/list/AS = get_all_access_datums_assoc()
+	var/list/AS = get_all_access_datums_by_id()
 	var/datum/access/A = AS["[id]"]
 	return A ? A.desc : ""
 
