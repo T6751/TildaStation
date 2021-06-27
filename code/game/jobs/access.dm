@@ -108,7 +108,7 @@
 			priv_all_access_datums_assoc["[A.id]"] = A
 	return priv_all_access_datums_assoc
 
-/proc/get_access_ids(var/access_types = ACCESS_TYPE_ALL)
+/proc/get_access_ids(access_types = ACCESS_TYPE_ALL)
 	var/list/L = new()
 	for(var/datum/access/A in get_all_access_datums())
 		if(A.access_type & access_types)
