@@ -30,7 +30,7 @@
 	var/ailock = 0 			// AI cannot use this
 	var/special_control = 0 //AI (and only AI) can set shot_synth
 
-	req_access = list(access_ai_upload)
+	req_access = list(ACCESS_AI_UPLOAD)
 
 /obj/machinery/turretid/stun
 	enabled = 1

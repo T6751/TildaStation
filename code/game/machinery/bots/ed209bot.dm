@@ -41,7 +41,7 @@
 		check_records = 0	//Don't actively target people set to arrest
 		arrest_type = 1		//Don't even try to cuff
 		req_one_access.Cut()
-		req_access = list(access_maint_tunnels)
+		req_access = list(ACCESS_MAINT_TUNNELS)
 		arrest_type = 1
 		if((lasertag_color == "blue") && (name == "ED-209 Security Robot"))//Picks a name if there isn't already a custome one
 			name = pick("BLUE BALLER","SANIC","BLUE KILLDEATH MURDERBOT")

@@ -25,7 +25,7 @@
 		score["captain"] += H.real_name
 
 /datum/job/captain/get_access()
-	return get_all_accesses()
+	return get_all_station_access()
 
 /datum/job/hop
 	title = "Head of Personnel"
@@ -42,12 +42,12 @@
 	minimal_player_age = 10
 	minimal_player_ingame_minutes = 2400
 	access = list(
-		access_security, access_sec_doors, access_brig, access_forensics_lockers,
-		access_medical, access_engine, access_change_ids, access_ai_upload, access_eva, access_heads,
-		access_all_personal_lockers, access_maint_tunnels, access_bar, access_janitor, access_construction, access_morgue,
-		access_crematorium, access_kitchen, access_cargo, access_cargo_bot, access_mailsorting, access_qm, access_hydroponics, access_lawyer,
-		access_theatre, access_chapel_office, access_library, access_research, access_mining, access_heads_vault, access_mining_station,
-		access_clown, access_mime, access_hop, access_RC_announce, access_keycard_auth, access_gateway, access_recycler, access_detective, access_barber
+		ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_FORENSICS_LOCKERS,
+		ACCESS_MEDICAL, ACCESS_ENGINE, ACCESS_CHANGE_IDS, ACCESS_AI_UPLOAD, ACCESS_EVA, ACCESS_HEADS,
+		ACCESS_ALL_PERSONAL_LOCKERS, ACCESS_MAINT_TUNNELS, ACCESS_BAR, ACCESS_JANITOR, ACCESS_CONSTRUCTION, ACCESS_MORGUE,
+		ACCESS_CREMATORIUM, ACCESS_KITCHEN, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_MAILSORTING, ACCESS_QM, ACCESS_HYDROPONICS, ACCESS_LAWYER,
+		ACCESS_THEATRE, ACCESS_CHAPEL_OFFICE, ACCESS_LIBRARY, ACCESS_RESEARCH, ACCESS_MINING, ACCESS_HEADS_VAULT, ACCESS_MINING_STATION,
+		ACCESS_CLOWN, ACCESS_MIME, ACCESS_HOP, ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_GATEWAY, ACCESS_RECYCLER, ACCESS_DETECTIVE, ACCESS_BARBER
 	)
 	outfit = /datum/outfit/job/hop
 	/*

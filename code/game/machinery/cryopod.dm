@@ -128,7 +128,7 @@ var/global/list/frozen_items = list()
 	icon_state = "cryosleeper_left"
 	density = TRUE
 	anchored = TRUE
-	req_one_access = list(access_heads, access_security)
+	req_one_access = list(ACCESS_HEADS, ACCESS_SECURITY)
 	var/storage = 1	//tc, criopods on centcomm
 
 	var/orient_right = null      // Flips the sprite.

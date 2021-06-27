@@ -12,7 +12,7 @@
 	braintype = "Robot"
 	lawupdate = 0
 	density = FALSE
-	req_access = list(access_engine, access_robotics)
+	req_access = list(ACCESS_ENGINE, ACCESS_ROBOTICS)
 	ventcrawler = 2
 	hud_possible = list(DIAG_STAT_HUD, DIAG_HUD, ANTAG_HUD, HOLY_HUD, DIAG_BATT_HUD)
 	typing_indicator_type = "machine"

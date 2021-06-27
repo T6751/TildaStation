@@ -14,7 +14,7 @@
 /obj/structure/sign/double/barsign/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/card/id))
 		var/obj/item/weapon/card/id/card = I
-		if(access_bar in card.GetAccess())
+		if(ACCESS_BAR in card.GetAccess())
 			var/sign_type = input(user, "What would you like to change the barsign to?") as null|anything in get_valid_states()
 			if(!sign_type)
 				return

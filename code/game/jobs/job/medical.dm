@@ -10,10 +10,10 @@
 	idtype = /obj/item/weapon/card/id/medGold
 	req_admin_notify = 1
 	access = list(
-		access_medical, access_morgue, access_paramedic, access_genetics, access_heads,
-		access_chemistry, access_virology, access_cmo, access_surgery, access_RC_announce,
-		access_keycard_auth, access_sec_doors, access_psychiatrist, access_maint_tunnels,
-		access_medbay_storage
+		ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_PARAMEDIC, ACCESS_GENETICS, ACCESS_HEADS,
+		ACCESS_CHEMISTRY, ACCESS_VIROLOGY, ACCESS_CMO, ACCESS_SURGERY, ACCESS_RC_ANNOUNCE,
+		ACCESS_KEYCARD_AUTH, ACCESS_SEC_DOORS, ACCESS_PSYCHIATRIST, ACCESS_MAINT_TUNNELS,
+		ACCESS_MEDBAY_STORAGE
 	)
 	salary = 250
 	minimal_player_age = 10
@@ -39,7 +39,7 @@
 	supervisors = "the chief medical officer"
 	selection_color = "#ffeef0"
 	idtype = /obj/item/weapon/card/id/med
-	access = list(access_medical, access_morgue, access_surgery, access_maint_tunnels, access_medbay_storage)
+	access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_MAINT_TUNNELS, ACCESS_MEDBAY_STORAGE)
 	salary = 160
 	alt_titles = list(
 		"Surgeon" = /datum/outfit/job/surgeon,
@@ -67,7 +67,7 @@
 	supervisors = "the chief medical officer"
 	selection_color = "#ffeef0"
 	idtype = /obj/item/weapon/card/id/med
-	access = list(access_medical, access_morgue, access_paramedic, access_maint_tunnels, access_external_airlocks, access_sec_doors, access_research, access_mailsorting, access_medbay_storage, access_engineering_lobby)
+	access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_PARAMEDIC, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_SEC_DOORS, ACCESS_RESEARCH, ACCESS_MAILSORTING, ACCESS_MEDBAY_STORAGE, ACCESS_ENGINEERING_LOBBY)
 	salary = 120
 	minimal_player_ingame_minutes = 1500 //they have too much access, so you have to play more to unlock it
 	outfit = /datum/outfit/job/paramedic
@@ -96,7 +96,7 @@
 	supervisors = "the chief medical officer"
 	selection_color = "#ffeef0"
 	idtype = /obj/item/weapon/card/id/med
-	access = list(access_medical, access_chemistry, access_medbay_storage)
+	access = list(ACCESS_MEDICAL, ACCESS_CHEMISTRY, ACCESS_MEDBAY_STORAGE)
 	salary = 150
 	alt_titles = list("Pharmacist")
 	minimal_player_ingame_minutes = 960
@@ -113,7 +113,7 @@
 	supervisors = "the chief medical officer and research director"
 	selection_color = "#ffeef0"
 	idtype = /obj/item/weapon/card/id/med
-	access = list(access_medical, access_morgue, access_genetics, access_research, access_medbay_storage)
+	access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_GENETICS, ACCESS_RESEARCH, ACCESS_MEDBAY_STORAGE)
 	salary = 180
 	minimal_player_ingame_minutes = 960
 	outfit = /datum/outfit/job/geneticist
@@ -129,7 +129,7 @@
 	supervisors = "the chief medical officer"
 	selection_color = "#ffeef0"
 	idtype = /obj/item/weapon/card/id/med
-	access = list(access_medical, access_virology, access_medbay_storage)
+	access = list(ACCESS_MEDICAL, ACCESS_VIROLOGY, ACCESS_MEDBAY_STORAGE)
 	alt_titles = list("Pathologist","Microbiologist")
 	minimal_player_ingame_minutes = 960
 	salary = 180
@@ -154,7 +154,7 @@
 	supervisors = "the chief medical officer"
 	selection_color = "#ffeef0"
 	idtype = /obj/item/weapon/card/id/med
-	access = list(access_medical, access_psychiatrist, access_medbay_storage)
+	access = list(ACCESS_MEDICAL, ACCESS_PSYCHIATRIST, ACCESS_MEDBAY_STORAGE)
 	alt_titles = list("Psychologist" = /datum/outfit/job/psychologist)
 	salary = 140
 	minimal_player_ingame_minutes = 960
@@ -171,7 +171,7 @@
 	supervisors = "the chief medical officer"
 	selection_color = "#ffeef0"
 	idtype = /obj/item/weapon/card/id/med
-	access = list(access_medical)
+	access = list(ACCESS_MEDICAL)
 	salary = 50
 	outfit = /datum/outfit/job/intern
 

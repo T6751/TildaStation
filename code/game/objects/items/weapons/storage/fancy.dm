@@ -392,7 +392,7 @@
 	max_w_class = ITEM_SIZE_NORMAL
 	can_hold = list(/obj/item/weapon/reagent_containers/glass/beaker/vial)
 	storage_slots = 6
-	req_access = list(access_virology)
+	req_access = list(ACCESS_VIROLOGY)
 
 /obj/item/weapon/storage/lockbox/vials/atom_init()
 	. = ..()

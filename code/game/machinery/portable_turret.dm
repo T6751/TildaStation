@@ -87,7 +87,7 @@
 
 /obj/machinery/porta_turret/atom_init()
 	..()
-	req_one_access = list(access_security, access_heads)
+	req_one_access = list(ACCESS_SECURITY, ACCESS_HEADS)
 
 	//Sets up a spark system
 	spark_system = new /datum/effect/effect/system/spark_spread
@@ -102,7 +102,7 @@
 /obj/machinery/porta_turret/crescent/atom_init()
 	. = ..()
 	req_one_access.Cut()
-	req_access = list(access_cent_specops)
+	req_access = list(ACCESS_CENT_SPECOPS)
 
 /obj/machinery/porta_turret/Destroy()
 	qdel(spark_system)
@@ -131,14 +131,14 @@
 			eprojectile = /obj/item/projectile/beam/lasertag/omni //This bolt will stun ERRYONE with a vest
 			reqpower = 100
 			req_one_access.Cut()
-			req_access = list(access_maint_tunnels)
+			req_access = list(ACCESS_MAINT_TUNNELS)
 			shot_delay = 30
 
 		if(/obj/item/weapon/gun/energy/laser/lasertag/redtag)
 			eprojectile = /obj/item/projectile/beam/lasertag/omni
 			reqpower = 100
 			req_one_access.Cut()
-			req_access = list(access_maint_tunnels)
+			req_access = list(ACCESS_MAINT_TUNNELS)
 			shot_delay = 30
 
 		if(/obj/item/weapon/gun/energy/laser/practice)

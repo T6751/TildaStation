@@ -3,7 +3,7 @@
 	desc = "Terminal for programming NanoTrasen employee ID cards to access parts of the station."
 	icon_state = "id"
 	light_color = "#0099ff"
-	req_access = list(access_change_ids)
+	req_access = list(ACCESS_CHANGE_IDS)
 	circuit = /obj/item/weapon/circuitboard/card
 	allowed_checks = ALLOWED_CHECK_NONE
 	var/obj/item/weapon/card/id/scan = null		//card that gives access to this console
@@ -67,7 +67,7 @@
 	if(!istype(id_card))
 		return ..()
 
-	if(!scan && (access_change_ids in id_card.access))
+	if(!scan && (ACCESS_CHANGE_IDS in id_card.access))
 		user.drop_from_inventory(id_card, src)
 		scan = id_card
 	else if(!modify)
@@ -112,7 +112,7 @@
 		var/list/all_centcom_access = list()
 		for(var/access in get_all_centcom_access())
 			all_centcom_access.Add(list(list(
-				"desc" = replacetext(get_centcom_access_desc(access), " ", "&nbsp"),
+				"desc" = replacetext(get_access_desc(access), " ", "&nbsp"),
 				"ref" = access,
 				"allowed" = (access in modify.access) ? 1 : 0)))
 
@@ -200,7 +200,7 @@
 				if(is_authenticated())
 					var/access_type = text2num(href_list["access_target"])
 					var/access_allowed = text2num(href_list["allowed"])
-					if(access_type in (is_centcom() ? get_all_centcom_access() : get_all_accesses()))
+					if(access_type in (is_centcom() ? get_all_centcom_access() : get_all_station_access()))
 						modify.access -= access_type
 						if(!access_allowed)
 							modify.access += access_type
@@ -309,4 +309,4 @@
 /obj/machinery/computer/card/centcom
 	name = "CentCom Identification Computer"
 	circuit = /obj/item/weapon/circuitboard/card/centcom
-	req_access = list(access_cent_captain)
+	req_access = list(ACCESS_CENT_CAPTAIN)

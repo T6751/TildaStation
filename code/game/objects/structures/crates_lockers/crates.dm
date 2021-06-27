@@ -228,7 +228,7 @@
 			open()
 		else
 			src.req_access = list()
-			src.req_access += pick(get_all_accesses())
+			src.req_access += pick(get_all_station_access())
 	..()
 
 /obj/structure/closet/crate/plastic
@@ -412,7 +412,7 @@
 	icon_state = "miningsecurecrate"
 	icon_opened = "miningsecurecrateopen"
 	icon_closed = "miningsecurecrate"
-	req_access = list(access_mining)
+	req_access = list(ACCESS_MINING)
 
 /obj/structure/closet/crate/secure/woodseccrate
 	desc = "A secure wooden crate."

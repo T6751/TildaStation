@@ -121,7 +121,7 @@
 	density = TRUE
 	opacity = FALSE
 	anchored = FALSE
-	req_access = list(access_engine)
+	req_access = list(ACCESS_ENGINE)
 	var/const/max_health = 100
 	var/health = max_health
 	var/active = FALSE
@@ -296,7 +296,7 @@
 	icon_state = "Shield_Gen"
 	anchored = FALSE
 	density = TRUE
-	req_access = list(access_research)
+	req_access = list(ACCESS_RESEARCH)
 	flags = CONDUCT
 	use_power = NO_POWER_USE
 	var/active = FALSE

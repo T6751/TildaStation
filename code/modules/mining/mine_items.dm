@@ -16,7 +16,7 @@
 	icon_opened = "miningsecopen"
 	icon_broken = "miningsecbroken"
 	icon_off = "miningsecoff"
-	req_access = list(access_mining)
+	req_access = list(ACCESS_MINING)
 
 /obj/structure/closet/secure_closet/miner/PopulateContents()
 	if(prob(50))
@@ -113,7 +113,7 @@ var/mining_shuttle_location = 0 // 0 = station 13, 1 = mining station
 	name = "mining shuttle console"
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "shuttle"
-	req_access = list(access_mining)
+	req_access = list(ACCESS_MINING)
 	circuit = /obj/item/weapon/circuitboard/mining_shuttle
 	var/location = 0 //0 = station, 1 = mining base
 

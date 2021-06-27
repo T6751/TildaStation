@@ -8,7 +8,7 @@
 
 	var/searching = 0
 	brainmob = null
-	req_access = list(access_robotics)
+	req_access = list(ACCESS_ROBOTICS)
 	locked = 0
 	mecha = null//This does not appear to be used outside of reference in mecha.dm.
 

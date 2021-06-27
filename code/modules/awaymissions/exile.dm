@@ -35,7 +35,7 @@
 
 /obj/structure/closet/secure_closet/exile
 	name = "Exile Implants"
-	req_access = list(access_hos)
+	req_access = list(ACCESS_HOS)
 
 /obj/structure/closet/secure_closet/exile/PopulateContents()
 	new /obj/item/weapon/implanter/exile(src)

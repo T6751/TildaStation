@@ -9,7 +9,7 @@
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
 	idtype = /obj/item/weapon/card/id/civ
-	access = list(access_morgue, access_chapel_office, access_crematorium)
+	access = list(ACCESS_MORGUE, ACCESS_CHAPEL_OFFICE, ACCESS_CREMATORIUM)
 	salary = 40
 	alt_titles = list("Counselor")
 	minimal_player_ingame_minutes = 480

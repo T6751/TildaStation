@@ -10,10 +10,10 @@
 	idtype = /obj/item/weapon/card/id/sciGold
 	req_admin_notify = 1
 	access = list(
-		access_rd, access_heads, access_tox, access_genetics, access_morgue,
-		access_tox_storage, access_teleporter, access_sec_doors, access_minisat,
-		access_research, access_robotics, access_xenobiology, access_ai_upload,
-		access_RC_announce, access_keycard_auth, access_tcomsat, access_gateway, access_xenoarch, access_maint_tunnels
+		ACCESS_RD, ACCESS_HEADS, ACCESS_TOX, ACCESS_GENETICS, ACCESS_MORGUE,
+		ACCESS_TOX_STORAGE, ACCESS_TELEPORTER, ACCESS_SEC_DOORS, ACCESS_MINISAT,
+		ACCESS_RESEARCH, ACCESS_ROBOTICS, ACCESS_XENOBIOLOGY, ACCESS_AI_UPLOAD,
+		ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_TCOMSAT, ACCESS_GATEWAY, ACCESS_XENOARCH, ACCESS_MAINT_TUNNELS
 	)
 	salary = 250
 	minimal_player_age = 7
@@ -39,7 +39,7 @@
 	supervisors = "the research director"
 	selection_color = "#ffeeff"
 	idtype = /obj/item/weapon/card/id/sci
-	access = list(access_tox, access_tox_storage, access_research, access_xenoarch)
+	access = list(ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_XENOARCH)
 	alt_titles = list("Phoron Researcher")
 	salary = 180
 	minimal_player_ingame_minutes = 1560
@@ -56,7 +56,7 @@
 	supervisors = "the research director"
 	selection_color = "#ffeeff"
 	idtype = /obj/item/weapon/card/id/sci
-	access = list(access_research, access_xenoarch)
+	access = list(ACCESS_RESEARCH, ACCESS_XENOARCH)
 	salary = 190
 	minimal_player_ingame_minutes = 1400
 	outfit = /datum/outfit/job/xenoarchaeologist
@@ -80,7 +80,7 @@
 	supervisors = "the research director"
 	selection_color = "#ffeeff"
 	idtype = /obj/item/weapon/card/id/sci
-	access = list(access_research, access_xenobiology)
+	access = list(ACCESS_RESEARCH, ACCESS_XENOBIOLOGY)
 	salary = 190
 	minimal_player_ingame_minutes = 1560
 	outfit = /datum/outfit/job/xenobiologist
@@ -96,7 +96,7 @@
 	supervisors = "research director"
 	selection_color = "#ffeeff"
 	idtype = /obj/item/weapon/card/id/sci
-	access = list(access_robotics, access_morgue, access_research) //As a job that handles so many corpses, it makes sense for them to have morgue access.
+	access = list(ACCESS_ROBOTICS, ACCESS_MORGUE, ACCESS_RESEARCH) //As a job that handles so many corpses, it makes sense for them to have morgue access.
 	salary = 180
 	alt_titles = list("Biomechanical Engineer","Mechatronic Engineer")
 	minimal_player_ingame_minutes = 1560
@@ -113,7 +113,7 @@
 	supervisors = "research director"
 	selection_color = "#ffeeff"
 	idtype = /obj/item/weapon/card/id/sci
-	access = list(access_research)
+	access = list(ACCESS_RESEARCH)
 	salary = 50
 	outfit = /datum/outfit/job/research_assistant
 

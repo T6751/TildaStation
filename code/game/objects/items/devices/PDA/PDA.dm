@@ -455,15 +455,15 @@
 	if(cartridge)
 		var/cartdata[0]
 		cartdata["access"] = list(\
-					"access_security" = cartridge.access_security,\
-					"access_engine" = cartridge.access_engine,\
-					"access_atmos" = cartridge.access_atmos,\
-					"access_medical" = cartridge.access_medical,\
-					"access_clown" = cartridge.access_clown,\
-					"access_mime" = cartridge.access_mime,\
-					"access_janitor" = cartridge.access_janitor,\
+					"ACCESS_SECURITY" = cartridge.access_security,\
+					"ACCESS_ENGINE" = cartridge.access_engine,\
+					"ACCESS_ATMOS" = cartridge.access_atmos,\
+					"ACCESS_MEDICAL" = cartridge.access_medical,\
+					"ACCESS_CLOWN" = cartridge.access_clown,\
+					"ACCESS_MIME" = cartridge.access_mime,\
+					"ACCESS_JANITOR" = cartridge.access_janitor,\
 					"access_quartermaster" = cartridge.access_quartermaster,\
-					"access_hydroponics" = cartridge.access_hydroponics,\
+					"ACCESS_HYDROPONICS" = cartridge.access_hydroponics,\
 					"access_reagent_scanner" = cartridge.access_reagent_scanner,\
 					"access_remote_door" = cartridge.access_remote_door,\
 					"access_status_display" = cartridge.access_status_display,\

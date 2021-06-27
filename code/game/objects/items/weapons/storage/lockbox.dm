@@ -6,7 +6,7 @@
 	w_class = ITEM_SIZE_LARGE
 	max_w_class = ITEM_SIZE_NORMAL
 	max_storage_space = 10 //The sum of the w_classes of all the items in this storage item.
-	req_access = list(access_armory)
+	req_access = list(ACCESS_ARMORY)
 	var/locked = TRUE
 	var/broken = FALSE
 	var/icon_locked = "lockbox+l"
@@ -70,7 +70,7 @@
 
 /obj/item/weapon/storage/lockbox/mind_shields
 	name = "lockbox of Mind Shields implants"
-	req_access = list(access_brig)
+	req_access = list(ACCESS_BRIG)
 
 /obj/item/weapon/storage/lockbox/mind_shields/atom_init()
 	. = ..()
@@ -80,7 +80,7 @@
 
 /obj/item/weapon/storage/lockbox/loyalty
 	name = "lockbox of Loyalty implants"
-	req_access = list(access_brig)
+	req_access = list(ACCESS_BRIG)
 
 /obj/item/weapon/storage/lockbox/loyalty/atom_init()
 	. = ..()
@@ -92,7 +92,7 @@
 /obj/item/weapon/storage/lockbox/clusterbang
 	name = "lockbox of clusterbangs"
 	desc = "You have a bad feeling about opening this."
-	req_access = list(access_security)
+	req_access = list(ACCESS_SECURITY)
 
 /obj/item/weapon/storage/lockbox/clusterbang/atom_init()
 	. = ..()
@@ -101,7 +101,7 @@
 /obj/item/weapon/storage/lockbox/anti_singulo
 	name = "singularity buster kit"
 	desc = "Lockbox containing experimental rocket launcher to deal with little problems."
-	req_access = list(access_engine_equip)
+	req_access = list(ACCESS_ENGINE_EQUIP)
 
 /obj/item/weapon/storage/lockbox/anti_singulo/atom_init()
 	. = ..()

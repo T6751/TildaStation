@@ -34,7 +34,7 @@
 	idle_power_usage = 80
 	active_power_usage = 1000 // For heating/cooling rooms. 1000 joules equates to about 1 degree every 2 seconds for a single tile of air.
 	power_channel = STATIC_ENVIRON
-	req_one_access = list(access_atmospherics, access_engine_equip)
+	req_one_access = list(ACCESS_ATMOSPHERICS, ACCESS_ENGINE_EQUIP)
 	frequency = 1439
 	allowed_checks = ALLOWED_CHECK_NONE
 
@@ -75,7 +75,7 @@
 
 /obj/machinery/alarm/server/atom_init()
 	. = ..()
-	req_access = list(access_rd, access_atmospherics, access_engine_equip)
+	req_access = list(ACCESS_RD, ACCESS_ATMOSPHERICS, ACCESS_ENGINE_EQUIP)
 	TLV["oxygen"] =			list(-1.0, -1.0,-1.0,-1.0) // Partial pressure, kpa
 	TLV["carbon dioxide"] = list(-1.0, -1.0,   5,  10) // Partial pressure, kpa
 	TLV["phoron"] =			list(-1.0, -1.0, 0.2, 0.5) // Partial pressure, kpa

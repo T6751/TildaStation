@@ -5,7 +5,7 @@
 	state_broken_preset = "crewb"
 	state_nopower_preset = "crew0"
 	light_color = "#315ab4"
-	req_one_access = list(access_medical, access_forensics_lockers)
+	req_one_access = list(ACCESS_MEDICAL, ACCESS_FORENSICS_LOCKERS)
 	circuit = /obj/item/weapon/circuitboard/med_data
 	allowed_checks = ALLOWED_CHECK_NONE
 	var/obj/item/weapon/card/id/scan = null

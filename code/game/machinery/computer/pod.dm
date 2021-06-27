@@ -132,7 +132,7 @@
 	icon_state = "computer_regular"
 	desc = "The Syndicate operate on a tight budget. Operates external airlocks."
 	title = "External Airlock Controls"
-	req_access = list(access_syndicate)
+	req_access = list(ACCESS_SYNDICATE)
 
 /obj/machinery/computer/pod/old/swf
 	name = "Magix System IV"

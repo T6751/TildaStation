@@ -6,7 +6,7 @@
 	faction = "syndicate"
 //	designation = "Syndicate"
 	braintype = "Robot"
-	req_access = list(access_syndicate)
+	req_access = list(ACCESS_SYNDICATE)
 
 	typing_indicator_type = "syndibot"
 

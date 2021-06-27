@@ -6,7 +6,7 @@
 	state_nopower_preset = "crew0"
 	light_color = "#315ab4"
 	circuit = /obj/item/weapon/circuitboard/cloning
-	req_access = list(access_heads) //Only used for record deletion right now.
+	req_access = list(ACCESS_HEADS) //Only used for record deletion right now.
 	allowed_checks = ALLOWED_CHECK_NONE
 	var/obj/machinery/dna_scannernew/scanner = null //Linked scanner. For scanning.
 	var/obj/machinery/clonepod/pod1 = null //Linked cloning pod.

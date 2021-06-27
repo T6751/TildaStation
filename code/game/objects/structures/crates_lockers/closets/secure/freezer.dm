@@ -14,7 +14,7 @@
 
 /obj/structure/closet/secure_closet/freezer/kitchen
 	name = "Kitchen Cabinet"
-	req_access = list(access_kitchen)
+	req_access = list(ACCESS_KITCHEN)
 
 /obj/structure/closet/secure_closet/freezer/kitchen/PopulateContents()
 	for (var/i in 1 to 6)
@@ -64,7 +64,7 @@
 	icon_opened = "fridgeopen"
 	icon_broken = "fridgebroken"
 	icon_off = "fridgeoff"
-	req_access = list(access_heads_vault)
+	req_access = list(ACCESS_HEADS_VAULT)
 
 /obj/structure/closet/secure_closet/freezer/money/PopulateContents()
 	for (var/i in 1 to 3)

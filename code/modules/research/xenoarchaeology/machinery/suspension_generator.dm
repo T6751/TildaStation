@@ -73,7 +73,7 @@
 					icon_state = "suspension_cell"
 	else if(istype(W, /obj/item/weapon/card/id))
 		var/obj/item/weapon/card/id/sci = W
-		if(access_xenoarch in sci.access)
+		if(ACCESS_XENOARCH in sci.access)
 			src.locked = !src.locked
 			to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
 			updateDialog()

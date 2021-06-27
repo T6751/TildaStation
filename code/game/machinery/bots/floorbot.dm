@@ -53,7 +53,7 @@
 	var/eattiles = FALSE
 	var/maketiles = FALSE
 	var/turf/target
-	req_access = list(access_construction)
+	req_access = list(ACCESS_CONSTRUCTION)
 	var/path[] = new()
 	var/targetdirection
 	var/state = FLOORBOT_IDLE

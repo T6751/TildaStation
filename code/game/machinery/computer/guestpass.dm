@@ -91,7 +91,7 @@
 	data["giv_name"] = giv_name
 	data["reason"] = reason
 	data["duration"] = duration
-	if(scan && !(access_change_ids in scan.access))
+	if(scan && !(ACCESS_CHANGE_IDS in scan.access))
 		data["grantableList"] = scan ? scan.access : list()
 	data["canprint"] = FALSE
 	if(!scan)
@@ -189,7 +189,7 @@
 			var/A = text2num(params["access"])
 			if(A in accesses)
 				accesses.Remove(A)
-			else if(access_change_ids in scan.access)
+			else if(ACCESS_CHANGE_IDS in scan.access)
 				accesses += A
 			else if(A in get_changeable_accesses())
 				accesses += A
@@ -197,7 +197,7 @@
 			var/region = text2num(params["region"])
 			if(isnull(region))
 				return
-			if(access_change_ids in scan.access)
+			if(ACCESS_CHANGE_IDS in scan.access)
 				accesses |= get_region_accesses(region)
 			else
 				var/list/new_accesses = get_region_accesses(region)
@@ -212,10 +212,10 @@
 		if("clear_all")
 			accesses = list()
 		if("grant_all")
-			if(access_change_ids in scan.access)
-				accesses = get_all_accesses()
+			if(ACCESS_CHANGE_IDS in scan.access)
+				accesses = get_all_station_access()
 			else
-				var/list/new_accesses = get_all_accesses()
+				var/list/new_accesses = get_all_station_access()
 				for(var/A in new_accesses)
 					if(A in scan.access)
 						accesses += A

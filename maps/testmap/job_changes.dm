@@ -6,7 +6,7 @@
 	MAP_JOB_CHECK
 
 	title = "Clown Police" // Might break jobbans or something so be careful
-	access += list(access_clown, access_theatre)
+	access += list(ACCESS_CLOWN, ACCESS_THEATRE)
 
 /datum/job/officer/equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	MAP_JOB_CHECK_BASE

@@ -80,7 +80,7 @@ var/const/FINGERPRINT_COMPLETE = 6	//This is the output of the stringpercent_asc
 	var/scan_name = ""
 	var/scan_process = 0
 
-	req_access = list(access_forensics_lockers)
+	req_access = list(ACCESS_FORENSICS_LOCKERS)
 
 
 /obj/machinery/computer/forensic_scanning/atom_init()

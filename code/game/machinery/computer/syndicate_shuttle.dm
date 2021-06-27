@@ -9,7 +9,7 @@
 	state_broken_preset = "tcbossb"
 	state_nopower_preset = "tcboss0"
 	light_color = "#a91515"
-	req_access = list(access_syndicate)
+	req_access = list(ACCESS_SYNDICATE)
 	var/area/curr_location
 	var/moving = 0
 	var/lastMove = 0

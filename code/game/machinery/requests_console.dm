@@ -348,7 +348,7 @@ var/list/departments_genitive = list()
 			updateUsrDialog()
 		if(screen == 10)
 			var/obj/item/weapon/card/id/ID = O
-			if (access_RC_announce in ID.GetAccess())
+			if (ACCESS_RC_ANNOUNCE in ID.GetAccess())
 				announceAuth = TRUE
 			else
 				announceAuth = FALSE

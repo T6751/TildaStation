@@ -42,7 +42,7 @@
 /obj/item/weapon/circuitboard/camera_advanced
 	name = "circuit board (Advanced Camera Console)"
 	build_path = /obj/machinery/computer/camera_advanced
-	req_access = list(access_security)
+	req_access = list(ACCESS_SECURITY)
 /obj/item/weapon/circuitboard/camera_advanced/xenobio
 	name = "circuit board (Slime management console)"
 	build_path = /obj/machinery/computer/camera_advanced/xenobio
@@ -51,7 +51,7 @@
 	name = "Circuit board (Security)"
 	build_path = /obj/machinery/computer/security
 	var/network = list("SS13")
-	req_access = list(access_security)
+	req_access = list(ACCESS_SECURITY)
 	var/locked = 1
 	var/emagged = 0
 /obj/item/weapon/circuitboard/aicore
@@ -191,7 +191,7 @@
 /obj/item/weapon/circuitboard/rdconsole
 	name = "Circuit Board (RD Console)"
 	build_path = /obj/machinery/computer/rdconsole/core
-	req_access = list(access_heads)
+	req_access = list(ACCESS_HEADS)
 /obj/item/weapon/circuitboard/mecha_control
 	name = "Circuit Board (Exosuit Control Console)"
 	build_path = /obj/machinery/computer/mecha

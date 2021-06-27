@@ -117,7 +117,7 @@
 					return
 				else if(istype(W, /obj/item/weapon/card/id) && !(stat & NOPOWER) && !emagged)
 					var/obj/item/weapon/card/id/card = W
-					if(access_engine in card.access)
+					if(ACCESS_ENGINE in card.access)
 						panel_locked = !panel_locked
 						to_chat(user, "<span class='notice'>You [panel_locked ? "lock" : "unlock"] the pannel</span>")
 						return
@@ -135,7 +135,7 @@
 					return
 				else if(istype(W, /obj/item/weapon/card/id) && !(stat & NOPOWER) && !emagged)
 					var/obj/item/weapon/card/id/card = W
-					if(access_engine in card.access)
+					if(ACCESS_ENGINE in card.access)
 						controls_locked = !controls_locked
 						to_chat(user, "<span class='notice'>You [controls_locked ? "lock" : "unlock"] controls</span>")
 						return
@@ -205,7 +205,7 @@
 			setup_menu +="<li><b><a class='green' href='?src=\ref[src];none=1'>None</a></b></li>"
 		else
 			setup_menu +="<li><a href='?src=\ref[src];none=1'>None</a></li>"
-		var/list/accesses = get_all_accesses()
+		var/list/accesses = get_all_station_access()
 		for (var/acc in accesses)
 			var/acc_desc = get_access_desc(acc)
 			if(acc_desc)

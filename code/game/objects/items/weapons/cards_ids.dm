@@ -286,7 +286,7 @@
 
 /obj/item/weapon/card/id/syndicate
 	name = "agent card"
-	access = list(access_maint_tunnels, access_syndicate, access_external_airlocks)
+	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE, ACCESS_EXTERNAL_AIRLOCKS)
 	origin_tech = "syndicate=3"
 	var/registered_user=null
 	var/obj/item/weapon/card/id/scard = null
@@ -381,14 +381,14 @@
 	desc = "An ID straight from the Syndicate."
 	registered_name = "Syndicate"
 	assignment = "Syndicate Overlord"
-	access = list(access_syndicate, access_external_airlocks)
+	access = list(ACCESS_SYNDICATE, ACCESS_EXTERNAL_AIRLOCKS)
 	customizable_view = TRAITOR_VIEW
 
 /obj/item/weapon/card/id/syndicate/commander
 	name = "syndicate commander ID card"
 	assignment = "Syndicate Commander"
 	icon_state = "syndicate-command"
-	access = list(access_maint_tunnels, access_syndicate, access_syndicate_commander, access_external_airlocks)
+	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE, ACCESS_SYNDICATE_COMMANDER, ACCESS_EXTERNAL_AIRLOCKS)
 
 
 /obj/item/weapon/card/id/syndicate/nuker
@@ -418,7 +418,7 @@
 
 /obj/item/weapon/card/id/centcom/atom_init()
 	. = ..()
-	access = get_all_accesses() + get_all_centcom_access()
+	access = get_all_station_access() + get_all_centcom_access()
 
 /obj/item/weapon/card/id/velocity
 	name = "Cargo Industries. ID"

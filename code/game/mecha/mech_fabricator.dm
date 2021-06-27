@@ -8,7 +8,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 20
 	active_power_usage = 5000
-	req_access = list(access_robotics)
+	req_access = list(ACCESS_ROBOTICS)
 	allowed_checks = ALLOWED_CHECK_TOPIC
 	var/time_coeff = 1
 	var/time_coeff_tech = 1

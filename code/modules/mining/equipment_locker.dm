@@ -10,7 +10,7 @@
 	anchored = TRUE
 	input_dir = NORTH
 	output_dir = SOUTH
-	req_one_access = list(access_mining_station, access_chemistry, access_bar, access_research, access_ce, access_virology)
+	req_one_access = list(ACCESS_MINING_STATION, ACCESS_CHEMISTRY, ACCESS_BAR, ACCESS_RESEARCH, ACCESS_CE, ACCESS_VIROLOGY)
 	var/obj/machinery/mineral/input = null
 	var/obj/machinery/mineral/output = null
 	var/stk_types = list()
@@ -169,7 +169,7 @@
 				inserted_id.verb_pickup()
 				inserted_id = null
 			if(href_list["choice"] == "claim")
-				if(access_mining_station in inserted_id.access)
+				if(ACCESS_MINING_STATION in inserted_id.access)
 					inserted_id.mining_points += points
 					points = 0
 				else

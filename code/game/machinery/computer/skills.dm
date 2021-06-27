@@ -10,7 +10,7 @@
 	state_broken_preset = "laptopb"
 	state_nopower_preset = "laptop0"
 	light_color = "#00b000"
-	req_one_access = list(access_heads)
+	req_one_access = list(ACCESS_HEADS)
 	circuit = /obj/item/weapon/circuitboard/skills
 	allowed_checks = ALLOWED_CHECK_NONE
 

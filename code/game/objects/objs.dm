@@ -1,5 +1,4 @@
 /obj
-	//var/datum/module/mod		//not used
 	var/m_amt = 0	// metal
 	var/g_amt = 0	// glass
 	var/origin_tech = null	//Used by R&D to determine what research bonuses it grants.
@@ -18,6 +17,11 @@
 	var/icon_custom = null //Default Bay12 sprite or not
 
 	var/being_shocked = 0
+
+	var/explosion_resistance
+
+	var/list/req_access = list()
+	var/list/req_one_access = list()
 
 /obj/item/proc/is_used_on(obj/O, mob/user)
 

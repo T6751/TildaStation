@@ -176,7 +176,7 @@
 	icon_state = "talking_staff"
 	item_state = "talking_staff"
 	w_class = ITEM_SIZE_NORMAL
-	req_access = list(access_chapel_office)
+	req_access = list(ACCESS_CHAPEL_OFFICE)
 
 	var/mob/living/simple_animal/shade/god/brainmob = null
 	var/searching = FALSE

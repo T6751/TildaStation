@@ -18,7 +18,7 @@
 	var/datum/effect/effect/system/smoke_spread/smoke_system = new
 	var/datum/action/innate/mecha/mech_smoke/smoke_action = new
 	var/datum/action/innate/mecha/mech_zoom/zoom_action = new
-	operation_req_access = list(access_cent_specops)
+	operation_req_access = list(ACCESS_CENT_SPECOPS)
 	wreckage = /obj/effect/decal/mecha_wreckage/marauder
 	add_req_access = 0
 	internal_damage_threshold = 25
@@ -51,7 +51,7 @@
 	name = "Seraph"
 	icon_state = "seraph"
 	initial_icon = "seraph"
-	operation_req_access = list(access_cent_creed)
+	operation_req_access = list(ACCESS_CENT_CREED)
 	step_in = 3
 	health = 550
 	wreckage = /obj/effect/decal/mecha_wreckage/seraph
@@ -64,7 +64,7 @@
 	name = "Mauler"
 	icon_state = "mauler"
 	initial_icon = "mauler"
-	operation_req_access = list(access_syndicate)
+	operation_req_access = list(ACCESS_SYNDICATE)
 	wreckage = /obj/effect/decal/mecha_wreckage/mauler
 
 /obj/mecha/combat/marauder/mauler/atom_init()

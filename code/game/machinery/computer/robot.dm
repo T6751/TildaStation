@@ -6,7 +6,7 @@
 	state_broken_preset = "techb"
 	state_nopower_preset = "tech0"
 	light_color = "#a97faa"
-	req_access = list(access_robotics)
+	req_access = list(ACCESS_ROBOTICS)
 	circuit = /obj/item/weapon/circuitboard/robotics
 
 	var/id = 0.0

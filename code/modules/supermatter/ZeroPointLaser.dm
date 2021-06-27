@@ -7,7 +7,7 @@
 	icon_state = "laser"
 	anchored = FALSE
 	density = TRUE
-	req_access = list(access_research)
+	req_access = list(ACCESS_RESEARCH)
 	frequency = 1
 
 	use_power = 1

@@ -40,7 +40,7 @@
 	icon = 'icons/obj/power.dmi'
 	icon_state = "crema_switch"
 	anchored = TRUE
-	req_access = list(access_crematorium)
+	req_access = list(ACCESS_CREMATORIUM)
 	var/on = FALSE
 	var/area/area = null
 	var/otherarea = null

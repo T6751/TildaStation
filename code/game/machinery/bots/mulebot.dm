@@ -23,7 +23,7 @@
 	buckle_lying = 0
 
 	suffix = ""
-	req_access = list(access_cargo) // added robotics access so assembly line drop-off works properly -veyveyr //I don't think so, Tim. You need to add it to the MULE's hidden robot ID card. -NEO
+	req_access = list(ACCESS_CARGO) // added robotics access so assembly line drop-off works properly -veyveyr //I don't think so, Tim. You need to add it to the MULE's hidden robot ID card. -NEO
 
 	var/atom/movable/load = null		// the loaded crate (usually)
 	var/beacon_freq = 1400
@@ -63,7 +63,7 @@
 	botcard = new(src)
 	var/datum/job/cargo_tech/J = new/datum/job/cargo_tech
 	botcard.access = J.get_access()
-//	botcard.access += access_robotics //Why --Ikki
+//	botcard.access += ACCESS_ROBOTICS //Why --Ikki
 	cell = new(src)
 	cell.charge = 2000
 	cell.maxcharge = 2000

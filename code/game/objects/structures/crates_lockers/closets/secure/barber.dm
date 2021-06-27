@@ -1,6 +1,6 @@
 /obj/structure/closet/secure_closet/barber
 	name = "Barber's locker"
-	req_access = list(access_barber)
+	req_access = list(ACCESS_BARBER)
 	icon_state = "barbersecure1"
 	icon_closed = "barbersecure"
 	icon_locked = "barbersecure1"

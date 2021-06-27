@@ -69,8 +69,8 @@
 	damage_absorption = list("brute"=1,"fire"=1,"bullet"=1,"laser"=1,"energy"=1,"bomb"=1)
 	add_req_access = 0
 	maint_access = 0
-	operation_req_access = list(access_syndicate)
-	internals_req_access = list(access_syndicate)
+	operation_req_access = list(ACCESS_SYNDICATE)
+	internals_req_access = list(ACCESS_SYNDICATE)
 	wreckage = /obj/effect/decal/mecha_wreckage/ripley/deathripley
 	max_equip = 2
 

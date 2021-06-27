@@ -14,7 +14,7 @@
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "dna"
 	circuit = /obj/item/weapon/circuitboard/reconstitutor
-	req_access = list(access_xenoarch) //Only used for record deletion right now. //xenoarch couldn't use it when it was access_heads
+	req_access = list(ACCESS_XENOARCH) //Only used for record deletion right now. //xenoarch couldn't use it when it was ACCESS_HEADS
 	var/obj/machinery/clonepod/pod1 = 1 //Linked cloning pod.
 	var/last_used = 0 // We don't want seeds getting spammed
 	var/temp = ""

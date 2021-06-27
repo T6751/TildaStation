@@ -7,7 +7,7 @@
 	icon_opened = "medicalopen"
 	icon_broken = "medicalbroken"
 	icon_off = "medicaloff"
-	req_access = list(access_medical)
+	req_access = list(ACCESS_MEDICAL)
 
 /obj/structure/closet/secure_closet/medical1/PopulateContents()
 	new /obj/item/weapon/storage/box/autoinjectors(src)
@@ -31,7 +31,7 @@
 	icon_opened = "medicalopen"
 	icon_broken = "medicalbroken"
 	icon_off = "medicaloff"
-	req_access = list(access_surgery)
+	req_access = list(ACCESS_SURGERY)
 
 /obj/structure/closet/secure_closet/medical2/PopulateContents()
 	for (var/i in 1 to 3)
@@ -40,7 +40,7 @@
 
 /obj/structure/closet/secure_closet/medical3
 	name = "Medical Doctor's Locker"
-	req_one_access = list(access_surgery, access_paramedic)
+	req_one_access = list(ACCESS_SURGERY, ACCESS_PARAMEDIC)
 	icon_state = "securemed1"
 	icon_closed = "securemed"
 	icon_locked = "securemed1"
@@ -84,7 +84,7 @@
 
 /obj/structure/closet/secure_closet/CMO
 	name = "Chief Medical Officer's Locker"
-	req_access = list(access_cmo)
+	req_access = list(ACCESS_CMO)
 	icon_state = "cmosecure1"
 	icon_closed = "cmosecure"
 	icon_locked = "cmosecure1"
@@ -129,7 +129,7 @@
 
 /obj/structure/closet/secure_closet/animal
 	name = "Animal Control"
-	req_access = list(access_surgery)
+	req_access = list(ACCESS_SURGERY)
 
 /obj/structure/closet/secure_closet/animal/PopulateContents()
 	new /obj/item/device/assembly/signaler(src)
@@ -145,7 +145,7 @@
 	icon_opened = "medicalopen"
 	icon_broken = "chemicalbroken"
 	icon_off = "chemicaloff"
-	req_access = list(access_chemistry)
+	req_access = list(ACCESS_CHEMISTRY)
 
 /obj/structure/closet/secure_closet/chemical/PopulateContents()
 	for (var/i in 1 to 2)
@@ -164,7 +164,7 @@
 	anchored = TRUE
 	density = FALSE
 	wall_mounted = 1
-	req_access = list(access_medical)
+	req_access = list(ACCESS_MEDICAL)
 
 /obj/structure/closet/secure_closet/medical_wall/update_icon()
 	if(broken)

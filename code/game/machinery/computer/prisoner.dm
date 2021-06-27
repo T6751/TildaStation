@@ -5,7 +5,7 @@
 	state_broken_preset = "securityb"
 	state_nopower_preset = "security0"
 	light_color = "#a91515"
-	req_access = list(access_armory)
+	req_access = list(ACCESS_ARMORY)
 	circuit = /obj/item/weapon/circuitboard/prisoner
 	var/id = 0.0
 	var/temp = null

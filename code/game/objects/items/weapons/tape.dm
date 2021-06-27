@@ -26,7 +26,7 @@
 /obj/item/tape/police
 	name = "police tape"
 	desc = "A length of police tape. Do not cross."
-	req_one_access = list(access_security, access_forensics_lockers)
+	req_one_access = list(ACCESS_SECURITY, ACCESS_FORENSICS_LOCKERS)
 	icon_base = "police"
 
 /obj/item/taperoll/engineering
@@ -39,7 +39,7 @@
 /obj/item/tape/engineering
 	name = "engineering tape"
 	desc = "A length of engineering tape. Better not cross it."
-	req_one_access = list(access_engine,access_atmospherics)
+	req_one_access = list(ACCESS_ENGINE,ACCESS_ATMOSPHERICS)
 	icon_base = "engineering"
 
 /obj/item/taperoll/science
@@ -52,7 +52,7 @@
 /obj/item/tape/science
 	name = "science tape"
 	desc = "A snow-white science tape. Should you cross it?"
-	req_one_access = list(access_research)
+	req_one_access = list(ACCESS_RESEARCH)
 	icon_base = "science"
 
 /obj/item/taperoll/attack_self(mob/user)
