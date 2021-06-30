@@ -6,32 +6,32 @@ body:
   - type: markdown
     attributes:
       value: |
-        Спасибо, что сообщаете о баге! 
+        Спасибо, что сообщаете о баге!
         **В одном репорте должно быть описание только одной проблемы. Не стоит описывать пачку багов в одном репорте**
         **Корректное название репорта не менее важно, чем описание**
   - type: textarea
-    id: description-of-the-problem 
+    id: description-of-the-problem
     attributes:
-      label: Подробное описание проблемы
+      label: 1/4 Подробное описание проблемы
       placeholder: Подробное описание случившейся проблемы
     validations:
       required: true
   - type: textarea
     id: expectation
     attributes:
-      label: Что должно было произойти
+      label: 2/4 Что должно было произойти
     validations:
       required: true
   - type: textarea
     id: reality
     attributes:
-      label: Что произошло на самом деле
+      label: 3/4 Что произошло на самом деле
     validations:
       required: true
   - type: textarea
-    id: how-to-reproduce 
+    id: how-to-reproduce
     attributes:
-      label: Как повторить
+      label: 4/4 Как повторить
     validations:
       required: true
   - type: textarea
