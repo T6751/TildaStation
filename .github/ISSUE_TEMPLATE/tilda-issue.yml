@@ -14,24 +14,28 @@ body:
     attributes:
       label: Подробное описание проблемы
       placeholder: Подробное описание случившейся проблемы
+      render: shell
     validations:
       required: true
   - type: textarea
     id: expectation
     attributes:
       label: Что должно было произойти
+      render: shell
     validations:
       required: true
   - type: textarea
     id: reality
     attributes:
       label: Что произошло на самом деле
+      render: shell
     validations:
       required: true
   - type: textarea
     id: how-to-reproduce 
     attributes:
       label: Как повторить
+      render: shell
     validations:
       required: true
   - type: textarea
@@ -39,3 +43,4 @@ body:
     attributes:
       label: Дополнительная информация
       placeholder: айди раунда, версия бьёнда, тестмержи, другая полезная информация
+      render: shell
