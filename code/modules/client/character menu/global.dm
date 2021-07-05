@@ -101,6 +101,9 @@
 	. +=				"<tr>"
 	. += 					"<td width='45%'>Change Names Size:</td>"
 	. +=					"<td><a href='?_src_=prefs;preference=change_size_tooltip'><b>[tooltip_size]</b></a></td>"
+	. += 				"<tr>"
+	. += 					"<td width='45%'>Floating Messages:</td>"
+	. += 					"<td><a href='?_src_=prefs;preference=floating_messages'><b>[floating_messages ? "Yes" : "No"]</b></a></td>"
 	. += 				"</tr>"
 	. += 			"</table>"
 	. += 		"</td>"
@@ -164,6 +167,8 @@
 			var/pickedOutlineColor = input(user, "Choose your outline color.", "General Preference", outline_color) as color|null
 			if(pickedOutlineColor)
 				outline_color = pickedOutlineColor
+		if("floating_messages")
+			floating_messages = !floating_messages
 
 		if("change_fps")
 			var/desiredfps = input(user, "Choose your desired fps.\n-1 means recommended value (currently:[RECOMMENDED_FPS])\n0 means world fps (currently:[world.fps])", "Character Preference", clientfps)  as null|num
