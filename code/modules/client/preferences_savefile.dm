@@ -316,6 +316,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["key_bindings"]		>> key_bindings
 	check_keybindings()
 
+	// Runechat
+	S["chat_on_map"]		>> chat_on_map
+	S["max_chat_length"]	>> max_chat_length
+	S["see_chat_non_mob"]	>> see_chat_non_mob
+	S["see_rc_emotes"]		>> see_rc_emotes
+
 	//TGUI
 	S["tgui_fancy"]		>> tgui_fancy
 	S["tgui_lock"]		>> tgui_lock
@@ -351,6 +357,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	UI_style_color	= sanitize_hexcolor(UI_style_color, initial(UI_style_color))
 	UI_style_alpha	= sanitize_integer(UI_style_alpha, 0, 255, initial(UI_style_alpha))
 	key_bindings 	= sanitize_keybindings(key_bindings)
+	chat_on_map		= sanitize_integer(chat_on_map, 0, 1, initial(chat_on_map))
+	max_chat_length	= sanitize_integer(max_chat_length, 1, CHAT_MESSAGE_MAX_LENGTH, initial(max_chat_length))
+	see_chat_non_mob	= sanitize_integer(see_chat_non_mob, 0, 1, initial(see_chat_non_mob))
+	see_rc_emotes	= sanitize_integer(see_rc_emotes, 0, 1, initial(see_rc_emotes))
 	tgui_fancy		= sanitize_integer(tgui_fancy, 0, 1, initial(tgui_fancy))
 	tgui_lock		= sanitize_integer(tgui_lock, 0, 1, initial(tgui_lock))
 	parallax		= sanitize_integer(parallax, PARALLAX_INSANE, PARALLAX_DISABLE, PARALLAX_HIGH)
@@ -436,6 +446,13 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["outline_enabled"]	<< outline_enabled
 	S["outline_color"]		<< outline_color
 	S["eorg_enabled"]		<< eorg_enabled
+
+	// Runechat
+	S["chat_on_map"]		<< chat_on_map
+	S["max_chat_length"]	<< max_chat_length
+	S["see_chat_non_mob"]	<< see_chat_non_mob
+	S["see_rc_emotes"]		<< see_rc_emotes
+
 	//TGUI
 	S["tgui_fancy"]		<< tgui_fancy
 	S["tgui_lock"]		<< tgui_lock

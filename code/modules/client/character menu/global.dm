@@ -13,6 +13,10 @@
 	. += 				"<tr><td>Outline: <a href='?_src_=prefs;preference=outline_enabled'>[outline_enabled ? "Enabled" : "Disabled"]</a><br>"
 	. += 				"<tr><td>Outline Color: <span style='border:1px solid #161616; background-color: [outline_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=outline_color'>Change</a><BR>"
 	. += 				"<tr><td>FPS: <a href='?_src_=prefs;preference=change_fps'>[clientfps]</a></td></tr>"
+	. += 				"<tr><td>Show Runechat Chat Bubbles: <a href='?_src_=prefs;preference=chat_on_map'>[chat_on_map ? "Enabled" : "Disabled"]</a></td></tr>"
+	. += 				"<tr><td>Runechat message char limit: <a href='?_src_=prefs;preference=max_chat_length;task=input'>[max_chat_length]</a></td></tr>"
+	. += 				"<tr><td>See Runechat for non-mobs:  <a href='?_src_=prefs;preference=see_chat_non_mob'>[see_chat_non_mob ? "Enabled" : "Disabled"]</a></td></tr>"
+	. += 				"<tr><td>See Runechat emotes: <a href='?_src_=prefs;preference=see_rc_emotes'>[see_rc_emotes ? "Enabled" : "Disabled"]</a></td></tr>"
 	. +=			"<tr><td><br><b>OOC Notes: </b><a href='?_src_=prefs;preference=metadata;task=input'>[length(metadata)>0?"[copytext_char(metadata, 1, 3)]...":"\[...\]"]</a></td></tr>"
 	//if(user.client) TG
 	//	if(user.client.holder)
@@ -141,6 +145,18 @@
 			var/pickedui = input(user, "Choose your UI style.", "Character Preference", UI_style) as null|anything in sortList(global.available_ui_styles)
 			if(pickedui)
 				UI_style = pickedui
+
+		if("chat_on_map")
+			chat_on_map = !chat_on_map
+		if("see_chat_non_mob")
+			see_chat_non_mob = !see_chat_non_mob
+		if("see_rc_emotes")
+			see_rc_emotes = !see_rc_emotes
+
+		if ("max_chat_length")
+			var/desiredlength = input(user, "Choose the max character length of shown Runechat messages. Valid range is 1 to [CHAT_MESSAGE_MAX_LENGTH] (default: [initial(max_chat_length)]))", "Character Preference", max_chat_length)  as null|num
+			if (!isnull(desiredlength))
+				max_chat_length = clamp(desiredlength, 1, CHAT_MESSAGE_MAX_LENGTH)
 
 		if("tgui_fancy")
 			tgui_fancy = !tgui_fancy
