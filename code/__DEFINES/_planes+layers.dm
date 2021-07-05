@@ -76,6 +76,9 @@ What is the naming convention for planes or layers?
 
 //HUD layer defines
 
+///Popup Chat Messages
+#define RUNECHAT_PLANE   17
+
 #define FULLSCREEN_PLANE 18
 #define FLASH_LAYER      18
 #define FULLSCREEN_LAYER 18.1

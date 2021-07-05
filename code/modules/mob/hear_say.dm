@@ -68,8 +68,12 @@
 		if(isliving(src))
 			message = highlight_traitor_codewords(message, src.mind)
 		if(language)
+			if (client?.prefs.chat_on_map && (client.prefs.see_chat_non_mob || ismob(speaker)))
+				create_chat_message(speaker, raw_message = language.format_message(message, verb))
 			to_chat(src, "[track] <span class='game say'><span class='name'>[speaker_name]</span>[alt_name] [language.format_message(message, verb)]</span>")
 		else
+			if (client?.prefs.chat_on_map && (client.prefs.see_chat_non_mob || ismob(speaker)))
+				create_chat_message(speaker, raw_message = message)
 			to_chat(src, "[track] <span class='game say'><span class='name'>[speaker_name]</span>[alt_name] [verb], <span class='message'><span class='body'>\"[message]\"</span></span></span>")
 		if (speech_sound && (get_dist(speaker, src) <= world.view && src.z == speaker.z))
 			var/turf/source = speaker? get_turf(speaker) : get_turf(src)
