@@ -1,3 +1,5 @@
+#define LOCKER_FULL -1
+
 /obj/structure/closet
 	name = "closet"
 	desc = "It's a basic storage unit."
@@ -70,33 +72,41 @@
 		M.instant_vision_update(0)
 
 /obj/structure/closet/proc/collect_contents()
-	var/itemcount = 0
-
-	//Cham Projector Exception
-	for(var/obj/effect/dummy/chameleon/AD in src.loc)
-		if(itemcount >= storage_capacity)
+	for(var/atom/movable/AM in loc.contents - src)
+		if(insert(AM) == LOCKER_FULL) // limit reached
 			break
-		AD.forceMove(src)
-		itemcount++
 
-	for(var/obj/item/I in src.loc)
-		if(itemcount >= storage_capacity)
-			break
-		if(!I.anchored)
-			I.forceMove(src)
-			itemcount++
+/obj/structure/closet/proc/insert(atom/movable/inserted)
+	if(length(contents) >= storage_capacity)
+		return LOCKER_FULL
+	if(!insertion_allowed(inserted))
+		return FALSE
+	inserted.forceMove(src)
+	return TRUE
 
-	for(var/mob/M in src.loc)
-		if(itemcount >= storage_capacity)
-			break
-		if(istype (M, /mob/dead/observer))
-			continue
-		if(M.buckled)
-			continue
+/obj/structure/closet/proc/insertion_allowed(atom/movable/AM)
+	if(ismob(AM))
+		if(!isliving(AM)) //let's not put ghosts or camera mobs inside closets...
+			return FALSE
+		var/mob/living/L = AM
+		if(L.anchored || L.buckled || L.incorporeal_move || L.has_buckled_mobs())
+			return FALSE
+		L.stop_pulling()
+		return TRUE
 
-		M.forceMove(src)
-		M.instant_vision_update(1,src)
-		itemcount++
+	if(istype(AM, /obj/structure/closet))
+		return FALSE
+
+	if(isobj(AM))
+		if(AM.anchored || AM.has_buckled_mobs())
+			return FALSE
+		if(isitem(AM))
+			return TRUE
+		//Cham Projector Exception
+		if(istype(AM, /obj/effect/dummy/chameleon))
+			return TRUE
+
+	return TRUE
 
 /obj/structure/closet/proc/open()
 	if(src.opened)
@@ -311,3 +321,5 @@
 		visible_message("<span class='danger'>[user] successfully broke out of [src]!</span>")
 		to_chat(user, "<span class='notice'>You successfully break out of [src]!</span>")
 		open()
+
+#undef LOCKER_FULL
