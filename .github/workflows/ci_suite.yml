@@ -12,7 +12,7 @@ env:
   SPACEMAN_DMM_VERSION: suite-1.6
 jobs:
   DreamChecker:
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Setup Cache
@@ -31,7 +31,7 @@ jobs:
           outputFile: output-annotations.txt
   Code:
     name: Code and Map Linting
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Setup Cache
@@ -49,7 +49,7 @@ jobs:
           bash scripts/build_tgui.sh
   unit_tests:
     name: Unit Tests
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         include:
@@ -77,7 +77,7 @@ jobs:
           bash test/run-test.sh
   compile_everything:
     name: Compile Everything
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Setup Cache
