@@ -3,7 +3,8 @@
 		//BLACK MAGIC THINGS//
 		//////////////////////
 	parent_type = /datum
-
+	/// hides the byond verb panel as we use our own custom version
+	show_verb_panel = FALSE
 		////////////////
 		//ADMIN THINGS//
 		////////////////
@@ -125,3 +126,14 @@
 
 	// Last world.time that the player tried to request their resources.
 	var/last_ui_resource_send = 0
+
+	/// our current tab
+	var/stat_tab
+
+	/// whether our browser is ready or not yet
+	var/statbrowser_ready = FALSE
+
+	/// list of all tabs
+	var/list/panel_tabs = list()
+	/// list of tabs containing spells and abilities
+	var/list/spell_tabs = list()
